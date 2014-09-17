@@ -15,8 +15,9 @@
 #include <delays.h>
 #include "system.h"
 #include "user.h"
-//#include "interrupts.h"
 #include "globals.h"        // Holds global variables
+#include "config.h"
+#include "portb.h"
 
 
 int CHA;                    // Preserve state of Channel A from encoder

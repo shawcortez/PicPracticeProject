@@ -133,11 +133,11 @@
 [v _Delay1KTCYx Delay1KTCYx `(v  1 e 0 0 ]
 "15 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/interrupts.c
 [v _TimerStopped TimerStopped `IIL(v  1 e 0 0 ]
-"25 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
+"26 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
 [v _main main `(i  1 e 2 0 ]
-"53
+"54
 [v _high_isr high_isr `IIH(v  1 e 0 0 ]
-"65
+"66
 [v _low_isr low_isr `IIL(v  1 e 0 0 ]
 "18 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c
 [v _InitApp InitApp `(i  1 e 2 0 ]
@@ -401,26 +401,26 @@
 [v _INTCONbits INTCONbits `VES133  1 e 1 @4082 ]
 "6393
 [v _LATB4 LATB4 `VEb  1 e 0 @31828 ]
-"22 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
+"23 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
 [v _CHA CHA `i  1 e 2 0 ]
-"23
+"24
 [v _CHB CHB `i  1 e 2 0 ]
-"25
+"26
 [v _main main `(i  1 e 2 0 ]
 {
-"29
+"30
 [v main@LCDinit LCDinit `[7]uc  1 a 7 38 ]
-"30
-[v main@Msg1 Msg1 `[6]uc  1 a 6 45 ]
 "31
+[v main@Msg1 Msg1 `[6]uc  1 a 6 45 ]
+"32
 [v main@Msg2 Msg2 `[5]uc  1 a 5 51 ]
-"25
+"26
 [v main@F3909 F3909 `[7]uc  1 s 7 F3909 ]
-"29
-[v main@F3911 F3911 `[6]uc  1 s 6 F3911 ]
 "30
+[v main@F3911 F3911 `[6]uc  1 s 6 F3911 ]
+"31
 [v main@F3913 F3913 `[5]uc  1 s 5 F3913 ]
-"51
+"52
 } 0
 "125 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c
 [v _InitInterrupts InitInterrupts `(i  1 e 2 0 ]
@@ -473,10 +473,10 @@
 [v Delay100TCYx@unit unit `uc  1 a 1 31 ]
 "13
 } 0
-"65 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
+"66 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
 [v _low_isr low_isr `IIL(v  1 e 0 0 ]
 {
-"78
+"79
 } 0
 "135 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c
 [v _ReadEncoder ReadEncoder `(i  1 e 2 0 ]
@@ -502,8 +502,8 @@
 {
 "24
 } 0
-"53 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
+"54 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
 [v _high_isr high_isr `IIH(v  1 e 0 0 ]
 {
-"62
+"63
 } 0

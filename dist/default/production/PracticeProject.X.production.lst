@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.33 build 59893 
-                                                                                               Wed Sep 17 14:34:55 2014
+                                                                                               Wed Sep 17 17:23:42 2014
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 59893
      1                           	processor	18F452
@@ -328,7 +328,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    322 ;;
    323 ;; *************** function _main *****************
    324 ;; Defined at:
-   325 ;;		line 25 in file "main.c"
+   325 ;;		line 26 in file "main.c"
    326 ;; Parameters:    Size  Location     Type
    327 ;;		None
    328 ;; Auto vars:     Size  Location     Type
@@ -369,7 +369,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    363                           ;incstack = 0
    364  000234  FFFF               	dw	65535
    365                           
-   366                           ;main.c: 29: char LCDinit[] = {0x33,0x32,0x28,0x01,0x0c,0x06,0x00};
+   366                           ;main.c: 30: char LCDinit[] = {0x33,0x32,0x28,0x01,0x0c,0x06,0x00};
    367  000236  EE20  F0B8         	lfsr	2,main@F3909
    368  00023A  EE10  F0A6         	lfsr	1,main@LCDinit
    369  00023E  0E07               	movlw	7
@@ -378,7 +378,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    372  000244  2EE8               	decfsz	wreg,f,c
    373  000246  D7FC               	goto	u321
    374                           
-   375                           ;main.c: 30: char Msg1[] = {0x84,'C','U','N','T','\0'};
+   375                           ;main.c: 31: char Msg1[] = {0x84,'C','U','N','T','\0'};
    376  000248  EE20  F0BF         	lfsr	2,main@F3911
    377  00024C  EE10  F0AD         	lfsr	1,main@Msg1
    378  000250  0E06               	movlw	6
@@ -387,7 +387,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    381  000256  2EE8               	decfsz	wreg,f,c
    382  000258  D7FC               	goto	u331
    383                           
-   384                           ;main.c: 31: char Msg2[] = {0xC5,'R','P','M','\0'};
+   384                           ;main.c: 32: char Msg2[] = {0xC5,'R','P','M','\0'};
    385  00025A  EE20  F0C5         	lfsr	2,main@F3913
    386  00025E  EE10  F0B3         	lfsr	1,main@Msg2
    387  000262  0E05               	movlw	5
@@ -396,10 +396,10 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    390  000268  2EE8               	decfsz	wreg,f,c
    391  00026A  D7FC               	goto	u341
    392                           
-   393                           ;main.c: 32: InitApp();
+   393                           ;main.c: 33: InitApp();
    394  00026C  EC38  F002         	call	_InitApp	;wreg free
    395                           
-   396                           ;main.c: 33: DisplayLCD(LCDinit,1);
+   396                           ;main.c: 34: DisplayLCD(LCDinit,1);
    397  000270  0100               	movlb	0	; () banked
    398  000272  0E00               	movlw	high main@LCDinit
    399  000274  0100               	movlb	0	; () banked
@@ -416,7 +416,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    410  00028A  6FA2               	movwf	DisplayLCD@init& (0+255),b
    411  00028C  EC85  F001         	call	_DisplayLCD	;wreg free
    412                           
-   413                           ;main.c: 34: DisplayLCD(Msg1,0);
+   413                           ;main.c: 35: DisplayLCD(Msg1,0);
    414  000290  0100               	movlb	0	; () banked
    415  000292  0E00               	movlw	high main@Msg1
    416  000294  0100               	movlb	0	; () banked
@@ -433,7 +433,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    427  0002AA  6FA2               	movwf	DisplayLCD@init& (0+255),b
    428  0002AC  EC85  F001         	call	_DisplayLCD	;wreg free
    429                           
-   430                           ;main.c: 35: DisplayLCD(Msg2,0);
+   430                           ;main.c: 36: DisplayLCD(Msg2,0);
    431  0002B0  0100               	movlb	0	; () banked
    432  0002B2  0E00               	movlw	high main@Msg2
    433  0002B4  0100               	movlb	0	; () banked
@@ -450,7 +450,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    444  0002CA  6FA2               	movwf	DisplayLCD@init& (0+255),b
    445  0002CC  EC85  F001         	call	_DisplayLCD	;wreg free
    446                           
-   447                           ;main.c: 36: CHA = PORTBbits.RB5;
+   447                           ;main.c: 37: CHA = PORTBbits.RB5;
    448  0002D0  AA81               	btfss	3969,5,c	;volatile
    449  0002D2  D004               	goto	u350
    450  0002D4  0100               	movlb	0	; () banked
@@ -467,7 +467,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    461  0002E6  6A5F               	clrf	_CHA+1,c
    462                           
    463                           ; BSR set to: 0
-   464                           ;main.c: 37: CHB = PORTBbits.RB4;
+   464                           ;main.c: 38: CHB = PORTBbits.RB4;
    465  0002E8  A881               	btfss	3969,4,c	;volatile
    466  0002EA  D004               	goto	u360
    467  0002EC  0100               	movlb	0	; () banked
@@ -484,12 +484,12 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    478  0002FE  6A61               	clrf	_CHB+1,c
    479                           
    480                           ; BSR set to: 0
-   481                           ;main.c: 38: InitInterrupts();
+   481                           ;main.c: 39: InitInterrupts();
    482  000300  ECAD  F002         	call	_InitInterrupts	;wreg free
    483  000304                     l1151:
    484                           
-   485                           ;main.c: 43: {
-   486                           ;main.c: 45: WaitHalfSec();
+   485                           ;main.c: 44: {
+   486                           ;main.c: 46: WaitHalfSec();
    487  000304  EC55  F002         	call	_WaitHalfSec	;wreg free
    488  000308  D7FD               	goto	l1151
    489  00030A                     __end_of_main:
@@ -1258,7 +1258,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1252                           
   1253 ;; *************** function _low_isr *****************
   1254 ;; Defined at:
-  1255 ;;		line 65 in file "main.c"
+  1255 ;;		line 66 in file "main.c"
   1256 ;; Parameters:    Size  Location     Type
   1257 ;;		None
   1258 ;; Auto vars:     Size  Location     Type
@@ -1343,15 +1343,15 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1337  000056  CFF8 F03C          	movff	tblptru,??_low_isr+15
   1338  00005A  CFF5 F03D          	movff	tablat,??_low_isr+16
   1339                           
-  1340                           ;main.c: 67: if(INTCONbits.RBIF == 1)
+  1340                           ;main.c: 68: if(INTCONbits.RBIF == 1)
   1341  00005E  A0F2               	btfss	intcon,0,c	;volatile
   1342  000060  D003               	goto	i1l38
   1343                           
-  1344                           ;main.c: 68: {
-  1345                           ;main.c: 69: ReadEncoder();
+  1344                           ;main.c: 69: {
+  1345                           ;main.c: 70: ReadEncoder();
   1346  000062  ECA5  F000         	call	_ReadEncoder	;wreg free
   1347                           
-  1348                           ;main.c: 70: INTCONbits.RBIF = 0;
+  1348                           ;main.c: 71: INTCONbits.RBIF = 0;
   1349  000066  90F2               	bcf	intcon,0,c	;volatile
   1350  000068                     i1l38:
   1351  000068  C03D  FFF5         	movff	??_low_isr+16,tablat
@@ -1691,7 +1691,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1685                           
   1686 ;; *************** function _high_isr *****************
   1687 ;; Defined at:
-  1688 ;;		line 53 in file "main.c"
+  1688 ;;		line 54 in file "main.c"
   1689 ;; Parameters:    Size  Location     Type
   1690 ;;		None
   1691 ;; Auto vars:     Size  Location     Type
@@ -2125,7 +2125,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                   Wed Sep 17 14:34:55 2014
+Symbol Table                                                                                   Wed Sep 17 17:23:42 2014
 
                                                                     l90 0368  
                                                                     l98 03AE  
