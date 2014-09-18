@@ -46,7 +46,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "5659
 [v _INTCONbits `VS306 ~T0 @X0 0 e@4082 ]
 "23 user.h
-[v _ReadEncoder `(i ~T0 @X0 0 ef ]
+[v _ReadEncoder `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic18f452.h: 47: extern volatile unsigned char PORTA @ 0xF80;
@@ -3486,7 +3486,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user.h: 17: int WaitHalfSec(void);
 [; ;user.h: 19: int DisplayLCD(char * tempPtr, int init);
 [; ;user.h: 21: int InitInterrupts(void);
-[; ;user.h: 23: int ReadEncoder(void);
+[; ;user.h: 23: void ReadEncoder(void);
 [; ;globals.h: 11: extern int CHA;
 [; ;globals.h: 12: extern int CHB;
 [; ;globals.h: 13: extern int OLD_ROT;

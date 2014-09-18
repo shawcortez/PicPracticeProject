@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.33 build 59893 
-                                                                                               Thu Sep 18 00:57:56 2014
+                                                                                               Thu Sep 18 01:02:15 2014
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 59893
      1                           	processor	18F452
@@ -341,7 +341,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    335  000754                     __ptext0:
    336                           	opt stack 0
    337  000754                     _main:
-   338                           	opt stack 25
+   338                           	opt stack 24
    339                           
    340                           ;incstack = 0
    341  000754  FFFF               	dw	65535
@@ -523,7 +523,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    517  000A40                     __ptext1:
    518                           	opt stack 0
    519  000A40                     _InitInterrupts:
-   520                           	opt stack 27
+   520                           	opt stack 26
    521                           
    522                           ;incstack = 0
    523  000A40  FFFF               	dw	65535
@@ -592,7 +592,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    586  000982                     __ptext2:
    587                           	opt stack 0
    588  000982                     _InitApp:
-   589                           	opt stack 25
+   589                           	opt stack 24
    590                           
    591                           ;incstack = 0
    592  000982  FFFF               	dw	65535
@@ -710,7 +710,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    704  0009BC                     __ptext3:
    705                           	opt stack 0
    706  0009BC                     _WaitHalfSec:
-   707                           	opt stack 26
+   707                           	opt stack 25
    708                           
    709                           ;incstack = 0
    710  0009BC  FFFF               	dw	65535
@@ -816,7 +816,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    810  000832                     __ptext4:
    811                           	opt stack 0
    812  000832                     _DisplayLCD:
-   813                           	opt stack 26
+   813                           	opt stack 25
    814                           
    815                           ; BSR set to: 0
    816                           ;incstack = 0
@@ -1031,7 +1031,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1025  000A1C                     __ptext5:
   1026                           	opt stack 0
   1027  000A1C                     _Delay1KTCYx:
-  1028                           	opt stack 26
+  1028                           	opt stack 25
   1029                           
   1030                           ;incstack = 0
   1031  000A1C  FFFF               	dw	65535
@@ -1100,7 +1100,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1094  0009F6                     __ptext6:
   1095                           	opt stack 0
   1096  0009F6                     _Delay10TCYx:
-  1097                           	opt stack 26
+  1097                           	opt stack 25
   1098                           
   1099                           ;incstack = 0
   1100  0009F6  FFFF               	dw	65535
@@ -1170,7 +1170,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1164  000A2E                     __ptext7:
   1165                           	opt stack 0
   1166  000A2E                     _Delay100TCYx:
-  1167                           	opt stack 26
+  1167                           	opt stack 25
   1168                           
   1169                           ;incstack = 0
   1170  000A2E  FFFF               	dw	65535
@@ -1269,7 +1269,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1263  000018                     __pintcodelo:
   1264                           	opt stack 0
   1265  000018                     _low_isr:
-  1266                           	opt stack 25
+  1266                           	opt stack 24
   1267                           
   1268                           ;incstack = 0
   1269  000018  FFFF               	dw	65535	; errata NOP
@@ -1324,7 +1324,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1318  0000B0                     __end_of_low_isr:
   1319                           	opt stack 0
   1320  0000B0                     _TimerStopped:
-  1321                           	opt stack 26
+  1321                           	opt stack 25
   1322                           
   1323                           ;incstack = 0
   1324  0000B0  FFFF               	dw	65535	; errata NOP
@@ -1415,7 +1415,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1409 ;;  New             2    4[COMRAM] int 
   1410 ;;  Old             2    2[COMRAM] int 
   1411 ;; Return value:  Size  Location     Type
-  1412 ;;                  2   14[COMRAM] int 
+  1412 ;;		None               void
   1413 ;; Registers used:
   1414 ;;		wreg, status,2, status,0, tblptrl, tblptrh, tblptru
   1415 ;; Tracked objects:
@@ -1441,7 +1441,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1435  000622                     __ptext9:
   1436                           	opt stack 0
   1437  000622                     _ReadEncoder:
-  1438                           	opt stack 25
+  1438                           	opt stack 24
   1439                           
   1440                           ;incstack = 0
   1441  000622  FFFF               	dw	65535
@@ -1651,213 +1651,210 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1645                           ;user.c: 201: OLD_ROT = NEW_ROT;
   1646  000748  C00B  F042         	movff	ReadEncoder@NEW_ROT,_OLD_ROT
   1647  00074C  C00C  F043         	movff	ReadEncoder@NEW_ROT+1,_OLD_ROT+1
-  1648                           
-  1649                           ;user.c: 202: return 0;
-  1650                           ;	Return value of _ReadEncoder is never used
-  1651  000750  0012               	return	
-  1652  000752  FFFF               	dw	65535	; errata NOP
-  1653  000754                     __end_of_ReadEncoder:
-  1654                           	opt stack 0
-  1655                           pclatu	equ	0xFFB
-  1656                           pclath	equ	0xFFA
-  1657                           tblptru	equ	0xFF8
-  1658                           tblptrh	equ	0xFF7
-  1659                           tblptrl	equ	0xFF6
-  1660                           tablat	equ	0xFF5
-  1661                           prodh	equ	0xFF4
-  1662                           prodl	equ	0xFF3
-  1663                           intcon	equ	0xFF2
-  1664                           intcon2	equ	0xFF1
-  1665                           postinc0	equ	0xFEE
-  1666                           fsr0h	equ	0xFEA
-  1667                           fsr0l	equ	0xFE9
-  1668                           wreg	equ	0xFE8
-  1669                           postinc1	equ	0xFE6
-  1670                           postdec1	equ	0xFE5
-  1671                           fsr1h	equ	0xFE2
-  1672                           fsr1l	equ	0xFE1
-  1673                           bsr	equ	0xFE0
-  1674                           indf2	equ	0xFDF
-  1675                           postinc2	equ	0xFDE
-  1676                           fsr2h	equ	0xFDA
-  1677                           fsr2l	equ	0xFD9
-  1678                           status	equ	0xFD8
-  1679                           
-  1680 ;; *************** function _high_isr *****************
-  1681 ;; Defined at:
-  1682 ;;		line 57 in file "main.c"
-  1683 ;; Parameters:    Size  Location     Type
-  1684 ;;		None
-  1685 ;; Auto vars:     Size  Location     Type
-  1686 ;;		None
-  1687 ;; Return value:  Size  Location     Type
-  1688 ;;		None               void
-  1689 ;; Registers used:
-  1690 ;;		None
-  1691 ;; Tracked objects:
-  1692 ;;		On entry : 0/0
-  1693 ;;		On exit  : 0/0
-  1694 ;;		Unchanged: 0/0
-  1695 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
-  1696 ;;      Params:         0       0       0       0       0       0       0
-  1697 ;;      Locals:         0       0       0       0       0       0       0
-  1698 ;;      Temps:         14       0       0       0       0       0       0
-  1699 ;;      Totals:        14       0       0       0       0       0       0
-  1700 ;;Total ram usage:       14 bytes
-  1701 ;; Hardware stack levels used:    1
-  1702 ;; This function calls:
-  1703 ;;		Nothing
-  1704 ;; This function is called by:
-  1705 ;;		Interrupt level 2
-  1706 ;; This function uses a non-reentrant model
-  1707 ;;
-  1708                           
-  1709                           	psect	intcode
-  1710  000008                     __pintcode:
-  1711                           	opt stack 0
-  1712  000008                     _high_isr:
-  1713                           	opt stack 25
-  1714                           
-  1715                           ;incstack = 0
-  1716  000008  FFFF               	dw	65535	; errata NOP
-  1717  00000A  CFFA F02F          	movff	pclath,??_high_isr
-  1718  00000E  CFFB F030          	movff	pclatu,??_high_isr+1
-  1719  000012  EF6D  F004         	goto	int_func
-  1720                           pclatu	equ	0xFFB
-  1721                           pclath	equ	0xFFA
-  1722                           tblptru	equ	0xFF8
-  1723                           tblptrh	equ	0xFF7
-  1724                           tblptrl	equ	0xFF6
-  1725                           tablat	equ	0xFF5
-  1726                           prodh	equ	0xFF4
-  1727                           prodl	equ	0xFF3
-  1728                           intcon	equ	0xFF2
-  1729                           intcon2	equ	0xFF1
-  1730                           postinc0	equ	0xFEE
-  1731                           fsr0h	equ	0xFEA
-  1732                           fsr0l	equ	0xFE9
-  1733                           wreg	equ	0xFE8
-  1734                           postinc1	equ	0xFE6
-  1735                           postdec1	equ	0xFE5
-  1736                           fsr1h	equ	0xFE2
-  1737                           fsr1l	equ	0xFE1
-  1738                           bsr	equ	0xFE0
-  1739                           indf2	equ	0xFDF
-  1740                           postinc2	equ	0xFDE
-  1741                           fsr2h	equ	0xFDA
-  1742                           fsr2l	equ	0xFD9
-  1743                           status	equ	0xFD8
-  1744                           
-  1745                           	psect	intcode_body
-  1746  0008DA                     __pintcode_body:
-  1747                           	opt stack 25
-  1748  0008DA                     int_func:
-  1749                           	opt stack 25
-  1750  0008DA  FFFF               	dw	65535	; errata NOP
-  1751  0008DC  CFE9 F031          	movff	fsr0l,??_high_isr+2
-  1752  0008E0  CFEA F032          	movff	fsr0h,??_high_isr+3
-  1753  0008E4  CFE1 F033          	movff	fsr1l,??_high_isr+4
-  1754  0008E8  CFE2 F034          	movff	fsr1h,??_high_isr+5
-  1755  0008EC  CFD9 F035          	movff	fsr2l,??_high_isr+6
-  1756  0008F0  CFDA F036          	movff	fsr2h,??_high_isr+7
-  1757  0008F4  CFF3 F037          	movff	prodl,??_high_isr+8
-  1758  0008F8  CFF4 F038          	movff	prodh,??_high_isr+9
-  1759  0008FC  CFF6 F039          	movff	tblptrl,??_high_isr+10
-  1760  000900  CFF7 F03A          	movff	tblptrh,??_high_isr+11
-  1761  000904  CFF8 F03B          	movff	tblptru,??_high_isr+12
-  1762  000908  CFF5 F03C          	movff	tablat,??_high_isr+13
-  1763  00090C  C03C  FFF5         	movff	??_high_isr+13,tablat
-  1764  000910  C03B  FFF8         	movff	??_high_isr+12,tblptru
-  1765  000914  C03A  FFF7         	movff	??_high_isr+11,tblptrh
-  1766  000918  C039  FFF6         	movff	??_high_isr+10,tblptrl
-  1767  00091C  C038  FFF4         	movff	??_high_isr+9,prodh
-  1768  000920  C037  FFF3         	movff	??_high_isr+8,prodl
-  1769  000924  C036  FFDA         	movff	??_high_isr+7,fsr2h
-  1770  000928  C035  FFD9         	movff	??_high_isr+6,fsr2l
-  1771  00092C  C034  FFE2         	movff	??_high_isr+5,fsr1h
-  1772  000930  C033  FFE1         	movff	??_high_isr+4,fsr1l
-  1773  000934  C032  FFEA         	movff	??_high_isr+3,fsr0h
-  1774  000938  C031  FFE9         	movff	??_high_isr+2,fsr0l
-  1775  00093C  C030  FFFB         	movff	??_high_isr+1,pclatu
-  1776  000940  C02F  FFFA         	movff	??_high_isr,pclath
-  1777  000944  0011               	retfie		f
-  1778  000946  FFFF               	dw	65535	; errata NOP
-  1779  000948                     __end_of_high_isr:
-  1780                           	opt stack 0
-  1781                           pclatu	equ	0xFFB
-  1782                           pclath	equ	0xFFA
-  1783                           tblptru	equ	0xFF8
-  1784                           tblptrh	equ	0xFF7
-  1785                           tblptrl	equ	0xFF6
-  1786                           tablat	equ	0xFF5
-  1787                           prodh	equ	0xFF4
-  1788                           prodl	equ	0xFF3
-  1789                           intcon	equ	0xFF2
-  1790                           intcon2	equ	0xFF1
-  1791                           postinc0	equ	0xFEE
-  1792                           fsr0h	equ	0xFEA
-  1793                           fsr0l	equ	0xFE9
-  1794                           wreg	equ	0xFE8
-  1795                           postinc1	equ	0xFE6
-  1796                           postdec1	equ	0xFE5
-  1797                           fsr1h	equ	0xFE2
-  1798                           fsr1l	equ	0xFE1
-  1799                           bsr	equ	0xFE0
-  1800                           indf2	equ	0xFDF
-  1801                           postinc2	equ	0xFDE
-  1802                           fsr2h	equ	0xFDA
-  1803                           fsr2l	equ	0xFD9
-  1804                           status	equ	0xFD8
-  1805                           pclatu	equ	0xFFB
-  1806                           pclath	equ	0xFFA
-  1807                           tblptru	equ	0xFF8
-  1808                           tblptrh	equ	0xFF7
-  1809                           tblptrl	equ	0xFF6
-  1810                           tablat	equ	0xFF5
-  1811                           prodh	equ	0xFF4
-  1812                           prodl	equ	0xFF3
-  1813                           intcon	equ	0xFF2
-  1814                           intcon2	equ	0xFF1
-  1815                           postinc0	equ	0xFEE
-  1816                           fsr0h	equ	0xFEA
-  1817                           fsr0l	equ	0xFE9
-  1818                           wreg	equ	0xFE8
-  1819                           postinc1	equ	0xFE6
-  1820                           postdec1	equ	0xFE5
-  1821                           fsr1h	equ	0xFE2
-  1822                           fsr1l	equ	0xFE1
-  1823                           bsr	equ	0xFE0
-  1824                           indf2	equ	0xFDF
-  1825                           postinc2	equ	0xFDE
-  1826                           fsr2h	equ	0xFDA
-  1827                           fsr2l	equ	0xFD9
-  1828                           status	equ	0xFD8
-  1829                           
-  1830                           	psect	rparam
-  1831  0000                     pclatu	equ	0xFFB
-  1832                           pclath	equ	0xFFA
-  1833                           tblptru	equ	0xFF8
-  1834                           tblptrh	equ	0xFF7
-  1835                           tblptrl	equ	0xFF6
-  1836                           tablat	equ	0xFF5
-  1837                           prodh	equ	0xFF4
-  1838                           prodl	equ	0xFF3
-  1839                           intcon	equ	0xFF2
-  1840                           intcon2	equ	0xFF1
-  1841                           postinc0	equ	0xFEE
-  1842                           fsr0h	equ	0xFEA
-  1843                           fsr0l	equ	0xFE9
-  1844                           wreg	equ	0xFE8
-  1845                           postinc1	equ	0xFE6
-  1846                           postdec1	equ	0xFE5
-  1847                           fsr1h	equ	0xFE2
-  1848                           fsr1l	equ	0xFE1
-  1849                           bsr	equ	0xFE0
-  1850                           indf2	equ	0xFDF
-  1851                           postinc2	equ	0xFDE
-  1852                           fsr2h	equ	0xFDA
-  1853                           fsr2l	equ	0xFD9
-  1854                           status	equ	0xFD8
+  1648  000750  0012               	return	
+  1649  000752  FFFF               	dw	65535	; errata NOP
+  1650  000754                     __end_of_ReadEncoder:
+  1651                           	opt stack 0
+  1652                           pclatu	equ	0xFFB
+  1653                           pclath	equ	0xFFA
+  1654                           tblptru	equ	0xFF8
+  1655                           tblptrh	equ	0xFF7
+  1656                           tblptrl	equ	0xFF6
+  1657                           tablat	equ	0xFF5
+  1658                           prodh	equ	0xFF4
+  1659                           prodl	equ	0xFF3
+  1660                           intcon	equ	0xFF2
+  1661                           intcon2	equ	0xFF1
+  1662                           postinc0	equ	0xFEE
+  1663                           fsr0h	equ	0xFEA
+  1664                           fsr0l	equ	0xFE9
+  1665                           wreg	equ	0xFE8
+  1666                           postinc1	equ	0xFE6
+  1667                           postdec1	equ	0xFE5
+  1668                           fsr1h	equ	0xFE2
+  1669                           fsr1l	equ	0xFE1
+  1670                           bsr	equ	0xFE0
+  1671                           indf2	equ	0xFDF
+  1672                           postinc2	equ	0xFDE
+  1673                           fsr2h	equ	0xFDA
+  1674                           fsr2l	equ	0xFD9
+  1675                           status	equ	0xFD8
+  1676                           
+  1677 ;; *************** function _high_isr *****************
+  1678 ;; Defined at:
+  1679 ;;		line 57 in file "main.c"
+  1680 ;; Parameters:    Size  Location     Type
+  1681 ;;		None
+  1682 ;; Auto vars:     Size  Location     Type
+  1683 ;;		None
+  1684 ;; Return value:  Size  Location     Type
+  1685 ;;		None               void
+  1686 ;; Registers used:
+  1687 ;;		None
+  1688 ;; Tracked objects:
+  1689 ;;		On entry : 0/0
+  1690 ;;		On exit  : 0/0
+  1691 ;;		Unchanged: 0/0
+  1692 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1693 ;;      Params:         0       0       0       0       0       0       0
+  1694 ;;      Locals:         0       0       0       0       0       0       0
+  1695 ;;      Temps:         14       0       0       0       0       0       0
+  1696 ;;      Totals:        14       0       0       0       0       0       0
+  1697 ;;Total ram usage:       14 bytes
+  1698 ;; Hardware stack levels used:    1
+  1699 ;; This function calls:
+  1700 ;;		Nothing
+  1701 ;; This function is called by:
+  1702 ;;		Interrupt level 2
+  1703 ;; This function uses a non-reentrant model
+  1704 ;;
+  1705                           
+  1706                           	psect	intcode
+  1707  000008                     __pintcode:
+  1708                           	opt stack 0
+  1709  000008                     _high_isr:
+  1710                           	opt stack 24
+  1711                           
+  1712                           ;incstack = 0
+  1713  000008  FFFF               	dw	65535	; errata NOP
+  1714  00000A  CFFA F02F          	movff	pclath,??_high_isr
+  1715  00000E  CFFB F030          	movff	pclatu,??_high_isr+1
+  1716  000012  EF6D  F004         	goto	int_func
+  1717                           pclatu	equ	0xFFB
+  1718                           pclath	equ	0xFFA
+  1719                           tblptru	equ	0xFF8
+  1720                           tblptrh	equ	0xFF7
+  1721                           tblptrl	equ	0xFF6
+  1722                           tablat	equ	0xFF5
+  1723                           prodh	equ	0xFF4
+  1724                           prodl	equ	0xFF3
+  1725                           intcon	equ	0xFF2
+  1726                           intcon2	equ	0xFF1
+  1727                           postinc0	equ	0xFEE
+  1728                           fsr0h	equ	0xFEA
+  1729                           fsr0l	equ	0xFE9
+  1730                           wreg	equ	0xFE8
+  1731                           postinc1	equ	0xFE6
+  1732                           postdec1	equ	0xFE5
+  1733                           fsr1h	equ	0xFE2
+  1734                           fsr1l	equ	0xFE1
+  1735                           bsr	equ	0xFE0
+  1736                           indf2	equ	0xFDF
+  1737                           postinc2	equ	0xFDE
+  1738                           fsr2h	equ	0xFDA
+  1739                           fsr2l	equ	0xFD9
+  1740                           status	equ	0xFD8
+  1741                           
+  1742                           	psect	intcode_body
+  1743  0008DA                     __pintcode_body:
+  1744                           	opt stack 24
+  1745  0008DA                     int_func:
+  1746                           	opt stack 24
+  1747  0008DA  FFFF               	dw	65535	; errata NOP
+  1748  0008DC  CFE9 F031          	movff	fsr0l,??_high_isr+2
+  1749  0008E0  CFEA F032          	movff	fsr0h,??_high_isr+3
+  1750  0008E4  CFE1 F033          	movff	fsr1l,??_high_isr+4
+  1751  0008E8  CFE2 F034          	movff	fsr1h,??_high_isr+5
+  1752  0008EC  CFD9 F035          	movff	fsr2l,??_high_isr+6
+  1753  0008F0  CFDA F036          	movff	fsr2h,??_high_isr+7
+  1754  0008F4  CFF3 F037          	movff	prodl,??_high_isr+8
+  1755  0008F8  CFF4 F038          	movff	prodh,??_high_isr+9
+  1756  0008FC  CFF6 F039          	movff	tblptrl,??_high_isr+10
+  1757  000900  CFF7 F03A          	movff	tblptrh,??_high_isr+11
+  1758  000904  CFF8 F03B          	movff	tblptru,??_high_isr+12
+  1759  000908  CFF5 F03C          	movff	tablat,??_high_isr+13
+  1760  00090C  C03C  FFF5         	movff	??_high_isr+13,tablat
+  1761  000910  C03B  FFF8         	movff	??_high_isr+12,tblptru
+  1762  000914  C03A  FFF7         	movff	??_high_isr+11,tblptrh
+  1763  000918  C039  FFF6         	movff	??_high_isr+10,tblptrl
+  1764  00091C  C038  FFF4         	movff	??_high_isr+9,prodh
+  1765  000920  C037  FFF3         	movff	??_high_isr+8,prodl
+  1766  000924  C036  FFDA         	movff	??_high_isr+7,fsr2h
+  1767  000928  C035  FFD9         	movff	??_high_isr+6,fsr2l
+  1768  00092C  C034  FFE2         	movff	??_high_isr+5,fsr1h
+  1769  000930  C033  FFE1         	movff	??_high_isr+4,fsr1l
+  1770  000934  C032  FFEA         	movff	??_high_isr+3,fsr0h
+  1771  000938  C031  FFE9         	movff	??_high_isr+2,fsr0l
+  1772  00093C  C030  FFFB         	movff	??_high_isr+1,pclatu
+  1773  000940  C02F  FFFA         	movff	??_high_isr,pclath
+  1774  000944  0011               	retfie		f
+  1775  000946  FFFF               	dw	65535	; errata NOP
+  1776  000948                     __end_of_high_isr:
+  1777                           	opt stack 0
+  1778                           pclatu	equ	0xFFB
+  1779                           pclath	equ	0xFFA
+  1780                           tblptru	equ	0xFF8
+  1781                           tblptrh	equ	0xFF7
+  1782                           tblptrl	equ	0xFF6
+  1783                           tablat	equ	0xFF5
+  1784                           prodh	equ	0xFF4
+  1785                           prodl	equ	0xFF3
+  1786                           intcon	equ	0xFF2
+  1787                           intcon2	equ	0xFF1
+  1788                           postinc0	equ	0xFEE
+  1789                           fsr0h	equ	0xFEA
+  1790                           fsr0l	equ	0xFE9
+  1791                           wreg	equ	0xFE8
+  1792                           postinc1	equ	0xFE6
+  1793                           postdec1	equ	0xFE5
+  1794                           fsr1h	equ	0xFE2
+  1795                           fsr1l	equ	0xFE1
+  1796                           bsr	equ	0xFE0
+  1797                           indf2	equ	0xFDF
+  1798                           postinc2	equ	0xFDE
+  1799                           fsr2h	equ	0xFDA
+  1800                           fsr2l	equ	0xFD9
+  1801                           status	equ	0xFD8
+  1802                           pclatu	equ	0xFFB
+  1803                           pclath	equ	0xFFA
+  1804                           tblptru	equ	0xFF8
+  1805                           tblptrh	equ	0xFF7
+  1806                           tblptrl	equ	0xFF6
+  1807                           tablat	equ	0xFF5
+  1808                           prodh	equ	0xFF4
+  1809                           prodl	equ	0xFF3
+  1810                           intcon	equ	0xFF2
+  1811                           intcon2	equ	0xFF1
+  1812                           postinc0	equ	0xFEE
+  1813                           fsr0h	equ	0xFEA
+  1814                           fsr0l	equ	0xFE9
+  1815                           wreg	equ	0xFE8
+  1816                           postinc1	equ	0xFE6
+  1817                           postdec1	equ	0xFE5
+  1818                           fsr1h	equ	0xFE2
+  1819                           fsr1l	equ	0xFE1
+  1820                           bsr	equ	0xFE0
+  1821                           indf2	equ	0xFDF
+  1822                           postinc2	equ	0xFDE
+  1823                           fsr2h	equ	0xFDA
+  1824                           fsr2l	equ	0xFD9
+  1825                           status	equ	0xFD8
+  1826                           
+  1827                           	psect	rparam
+  1828  0000                     pclatu	equ	0xFFB
+  1829                           pclath	equ	0xFFA
+  1830                           tblptru	equ	0xFF8
+  1831                           tblptrh	equ	0xFF7
+  1832                           tblptrl	equ	0xFF6
+  1833                           tablat	equ	0xFF5
+  1834                           prodh	equ	0xFF4
+  1835                           prodl	equ	0xFF3
+  1836                           intcon	equ	0xFF2
+  1837                           intcon2	equ	0xFF1
+  1838                           postinc0	equ	0xFEE
+  1839                           fsr0h	equ	0xFEA
+  1840                           fsr0l	equ	0xFE9
+  1841                           wreg	equ	0xFE8
+  1842                           postinc1	equ	0xFE6
+  1843                           postdec1	equ	0xFE5
+  1844                           fsr1h	equ	0xFE2
+  1845                           fsr1l	equ	0xFE1
+  1846                           bsr	equ	0xFE0
+  1847                           indf2	equ	0xFDF
+  1848                           postinc2	equ	0xFDE
+  1849                           fsr2h	equ	0xFDA
+  1850                           fsr2l	equ	0xFD9
+  1851                           status	equ	0xFD8
 
 
 Data Sizes:
@@ -1876,7 +1873,7 @@ Auto Spaces:
     BANK2           256      0       0
     BANK3           256      0       0
     BANK4           256      0       0
-    BANK5           256      0       0
+    BANK5           239      0       0
 
 Pointer List with Targets:
 
@@ -2087,249 +2084,259 @@ Call Graph Tables:
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
-BIGRAM             5FF      0       0      17        0.0%
+BIGRAM             5EE      0       0      16        0.0%
 EEDATA             100      0       0       0        0.0%
-BITBANK5           100      0       0      16        0.0%
-BANK5              100      0       0      14        0.0%
-BITBANK4           100      0       0      12        0.0%
-BANK4              100      0       0      13        0.0%
-BITBANK3           100      0       0      10        0.0%
-BANK3              100      0       0      11        0.0%
-BITBANK2           100      0       0       8        0.0%
-BANK2              100      0       0       9        0.0%
-BITBANK1           100      0       0       6        0.0%
-BANK1              100      0       0       7        0.0%
-BITBANK0            80      0       0       4        0.0%
-BANK0               80     18      2A       5       32.8%
+BITBANK4           100      0       0      11        0.0%
+BANK4              100      0       0      12        0.0%
+BITBANK3           100      0       0       9        0.0%
+BANK3              100      0       0      10        0.0%
+BITBANK2           100      0       0       7        0.0%
+BANK2              100      0       0       8        0.0%
+BITBANK1           100      0       0       5        0.0%
+BANK1              100      0       0       6        0.0%
+BITBANK5            EF      0       0      15        0.0%
+BANK5               EF      0       0      13        0.0%
+BITBANK0            80      0       0       3        0.0%
+BANK0               80     18      2A       4       32.8%
 BITCOMRAM           7F      0       0       0        0.0%
 COMRAM              7F     3D      43       1       52.8%
+BITSFR_5             0      0       0      40        0.0%
+SFR_5                0      0       0      40        0.0%
+BITSFR_4             0      0       0      40        0.0%
+SFR_4                0      0       0      40        0.0%
+BITSFR_3             0      0       0      40        0.0%
+SFR_3                0      0       0      40        0.0%
+BITSFR_2             0      0       0      40        0.0%
+SFR_2                0      0       0      40        0.0%
+BITSFR_1             0      0       0      40        0.0%
+SFR_1                0      0       0      40        0.0%
 BITSFR               0      0       0      40        0.0%
 SFR                  0      0       0      40        0.0%
 STACK                0      0       0       2        0.0%
 NULL                 0      0       0       0        0.0%
-ABS                  0      0      6D      15        0.0%
-DATA                 0      0      6D       3        0.0%
+ABS                  0      0      6D      14        0.0%
+DATA                 0      0      6D      17        0.0%
 CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                   Thu Sep 18 00:57:56 2014
+Symbol Table                                                                                   Thu Sep 18 01:02:15 2014
 
-                                                                    l96 0890  
-                                                           __CFG_BOR$ON 000000  
-                                                                    bsr 000FE0  
-                                                          __CFG_CP0$OFF 000000  
-                                                          __CFG_CP1$OFF 000000  
-                                                          __CFG_CP2$OFF 000000  
-                                                          __CFG_CP3$OFF 000000  
-                                                           __CFG_OSC$HS 000000  
-                                                                   l104 08D6  
-                                                                   l361 09FA  
-                                                                   l354 0A32  
-                                                                   l368 0A20  
-                                                                   _CHA 003E  
-                                                                   _CHB 0040  
-                                                          __CFG_CPB$OFF 000000  
-                                                                   u321 0760  
-                                                                   u331 0772  
-                                                                   u341 0784  
-                                                                   u350 07FC  
-                                                                   u360 0814  
-                                                          __CFG_CPD$OFF 000000  
-                                                                   _QEM 0601  
-                                                                   u358 0800  
-                                                                   u368 0818  
-                                                                   u377 0A22  
-                                                                   u387 09FC  
-                                                                   u397 0A34  
-                                                          __CFG_BORV$45 000000  
-                                                                   wreg 000FE8  
-                                                          __CFG_LVP$OFF 000000  
-                                                          __CFG_OSCS$ON 000000  
-                                                          __CFG_WDT$OFF 000000  
-                                                                  l1113 0880  
-                                                                  l1041 09CC  
-                                                                  l1115 0894  
-                                                                  l1045 09E6  
-                                                                  l1137 08C8  
-                                                                  l1091 0848  
-                                                                  l1157 082C  
-                                                                  i1l42 0068  
-                                                          __CFG_PWRT$ON 000000  
-                                                          __CFG_STVR$ON 000000  
-                                                                  _main 0754  
-                                                                  fsr0h 000FEA  
-                                                                  fsr1h 000FE2  
-                                                                  fsr0l 000FE9  
-                                                                  fsr2h 000FDA  
-                                                                  fsr1l 000FE1  
-                                                                  indf2 000FDF  
-                                                                  fsr2l 000FD9  
-                                                                  pclat 000FFA  
-                                                                  prodh 000FF4  
-                                                                  prodl 000FF3  
-                                                                  start 0146  
-                                                         ??_ReadEncoder 0001  
-                                                       __end_of_InitApp 09BC  
-                                                           _Delay10TCYx 09F6  
-                                                           _Delay1KTCYx 0A1C  
-                                                                 ?_main 0001  
-                                                 __size_of_Delay100TCYx 0012  
-                                                                 _LATB4 007C54  
-                                                                 i1l110 0716  
-                                                                 i1l118 0742  
-                                                                 i1l128 00FE  
-                                                                 i1l861 06F8  
-                                                                 i1l871 0732  
-                                                                 i1l867 0726  
-                                                                 _PORTA 000F80  
-                                                                 _PORTD 000F83  
-                                                                 _TRISA 000F92  
-                                                                 _TRISD 000F95  
-                                                                 _TRISE 000F96  
-                                                         __CFG_WRT0$OFF 000000  
-                                                         __CFG_WRT1$OFF 000000  
-                                                         __CFG_WRT2$OFF 000000  
-                                                         __CFG_WRT3$OFF 000000  
-                                                            _DisplayLCD 0832  
-                                                        __CFG_EBTR0$OFF 000000  
-                                                        __CFG_EBTR1$OFF 000000  
-                                                        __CFG_EBTR2$OFF 000000  
-                                                        __CFG_EBTR3$OFF 000000  
-                                                         __CFG_WRTB$OFF 000000  
-                                                         __CFG_WRTC$OFF 000000  
-                                                         __CFG_WRTD$OFF 000000  
-                                                        __CFG_EBTRB$OFF 000000  
-                                                       __end_of_low_isr 00B0  
-                                                                 tablat 000FF5  
-                                                                 status 000FD8  
-                                                       __initialization 0948  
-                                                          _Delay100TCYx 0A2E  
-                                                          __end_of_main 0832  
-                                                        _InitInterrupts 0A40  
-                                                   __end_of_ReadEncoder 0754  
-                                                                ??_main 0085  
-                                                         __activetblptr 000001  
-                                                       __CFG_CCP2MUX$ON 000000  
-                                                 DisplayLCD@currentChar 0084  
-                                                                _ADCON1 000FC1  
-                                                         ??_WaitHalfSec 003E  
-                                                                _INTCON 000FF2  
-                                                        __CFG_WDTPS$128 000000  
-                                                                i1u5_20 062E  
-                                                                i1u6_20 0640  
-                                                                i1u5_28 0630  
-                                                                i1u6_28 0642  
-                                                             ??_InitApp 003E  
-                                                __end_of_InitInterrupts 0A50  
-                                                      __end_of_high_isr 0948  
-                                                          __mediumconst 0000  
-                                                           ?_DisplayLCD 0080  
-                                                             ??_low_isr 000D  
-                                                                tblptrh 000FF7  
-                                                                tblptrl 000FF6  
-                                                                tblptru 000FF8  
-                                                            __accesstop 0080  
-                                               __end_of__initialization 0974  
-                                                   __end_of_WaitHalfSec 09F6  
-                                                       ?_InitInterrupts 0001  
-                                                           _ReadEncoder 0622  
-                                                        __pcstackCOMRAM 0001  
-                                                          __pidataBANK0 0A0A  
-                                                   __size_of_DisplayLCD 00A8  
-                                                          ?_Delay10TCYx 0001  
-                                                          ?_Delay1KTCYx 0001  
-                                                               _INTCON2 000FF1  
-                                                               _OLD_ROT 0042  
-                                                             ?_high_isr 0001  
-                                                           _WaitHalfSec 09BC  
-                                                         ?_TimerStopped 0001  
-                                                               _InitApp 0982  
-                                                               __Hparam 0000  
-                                                               __Lparam 0000  
-                                                          __psmallconst 0600  
-                                                               __pcinit 0948  
-                                                       Delay10TCYx@unit 003D  
-                                                               __ramtop 0600  
-                                                               __ptext0 0754  
-                                                               __ptext1 0A40  
-                                                               __ptext2 0982  
-                                                               __ptext3 09BC  
-                                                               __ptext4 0832  
-                                                               __ptext5 0A1C  
-                                                               __ptext6 09F6  
-                                                               __ptext7 0A2E  
-                                                               __ptext9 0622  
-                                                               _low_isr 0018  
-                                                            ??_high_isr 002F  
-                                                        __pintcode_body 08DA  
-                                                  end_of_initialization 0974  
-                                                        ??_TimerStopped 001E  
-                                                               int_func 08DA  
-                                                               postdec1 000FE5  
-                                                               postinc0 000FEE  
-                                                               postinc1 000FE6  
-                                                               postinc2 000FDE  
-                                                             _PORTAbits 000F80  
-                                                             _PORTBbits 000F81  
-                                                             _PORTEbits 000F84  
-                                                          ??_DisplayLCD 003E  
-                                                             _TRISBbits 000F93  
-                                                      ??_InitInterrupts 003D  
-                                                     DisplayLCD@tempPtr 0080  
-                                                          ?_ReadEncoder 0001  
-                                                      Delay100TCYx@unit 003D  
-                                                    __end_of_DisplayLCD 08DA  
-                                                  __size_of_Delay10TCYx 0014  
-                                                  __size_of_Delay1KTCYx 0012  
-                                                   start_initialization 0948  
-                                                           __end_of_QEM 0621  
-                                                       ReadEncoder@Anew 0007  
-                                                       ReadEncoder@Bnew 0009  
-                                                           __pdataBANK0 0098  
-                                                  __end_of_TimerStopped 0146  
-                                                           __pbssCOMRAM 003E  
-                                                         __pcstackBANK0 0080  
-                                                       Delay1KTCYx@unit 003D  
-                                                          ?_WaitHalfSec 0001  
-                                                     __size_of_high_isr 0940  
-                                                              ?_InitApp 0001  
-                                                         ?_Delay100TCYx 0001  
-                                                             __pintcode 0008  
-                                                           __pintcodelo 0018  
-                                                        DisplayLCD@init 0082  
-                                                  WaitHalfSec@Halfcount 0080  
-                                                           __smallconst 0600  
-                                                              ?_low_isr 0001  
-                                                        ??_Delay100TCYx 003D  
-                                                              _RCONbits 000FD0  
-                                                             main@F3911 0098  
-                                                             main@F3913 009F  
-                                                             main@F3915 00A5  
-                                                  __size_of_ReadEncoder 0132  
-                                                             copy_data0 0968  
-                                                      __size_of_InitApp 003A  
-                                                              __Hrparam 0000  
-                                                              __Lrparam 0000  
-                                                          __Lsmallconst 0600  
-                                                        ReadEncoder@Old 0003  
-                                                        ReadEncoder@New 0005  
-                                                 __size_of_TimerStopped 0096  
-                                                    ReadEncoder@NEW_ROT 000B  
-                                                      __size_of_low_isr 0098  
-                                                              _high_isr 0008  
-                                                          _TimerStopped 00B0  
-                                                         __size_of_main 00DE  
-                                                  __size_of_WaitHalfSec 003A  
-                                                         ??_Delay10TCYx 003D  
-                                                              main@Msg1 008D  
-                                                              main@Msg2 0093  
-                                                         ??_Delay1KTCYx 003D  
-                                                            _INTCONbits 000FF2  
-                                                  __end_of_Delay100TCYx 0A40  
-                                                              intlevel1 0A50  
-                                                              intlevel2 0A50  
-                                               __size_of_InitInterrupts 0010  
-                                                   __end_of_Delay10TCYx 0A0A  
-                                                   __end_of_Delay1KTCYx 0A2E  
-                                                           main@LCDinit 0086  
+                                                          l96 0890  
+                                                 __CFG_BOR$ON 000000  
+                                                          bsr 000FE0  
+                                                __CFG_CP0$OFF 000000  
+                                                __CFG_CP1$OFF 000000  
+                                                __CFG_CP2$OFF 000000  
+                                                __CFG_CP3$OFF 000000  
+                                                 __CFG_OSC$HS 000000  
+                                                         l104 08D6  
+                                                         l361 09FA  
+                                                         l354 0A32  
+                                                         l368 0A20  
+                                                         _CHA 003E  
+                                                         _CHB 0040  
+                                                __CFG_CPB$OFF 000000  
+                                                         u321 0760  
+                                                         u331 0772  
+                                                         u341 0784  
+                                                         u350 07FC  
+                                                         u360 0814  
+                                                __CFG_CPD$OFF 000000  
+                                                         _QEM 0601  
+                                                         u358 0800  
+                                                         u368 0818  
+                                                         u377 0A22  
+                                                         u387 09FC  
+                                                         u397 0A34  
+                                                __CFG_BORV$45 000000  
+                                                         wreg 000FE8  
+                                                __CFG_LVP$OFF 000000  
+                                                __CFG_OSCS$ON 000000  
+                                                __CFG_WDT$OFF 000000  
+                                                        l1113 0880  
+                                                        l1041 09CC  
+                                                        l1115 0894  
+                                                        l1045 09E6  
+                                                        l1137 08C8  
+                                                        l1091 0848  
+                                                        l1157 082C  
+                                                        i1l42 0068  
+                                                __CFG_PWRT$ON 000000  
+                                                __CFG_STVR$ON 000000  
+                                                        _main 0754  
+                                                        fsr0h 000FEA  
+                                                        fsr1h 000FE2  
+                                                        fsr0l 000FE9  
+                                                        fsr2h 000FDA  
+                                                        fsr1l 000FE1  
+                                                        indf2 000FDF  
+                                                        fsr2l 000FD9  
+                                                        pclat 000FFA  
+                                                        prodh 000FF4  
+                                                        prodl 000FF3  
+                                                        start 0146  
+                                               ??_ReadEncoder 0001  
+                                             __end_of_InitApp 09BC  
+                                                 _Delay10TCYx 09F6  
+                                                 _Delay1KTCYx 0A1C  
+                                                       ?_main 0001  
+                                       __size_of_Delay100TCYx 0012  
+                                                       _LATB4 007C54  
+                                                       i1l110 0716  
+                                                       i1l118 0742  
+                                                       i1l128 00FE  
+                                                       i1l861 06F8  
+                                                       i1l871 0732  
+                                                       i1l867 0726  
+                                                       _PORTA 000F80  
+                                                       _PORTD 000F83  
+                                                       _TRISA 000F92  
+                                                       _TRISD 000F95  
+                                                       _TRISE 000F96  
+                                               __CFG_WRT0$OFF 000000  
+                                               __CFG_WRT1$OFF 000000  
+                                               __CFG_WRT2$OFF 000000  
+                                               __CFG_WRT3$OFF 000000  
+                                                  _DisplayLCD 0832  
+                                              __CFG_EBTR0$OFF 000000  
+                                              __CFG_EBTR1$OFF 000000  
+                                              __CFG_EBTR2$OFF 000000  
+                                              __CFG_EBTR3$OFF 000000  
+                                               __CFG_WRTB$OFF 000000  
+                                               __CFG_WRTC$OFF 000000  
+                                               __CFG_WRTD$OFF 000000  
+                                              __CFG_EBTRB$OFF 000000  
+                                             __end_of_low_isr 00B0  
+                                                       tablat 000FF5  
+                                                       status 000FD8  
+                                             __initialization 0948  
+                                                _Delay100TCYx 0A2E  
+                                                __end_of_main 0832  
+                                              _InitInterrupts 0A40  
+                                         __end_of_ReadEncoder 0754  
+                                                      ??_main 0085  
+                                               __activetblptr 000001  
+                                             __CFG_CCP2MUX$ON 000000  
+                                       DisplayLCD@currentChar 0084  
+                                                      _ADCON1 000FC1  
+                                               ??_WaitHalfSec 003E  
+                                                      _INTCON 000FF2  
+                                              __CFG_WDTPS$128 000000  
+                                                      i1u5_20 062E  
+                                                      i1u6_20 0640  
+                                                      i1u5_28 0630  
+                                                      i1u6_28 0642  
+                                                   ??_InitApp 003E  
+                                      __end_of_InitInterrupts 0A50  
+                                            __end_of_high_isr 0948  
+                                                __mediumconst 0000  
+                                                 ?_DisplayLCD 0080  
+                                                   ??_low_isr 000D  
+                                                      tblptrh 000FF7  
+                                                      tblptrl 000FF6  
+                                                      tblptru 000FF8  
+                                                  __accesstop 0080  
+                                     __end_of__initialization 0974  
+                                         __end_of_WaitHalfSec 09F6  
+                                             ?_InitInterrupts 0001  
+                                                 _ReadEncoder 0622  
+                                              __pcstackCOMRAM 0001  
+                                                __pidataBANK0 0A0A  
+                                         __size_of_DisplayLCD 00A8  
+                                                ?_Delay10TCYx 0001  
+                                                ?_Delay1KTCYx 0001  
+                                                     _INTCON2 000FF1  
+                                                     _OLD_ROT 0042  
+                                                   ?_high_isr 0001  
+                                                 _WaitHalfSec 09BC  
+                                               ?_TimerStopped 0001  
+                                                     _InitApp 0982  
+                                                     __Hparam 0000  
+                                                     __Lparam 0000  
+                                                __psmallconst 0600  
+                                                     __pcinit 0948  
+                                             Delay10TCYx@unit 003D  
+                                                     __ramtop 0600  
+                                                     __ptext0 0754  
+                                                     __ptext1 0A40  
+                                                     __ptext2 0982  
+                                                     __ptext3 09BC  
+                                                     __ptext4 0832  
+                                                     __ptext5 0A1C  
+                                                     __ptext6 09F6  
+                                                     __ptext7 0A2E  
+                                                     __ptext9 0622  
+                                                     _low_isr 0018  
+                                                  ??_high_isr 002F  
+                                              __pintcode_body 08DA  
+                                        end_of_initialization 0974  
+                                              ??_TimerStopped 001E  
+                                                     int_func 08DA  
+                                                     postdec1 000FE5  
+                                                     postinc0 000FEE  
+                                                     postinc1 000FE6  
+                                                     postinc2 000FDE  
+                                                   _PORTAbits 000F80  
+                                                   _PORTBbits 000F81  
+                                                   _PORTEbits 000F84  
+                                                ??_DisplayLCD 003E  
+                                                   _TRISBbits 000F93  
+                                            ??_InitInterrupts 003D  
+                                           DisplayLCD@tempPtr 0080  
+                                                ?_ReadEncoder 0001  
+                                            Delay100TCYx@unit 003D  
+                                          __end_of_DisplayLCD 08DA  
+                                        __size_of_Delay10TCYx 0014  
+                                        __size_of_Delay1KTCYx 0012  
+                                         start_initialization 0948  
+                                                 __end_of_QEM 0621  
+                                             ReadEncoder@Anew 0007  
+                                             ReadEncoder@Bnew 0009  
+                                                 __pdataBANK0 0098  
+                                        __end_of_TimerStopped 0146  
+                                                 __pbssCOMRAM 003E  
+                                               __pcstackBANK0 0080  
+                                             Delay1KTCYx@unit 003D  
+                                                ?_WaitHalfSec 0001  
+                                           __size_of_high_isr 0940  
+                                                    ?_InitApp 0001  
+                                               ?_Delay100TCYx 0001  
+                                                   __pintcode 0008  
+                                                 __pintcodelo 0018  
+                                              DisplayLCD@init 0082  
+                                        WaitHalfSec@Halfcount 0080  
+                                                 __smallconst 0600  
+                                                    ?_low_isr 0001  
+                                              ??_Delay100TCYx 003D  
+                                                    _RCONbits 000FD0  
+                                                   main@F3911 0098  
+                                                   main@F3913 009F  
+                                                   main@F3915 00A5  
+                                        __size_of_ReadEncoder 0132  
+                                                   copy_data0 0968  
+                                            __size_of_InitApp 003A  
+                                                    __Hrparam 0000  
+                                                    __Lrparam 0000  
+                                                __Lsmallconst 0600  
+                                              ReadEncoder@Old 0003  
+                                              ReadEncoder@New 0005  
+                                       __size_of_TimerStopped 0096  
+                                          ReadEncoder@NEW_ROT 000B  
+                                            __size_of_low_isr 0098  
+                                                    _high_isr 0008  
+                                                _TimerStopped 00B0  
+                                               __size_of_main 00DE  
+                                        __size_of_WaitHalfSec 003A  
+                                               ??_Delay10TCYx 003D  
+                                                    main@Msg1 008D  
+                                                    main@Msg2 0093  
+                                               ??_Delay1KTCYx 003D  
+                                                  _INTCONbits 000FF2  
+                                        __end_of_Delay100TCYx 0A40  
+                                                    intlevel1 0A50  
+                                                    intlevel2 0A50  
+                                     __size_of_InitInterrupts 0010  
+                                         __end_of_Delay10TCYx 0A0A  
+                                         __end_of_Delay1KTCYx 0A2E  
+                                                 main@LCDinit 0086  

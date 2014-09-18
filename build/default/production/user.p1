@@ -186,30 +186,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCON2 `Vuc ~T0 @X0 0 e@4081 ]
 "5602
 [v _INTCON `Vuc ~T0 @X0 0 e@4082 ]
-"5613
-[s S307 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S307 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-"5623
-[s S308 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S308 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE GIE ]
-"5633
-[s S309 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S309 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE GIEL GIEH ]
-"5643
-[s S310 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S310 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"5653
-[s S311 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S311 . . GIEL GIEH ]
-"5612
-[u S306 `S307 1 `S308 1 `S309 1 `S310 1 `S311 1 ]
-[n S306 . . . . . . ]
-"5659
-[v _INTCONbits `VS306 ~T0 @X0 0 e@4082 ]
 "11 globals.h
 [v _CHA `i ~T0 @X0 0 e ]
 "12
 [v _CHB `i ~T0 @X0 0 e ]
+"13
+[v _OLD_ROT `i ~T0 @X0 0 e ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic18f452.h: 47: extern volatile unsigned char PORTA @ 0xF80;
@@ -3595,6 +3577,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 66: extern char * strrichr(const char *, int);
 [; ;globals.h: 11: extern int CHA;
 [; ;globals.h: 12: extern int CHB;
+[; ;globals.h: 13: extern int OLD_ROT;
+"14 globals.h
+[v _QEM `Ci ~T0 @X0 -> 0 `x e ]
+[i _QEM
+:U ..
+-> 0 `i
+-U -> 1 `i
+-> 1 `i
+-> 2 `i
+-> 1 `i
+-> 0 `i
+-> 2 `i
+-U -> 1 `i
+-U -> 1 `i
+-> 2 `i
+-> 0 `i
+-> 1 `i
+-> 2 `i
+-> 1 `i
+-U -> 1 `i
+-> 0 `i
+..
+]
+[; ;globals.h: 14: extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
 [; ;user.h: 15: int InitApp(void);
 [; ;user.h: 17: int WaitHalfSec(void);
 [; ;user.h: 19: int DisplayLCD(char * tempPtr, int init);
@@ -3873,161 +3879,188 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user.c: 129: INTCON = 0b11001000;
 "129
 [e = _INTCON -> -> 200 `i `uc ]
-[; ;user.c: 130: (INTCONbits.GIE = 1);
-"130
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-[; ;user.c: 131: return 0;
-"131
+[; ;user.c: 142: return 0;
+"142
 [e ) -> 0 `i ]
 [e $UE 372  ]
-[; ;user.c: 132: }
-"132
+[; ;user.c: 143: }
+"143
 [e :UE 372 ]
 }
-"135
+"146
 [v _ReadEncoder `(i ~T0 @X0 1 ef ]
-"136
+"147
 {
-[; ;user.c: 135: int ReadEncoder(void)
-[; ;user.c: 136: {
+[; ;user.c: 146: int ReadEncoder(void)
+[; ;user.c: 147: {
 [e :U _ReadEncoder ]
 [f ]
-[v F3762 `i ~T0 @X0 -> 0 `x s ]
-[i F3762
-:U ..
-"137
--> 0 `i
--U -> 1 `i
--> 1 `i
--> 2 `i
--> 1 `i
--> 0 `i
--> 2 `i
--U -> 1 `i
--U -> 1 `i
--> 2 `i
--> 0 `i
--> 1 `i
--> 2 `i
--> 1 `i
--U -> 1 `i
--> 0 `i
-..
-]
-[v _QEM `i ~T0 @X0 16  a ]
-[; ;user.c: 137: int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
-[e = _QEM F3762 ]
-"138
-[v _Anew `i ~T0 @X0 1 a ]
-[; ;user.c: 138: int Anew = PORTBbits.RB4;
-[e = _Anew -> . . _PORTBbits 0 4 `i ]
-"139
-[v _Bnew `i ~T0 @X0 1 a ]
-[; ;user.c: 139: int Bnew = PORTBbits.RB5;
-[e = _Bnew -> . . _PORTBbits 0 5 `i ]
-"141
-[v _Old `i ~T0 @X0 1 a ]
-[; ;user.c: 141: int Old = CHA*2 + CHB;
-[e = _Old + * _CHA -> 2 `i _CHB ]
-"142
-[v _New `i ~T0 @X0 1 a ]
-[; ;user.c: 142: int New = Anew*2 + Bnew;
-[e = _New + * _Anew -> 2 `i _Bnew ]
-"143
-[v _Out `i ~T0 @X0 1 a ]
-[; ;user.c: 143: int Out = QEM[Old*4+New];
-[e = _Out *U + &U _QEM * -> -> + * _Old -> 4 `i _New `ui `ux -> -> # *U &U _QEM `ui `ux ]
-[; ;user.c: 145: if (Out == 1)
-"145
-[e $ ! == _Out -> 1 `i 374  ]
-[; ;user.c: 146: {
-"146
-{
-[; ;user.c: 147: PORTAbits.RA3 = 1;
-"147
-[e = . . _PORTAbits 0 3 -> -> 1 `i `uc ]
-[; ;user.c: 148: PORTAbits.RA2 = 0;
-"148
-[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
-[; ;user.c: 149: PORTAbits.RA1 = 0;
 "149
-[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
+[v _Anew `i ~T0 @X0 1 a ]
+[; ;user.c: 149: int Anew = PORTBbits.RB5;
+[e = _Anew -> . . _PORTBbits 0 5 `i ]
 "150
-}
-[; ;user.c: 150: }
-[e $U 375  ]
-"151
-[e :U 374 ]
-[; ;user.c: 151: else if (Out == -1)
-[e $ ! == _Out -U -> 1 `i 376  ]
-[; ;user.c: 152: {
+[v _Bnew `i ~T0 @X0 1 a ]
+[; ;user.c: 150: int Bnew = PORTBbits.RB4;
+[e = _Bnew -> . . _PORTBbits 0 4 `i ]
 "152
-{
-[; ;user.c: 153: PORTAbits.RA3 = 0;
+[v _Old `i ~T0 @X0 1 a ]
+[; ;user.c: 152: int Old = CHA*2 + CHB;
+[e = _Old + * _CHA -> 2 `i _CHB ]
 "153
-[e = . . _PORTAbits 0 3 -> -> 0 `i `uc ]
-[; ;user.c: 154: PORTAbits.RA2 = 1;
+[v _New `i ~T0 @X0 1 a ]
+[; ;user.c: 153: int New = Anew*2 + Bnew;
+[e = _New + * _Anew -> 2 `i _Bnew ]
 "154
-[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
-[; ;user.c: 155: PORTAbits.RA1 = 0;
-"155
-[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
+[v _NEW_ROT `i ~T0 @X0 1 a ]
+[; ;user.c: 154: int NEW_ROT = QEM[Old*4+New];
+[e = _NEW_ROT *U + &U _QEM * -> -> + * _Old -> 4 `i _New `ui `ux -> -> # *U &U _QEM `ui `ux ]
+[; ;user.c: 156: if (NEW_ROT == 2)
 "156
-}
-[; ;user.c: 156: }
-[e $U 377  ]
+[e $ ! == _NEW_ROT -> 2 `i 374  ]
+[; ;user.c: 157: {
 "157
-[e :U 376 ]
-[; ;user.c: 157: else if (Out == 2)
-[e $ ! == _Out -> 2 `i 378  ]
-[; ;user.c: 158: {
+{
+[; ;user.c: 158: NEW_ROT = OLD_ROT;
 "158
-{
-[; ;user.c: 159: PORTAbits.RA3 = 0;
+[e = _NEW_ROT _OLD_ROT ]
+[; ;user.c: 159: Anew = CHA;
 "159
-[e = . . _PORTAbits 0 3 -> -> 0 `i `uc ]
-[; ;user.c: 160: PORTAbits.RA2 = 0;
+[e = _Anew _CHA ]
+[; ;user.c: 160: Bnew = CHB;
 "160
-[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
-[; ;user.c: 161: PORTAbits.RA1 = 1;
+[e = _Bnew _CHB ]
+[; ;user.c: 161: if (NEW_ROT == 1)
 "161
-[e = . . _PORTAbits 0 1 -> -> 1 `i `uc ]
+[e $ ! == _NEW_ROT -> 1 `i 375  ]
+[; ;user.c: 162: {
 "162
-}
-[; ;user.c: 162: }
-[e $U 379  ]
-"163
-[e :U 378 ]
-[; ;user.c: 163: else
-[; ;user.c: 164: {
-"164
 {
-[; ;user.c: 165: PORTAbits.RA3 = 0;
+[; ;user.c: 163: CHB = Anew;
+"163
+[e = _CHB _Anew ]
+[; ;user.c: 164: CHA = Bnew^1;
+"164
+[e = _CHA ^ _Bnew -> 1 `i ]
 "165
-[e = . . _PORTAbits 0 3 -> -> 0 `i `uc ]
-[; ;user.c: 166: PORTAbits.RA2 = 0;
+}
+[; ;user.c: 165: }
+[e $U 376  ]
 "166
-[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
-[; ;user.c: 167: PORTAbits.RA1 = 0;
+[e :U 375 ]
+[; ;user.c: 166: else if (NEW_ROT == -1)
+[e $ ! == _NEW_ROT -U -> 1 `i 377  ]
+[; ;user.c: 167: {
 "167
-[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
+{
+[; ;user.c: 168: CHB = Anew^1;
 "168
+[e = _CHB ^ _Anew -> 1 `i ]
+[; ;user.c: 169: CHA = Bnew;
+"169
+[e = _CHA _Bnew ]
+"170
+}
+[; ;user.c: 170: }
+[e $U 378  ]
+"171
+[e :U 377 ]
+[; ;user.c: 171: else
+[; ;user.c: 172: {
+"172
+{
+"174
+}
+[e :U 378 ]
+[e :U 376 ]
+"175
+}
+[; ;user.c: 174: }
+[; ;user.c: 175: }
+[e $U 379  ]
+"176
+[e :U 374 ]
+[; ;user.c: 176: else
+[; ;user.c: 177: {
+"177
+{
+[; ;user.c: 178: CHA = Anew;
+"178
+[e = _CHA _Anew ]
+[; ;user.c: 179: CHB = Bnew;
+"179
+[e = _CHB _Bnew ]
+"180
 }
 [e :U 379 ]
-[e :U 377 ]
-[e :U 375 ]
-[; ;user.c: 168: }
-[; ;user.c: 172: CHA = Anew;
-"172
-[e = _CHA _Anew ]
-[; ;user.c: 173: CHB = Bnew;
-"173
-[e = _CHB _Bnew ]
-[; ;user.c: 175: return 0;
-"175
+[; ;user.c: 180: }
+[; ;user.c: 182: if (NEW_ROT == 1)
+"182
+[e $ ! == _NEW_ROT -> 1 `i 380  ]
+[; ;user.c: 183: {
+"183
+{
+[; ;user.c: 184: PORTAbits.RA3 = 1;
+"184
+[e = . . _PORTAbits 0 3 -> -> 1 `i `uc ]
+[; ;user.c: 185: PORTAbits.RA2 = 0;
+"185
+[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
+[; ;user.c: 186: PORTAbits.RA1 = 0;
+"186
+[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
+"187
+}
+[; ;user.c: 187: }
+[e $U 381  ]
+"188
+[e :U 380 ]
+[; ;user.c: 188: else if (NEW_ROT == -1)
+[e $ ! == _NEW_ROT -U -> 1 `i 382  ]
+[; ;user.c: 189: {
+"189
+{
+[; ;user.c: 190: PORTAbits.RA3 = 0;
+"190
+[e = . . _PORTAbits 0 3 -> -> 0 `i `uc ]
+[; ;user.c: 191: PORTAbits.RA2 = 1;
+"191
+[e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
+[; ;user.c: 192: PORTAbits.RA1 = 0;
+"192
+[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
+"193
+}
+[; ;user.c: 193: }
+[e $U 383  ]
+"194
+[e :U 382 ]
+[; ;user.c: 194: else
+[; ;user.c: 195: {
+"195
+{
+[; ;user.c: 196: PORTAbits.RA3 = 0;
+"196
+[e = . . _PORTAbits 0 3 -> -> 0 `i `uc ]
+[; ;user.c: 197: PORTAbits.RA2 = 0;
+"197
+[e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
+[; ;user.c: 198: PORTAbits.RA1 = 0;
+"198
+[e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
+"199
+}
+[e :U 383 ]
+[e :U 381 ]
+[; ;user.c: 199: }
+[; ;user.c: 201: OLD_ROT = NEW_ROT;
+"201
+[e = _OLD_ROT _NEW_ROT ]
+[; ;user.c: 202: return 0;
+"202
 [e ) -> 0 `i ]
 [e $UE 373  ]
-[; ;user.c: 176: }
-"176
+[; ;user.c: 203: }
+"203
 [e :UE 373 ]
 }

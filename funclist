@@ -1,14 +1,15 @@
-_InitInterrupts: CODE, 1370 0 18
-_Delay1KTCYx: CODE, 1308 0 22
-_main: CODE, 564 0 214
-_high_isr: CODE, 8 0 1048
-_InitApp: CODE, 1136 0 58
-__initialization: CODE, 1058 0 72
+_InitInterrupts: CODE, 2624 0 16
+_Delay1KTCYx: CODE, 2588 0 18
+_main: CODE, 1876 0 222
+_high_isr: CODE, 8 0 2368
+_InitApp: CODE, 2434 0 58
+__initialization: CODE, 2376 0 44
 _TimerStopped: CODE, 176 0 150
-_WaitHalfSec: CODE, 1194 0 58
-_Delay10TCYx: CODE, 1284 0 24
-_Delay100TCYx: CODE, 1330 0 22
-_ReadEncoder: CODE, 330 0 234
-_DisplayLCD: CODE, 778 0 168
+_WaitHalfSec: CODE, 2492 0 58
+_Delay10TCYx: CODE, 2550 0 20
+_Delay100TCYx: CODE, 2606 0 18
+_QEM: SMALLCONST, 1537 0 32
+_ReadEncoder: CODE, 1570 0 306
+_DisplayLCD: CODE, 2098 0 168
 _low_isr: CODE, 24 0 152
-Total: 2240
+Total: 3630

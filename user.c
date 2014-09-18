@@ -127,50 +127,77 @@ int InitInterrupts(void)
     RCONbits.IPEN = 1;                      // Enable priority levels
     INTCON2 = 0b00000000;                   // Set port b as high priority
     INTCON = 0b11001000;                    // Enable port b interrupt
-    ei();
+    /*T0CONbits.TMR0ON = 1;
+    T0CONbits.T08BIT = 0;
+    T0CONbits.T0CS = 0;
+    T0CONbits.PSA = 1;
+
+    RCONbits.IPEN = 1;
+    INTCONbits.GIEH = 1;
+    INTCONbits.GIEL = 1;
+    INTCONbits.TMR0IF = 0;
+    INTCON2bits.TMR0IP = 0;
+    INTCONbits.TMR0IE = 1; */
+    //ei();
     return 0;
 }
 
 
-int ReadEncoder(void)
+void ReadEncoder(void)
 {
-    int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
-    int Anew = PORTBbits.RB4;
-    int Bnew = PORTBbits.RB5;
+    //int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
+    int Anew = PORTBbits.RB5;
+    int Bnew = PORTBbits.RB4;
 
     int Old = CHA*2 + CHB;
     int New = Anew*2 + Bnew;
-    int Out = QEM[Old*4+New];
+    int NEW_ROT = QEM[Old*4+New];
 
-    if (Out == 1)                       // CW rotation
+    if (NEW_ROT == 2)                   // Shits fucked so don't trust it
+    {
+        NEW_ROT = OLD_ROT;              // Use previous rotation either 1:CW, -1:CCW, 0
+        Anew = CHA;                     // Here use Anew as old CHA
+        Bnew = CHB;                     // Here use Bnew as old CHB
+        if (NEW_ROT == 1)               // Simulate CW rotation
+        {
+            CHB = Anew;
+            CHA = Bnew^1;
+        }
+        else if (NEW_ROT == -1)         // Simulate CCW rotation
+        {
+            CHB = Anew^1;
+            CHA = Bnew;
+        }
+        else                            // No rotation so don't change anything
+        {
+
+        }
+    }
+    else
+    {
+        CHA = Anew;                         // Update state of channel A
+        CHB = Bnew;                         // Update state of channel B
+    }
+
+    if (NEW_ROT == 1)
     {
         PORTAbits.RA3 = 1;
         PORTAbits.RA2 = 0;
         PORTAbits.RA1 = 0;
     }
-    else if (Out == -1)                 // CCW rotation
+    else if (NEW_ROT == -1)
     {
         PORTAbits.RA3 = 0;
         PORTAbits.RA2 = 1;
         PORTAbits.RA1 = 0;
     }
-    else if (Out == 2)                  // Shits fucked
-    {
-        PORTAbits.RA3 = 0;
-        PORTAbits.RA2 = 0;
-        PORTAbits.RA1 = 1;
-    }
-    else                                // Shits double fucked b/c no interrupt should happen if encoder isn't turning
+    else
     {
         PORTAbits.RA3 = 0;
         PORTAbits.RA2 = 0;
         PORTAbits.RA1 = 0;
     }
 
-
+    OLD_ROT = NEW_ROT;
     
-    CHA = Anew;                         // Update state of channel A
-    CHB = Bnew;                         // Update state of channel B
-
-    return 0;
 }

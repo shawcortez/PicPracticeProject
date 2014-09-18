@@ -4543,6 +4543,8 @@ extern char * strrichr(const char *, int);
 # 11 "globals.h"
 extern int CHA;
 extern int CHB;
+extern int OLD_ROT;
+extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
 
 # 15 "user.h"
 int InitApp(void);
@@ -4651,38 +4653,59 @@ int InitInterrupts(void)
 RCONbits.IPEN = 1;
 INTCON2 = 0b00000000;
 INTCON = 0b11001000;
-(INTCONbits.GIE = 1);
+
+# 142
 return 0;
 }
 
 
 int ReadEncoder(void)
 {
-int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
-int Anew = PORTBbits.RB4;
-int Bnew = PORTBbits.RB5;
+
+int Anew = PORTBbits.RB5;
+int Bnew = PORTBbits.RB4;
 
 int Old = CHA*2 + CHB;
 int New = Anew*2 + Bnew;
-int Out = QEM[Old*4+New];
+int NEW_ROT = QEM[Old*4+New];
 
-if (Out == 1)
+if (NEW_ROT == 2)
+{
+NEW_ROT = OLD_ROT;
+Anew = CHA;
+Bnew = CHB;
+if (NEW_ROT == 1)
+{
+CHB = Anew;
+CHA = Bnew^1;
+}
+else if (NEW_ROT == -1)
+{
+CHB = Anew^1;
+CHA = Bnew;
+}
+else
+{
+
+}
+}
+else
+{
+CHA = Anew;
+CHB = Bnew;
+}
+
+if (NEW_ROT == 1)
 {
 PORTAbits.RA3 = 1;
 PORTAbits.RA2 = 0;
 PORTAbits.RA1 = 0;
 }
-else if (Out == -1)
+else if (NEW_ROT == -1)
 {
 PORTAbits.RA3 = 0;
 PORTAbits.RA2 = 1;
 PORTAbits.RA1 = 0;
-}
-else if (Out == 2)
-{
-PORTAbits.RA3 = 0;
-PORTAbits.RA2 = 0;
-PORTAbits.RA1 = 1;
 }
 else
 {
@@ -4691,10 +4714,6 @@ PORTAbits.RA2 = 0;
 PORTAbits.RA1 = 0;
 }
 
-
-
-CHA = Anew;
-CHB = Bnew;
-
+OLD_ROT = NEW_ROT;
 return 0;
 }

@@ -20,7 +20,7 @@ int DisplayLCD(char * tempPtr, int init);
 
 int InitInterrupts(void);
 
-int ReadEncoder(void);
+void ReadEncoder(void);
 
 
 

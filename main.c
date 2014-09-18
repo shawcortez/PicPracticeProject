@@ -16,17 +16,20 @@
 #include "system.h"
 #include "user.h"
 #include "globals.h"        // Holds global variables
+#include "timers.h"
 #include "config.h"
-#include "portb.h"
 
+#define USE_OR_MASKS
+#define Encoder_TS  0xF63C   // Load value to count 63036 up to 65536 overflow (1ms)
 
 int CHA;                    // Preserve state of Channel A from encoder
 int CHB;                    // Preserve state of Channel B from encoder
+int OLD_ROT;
 
 int main(void) {
 
     //--------------
-    // Initialization Phase
+    // Initialization PhaseWriteTimer0(Encoder_TS);// Load Timer0
     char LCDinit[] = {0x33,0x32,0x28,0x01,0x0c,0x06,0x00}; //Array holding initialization string for LCD
     char Msg1[] = {0x84,'C','U','N','T','\0'};
     char Msg2[] = {0xC5,'R','P','M','\0'};
@@ -36,18 +39,18 @@ int main(void) {
     DisplayLCD(Msg2,0);     // Display message 2
     CHA = PORTBbits.RB5;    // Initialize channel A
     CHB = PORTBbits.RB4;    // Initialize channel B
-    InitInterrupts();       // Initialize interrupts for Port B encoder
+    OLD_ROT = 0;            // Initialize state of rotation
+    InitInterrupts();       // Initialize timer interrupts for Port B encoder
+   // WriteTimer0(Encoder_TS);// Load Timer0
 
     //--------------
     // Loop phase: Read encoder, Display on LCD
     while(1)
     {
-
         WaitHalfSec();
-        //ReadEncoder();
     }
 
-    
+    //CloseTimer0();
     return (EXIT_SUCCESS);
 }
 
@@ -68,7 +71,8 @@ void low_priority interrupt low_isr(void)
     if(INTCONbits.RBIF == 1)
       {
         ReadEncoder();
-        INTCONbits.RBIF = 0;  // Clear Interrupt Flag 1
+        //WriteTimer0(Encoder_TS);
+        INTCONbits.RBIF = 0;  // Clear Interrupt Flag
       }
 
       else

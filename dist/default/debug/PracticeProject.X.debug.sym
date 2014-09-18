@@ -89,7 +89,7 @@ _ReadEncoder 622 0 CODE 0
 __Hdata 0 0 ABS 0
 __Ldata 0 0 ABS 0
 __CFG_EBTR3$OFF 0 0 ABS 0
-stackhi 5FF 0 ABS 0
+stackhi 5EE 0 ABS 0
 __HcstackBANK0 0 0 ABS 0
 __LcstackBANK0 0 0 ABS 0
 __pcstackBANK0 80 0 BANK0 1
@@ -212,6 +212,7 @@ __Hnvbit 0 0 COMRAM 1
 __Lnvbit 0 0 COMRAM 1
 __Hcinit 0 0 ABS 0
 __Lcinit 0 0 ABS 0
+__cntErrataNOP_dist/default/debug/PracticeProject.X.debug.obj 1B 0 ABS 0
 __pcinit 948 0 CODE 0
 __CFG_EBTRB$OFF 0 0 ABS 0
 ReadEncoder@Bnew 9 0 COMRAM 1
@@ -266,11 +267,9 @@ __size_of_InitApp 0 0 ABS 0
 intlevel1 A50 0 CODE 0
 __CFG_WRTB$OFF 0 0 ABS 0
 intlevel2 A50 0 CODE 0
-__cntErrataNOP_/tmp/cgtUwSFwU.obj 1 0 ABS 0
 intlevel3 A50 0 CODE 0
 __CFG_WRTC$OFF 0 0 ABS 0
 __CFG_WRTD$OFF 0 0 ABS 0
-__cntErrataNOP_dist/default/production/PracticeProject.X.production.obj 1B 0 ABS 0
 __CFG_CPB$OFF 0 0 ABS 0
 __CFG_CPD$OFF 0 0 ABS 0
 start_initialization 948 0 CODE 0
@@ -284,6 +283,7 @@ _InitInterrupts A40 0 CODE 0
 __CFG_WDT$OFF 0 0 ABS 0
 Delay1KTCYx@unit 3D 0 COMRAM 1
 __CFG_LVP$OFF 0 0 ABS 0
+__cntErrataNOP_/tmp/cgtka9San.obj 1 0 ABS 0
 %segments
 reset_vec 0 5 CODE 0 0
 intcode 8 15 CODE 8 0
@@ -295,9 +295,9 @@ cstackCOMRAM 1 43 COMRAM 1 1
 cstackBANK0 80 A9 BANK0 80 1
 text9 622 A51 CODE 622 0
 %locals
-dist/default/production/PracticeProject.X.production.obj
+dist/default/debug/PracticeProject.X.debug.obj
 /Applications/microchip/xc8/v1.33/include/pic18f452.h
-/tmp/cgt51A4kW
+/tmp/cgtzGVLKL
 1336 948 0 CODE 0
 1338 948 0 CODE 0
 1341 948 0 CODE 0

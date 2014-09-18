@@ -148,7 +148,7 @@
 "125
 [v _InitInterrupts InitInterrupts `(i  1 e 2 0 ]
 "146
-[v _ReadEncoder ReadEncoder `(i  1 e 2 0 ]
+[v _ReadEncoder ReadEncoder `(v  1 e 0 0 ]
 "47 /Applications/microchip/xc8/v1.33/include/pic18f452.h
 [v _PORTA PORTA `VEuc  1 e 1 @3968 ]
 [s S297 . 1 `uc 1 RA0 1 0 :1:0 
@@ -483,7 +483,7 @@
 "83
 } 0
 "146 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c
-[v _ReadEncoder ReadEncoder `(i  1 e 2 0 ]
+[v _ReadEncoder ReadEncoder `(v  1 e 0 0 ]
 {
 "154
 [v ReadEncoder@NEW_ROT NEW_ROT `i  1 a 2 10 ]
