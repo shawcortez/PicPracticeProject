@@ -266,7 +266,6 @@ __size_of_InitApp 0 0 ABS 0
 intlevel1 A50 0 CODE 0
 __CFG_WRTB$OFF 0 0 ABS 0
 intlevel2 A50 0 CODE 0
-__cntErrataNOP_/tmp/cgtUwSFwU.obj 1 0 ABS 0
 intlevel3 A50 0 CODE 0
 __CFG_WRTC$OFF 0 0 ABS 0
 __CFG_WRTD$OFF 0 0 ABS 0
@@ -275,6 +274,7 @@ __CFG_CPB$OFF 0 0 ABS 0
 __CFG_CPD$OFF 0 0 ABS 0
 start_initialization 948 0 CODE 0
 DisplayLCD@init 82 0 BANK0 1
+__cntErrataNOP_/tmp/cgtNEpvUO.obj 1 0 ABS 0
 __end_of_low_isr B0 0 CODE 0
 __initialization 948 0 CODE 0
 Delay10TCYx@unit 3D 0 COMRAM 1
@@ -297,7 +297,7 @@ text9 622 A51 CODE 622 0
 %locals
 dist/default/production/PracticeProject.X.production.obj
 /Applications/microchip/xc8/v1.33/include/pic18f452.h
-/tmp/cgt51A4kW
+/tmp/cgtRw7kjQ
 1336 948 0 CODE 0
 1338 948 0 CODE 0
 1341 948 0 CODE 0

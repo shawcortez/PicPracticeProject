@@ -4555,7 +4555,7 @@ int DisplayLCD(char * tempPtr, int init);
 
 int InitInterrupts(void);
 
-int ReadEncoder(void);
+void ReadEncoder(void);
 
 # 18 "user.c"
 int InitApp(void)
@@ -4659,7 +4659,7 @@ return 0;
 }
 
 
-int ReadEncoder(void)
+void ReadEncoder(void)
 {
 
 int Anew = PORTBbits.RB5;
@@ -4715,5 +4715,5 @@ PORTAbits.RA1 = 0;
 }
 
 OLD_ROT = NEW_ROT;
-return 0;
+
 }

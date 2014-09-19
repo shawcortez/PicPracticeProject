@@ -3605,7 +3605,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user.h: 17: int WaitHalfSec(void);
 [; ;user.h: 19: int DisplayLCD(char * tempPtr, int init);
 [; ;user.h: 21: int InitInterrupts(void);
-[; ;user.h: 23: int ReadEncoder(void);
+[; ;user.h: 23: void ReadEncoder(void);
 "18 user.c
 [v _InitApp `(i ~T0 @X0 1 ef ]
 "19
@@ -3888,10 +3888,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 372 ]
 }
 "146
-[v _ReadEncoder `(i ~T0 @X0 1 ef ]
+[v _ReadEncoder `(v ~T0 @X0 1 ef ]
 "147
 {
-[; ;user.c: 146: int ReadEncoder(void)
+[; ;user.c: 146: void ReadEncoder(void)
 [; ;user.c: 147: {
 [e :U _ReadEncoder ]
 [f ]
@@ -4056,10 +4056,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user.c: 201: OLD_ROT = NEW_ROT;
 "201
 [e = _OLD_ROT _NEW_ROT ]
-[; ;user.c: 202: return 0;
-"202
-[e ) -> 0 `i ]
-[e $UE 373  ]
 [; ;user.c: 203: }
 "203
 [e :UE 373 ]

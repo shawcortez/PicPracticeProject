@@ -5,7 +5,7 @@ Linker command line:
 --edf=/Applications/microchip/xc8/v1.33/dat/en_msgs.txt -cs \
   -h+dist/default/production/PracticeProject.X.production.sym \
   --cmf=dist/default/production/PracticeProject.X.production.cmf -z \
-  -Q18F452 -o/tmp/cgt3eaudK \
+  -Q18F452 -o/tmp/cgtXnnknT \
   -Mdist/default/production/PracticeProject.X.production.map -E1 -ver=XC8 \
   -ASTACK=0AAh-05ffh -pstack=STACK -ACODE=00h-03FFFhx2 -ACONST=00h-07FFFh \
   -ASMALLCONST=0600h-06FFhx122 -AMEDIUMCONST=0600h-07FFFh -ACOMRAM=01h-07Fh \
@@ -21,7 +21,7 @@ Linker command line:
   -prdata=COMRAM,nvrram=COMRAM,nvbit=COMRAM,rbss=COMRAM,rbit=COMRAM \
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
-  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE /tmp/cgtUwSFwU.obj \
+  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE /tmp/cgtNEpvUO.obj \
   dist/default/production/PracticeProject.X.production.obj 
 
 Object code version is 3.11
@@ -34,7 +34,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/cgtUwSFwU.obj
+/tmp/cgtNEpvUO.obj
                 end_init                            146      146        4        C       0
                 text                                A50      A50        2      311       0
                 reset_vec                             0        0        6        0       0
@@ -386,7 +386,7 @@ ___intlo_sp                                                             stack   
 ___sp                                                                   stack        000000
 __accesstop                                                             (abs)        000080
 __activetblptr                                                          (abs)        000001
-__cntErrataNOP_/tmp/cgtUwSFwU.obj                                       (abs)        000001
+__cntErrataNOP_/tmp/cgtNEpvUO.obj                                       (abs)        000001
 __cntErrataNOP_dist/default/production/PracticeProject.X.production.obj (abs)        00001B
 __end_of_Delay100TCYx                                                   text7        000A40
 __end_of_Delay10TCYx                                                    text6        000A0A
@@ -752,7 +752,7 @@ Total ram usage:       17 bytes
   New             2    4[COMRAM] int 
   Old             2    2[COMRAM] int 
  Return value:  Size  Location     Type
-                  2   14[COMRAM] int 
+		None               void
  Registers used:
 		wreg, status,2, status,0, tblptrl, tblptrh, tblptru
  Tracked objects:

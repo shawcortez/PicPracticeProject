@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$/tmp/cgtUwSFwU.obj
+$/tmp/cgtNEpvUO.obj
 end_init CODE 0 146 146 4 1
 text CODE 0 A50 A50 2 1
 reset_vec CODE 0 0 0 6 1
@@ -173,36 +173,36 @@ $dist/default/production/PracticeProject.X.production.obj
 "/Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c":116 8D6 text4 CODE
 "/Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c":57 8DA intcode_body CODE
 "/Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c":66 90C intcode_body CODE
-"/tmp/cgt51A4kW":1336 948 cinit CODE
-"/tmp/cgt51A4kW":1338 948 cinit CODE
-"/tmp/cgt51A4kW":1341 948 cinit CODE
-"/tmp/cgt51A4kW":1376 948 cinit CODE
-"/tmp/cgt51A4kW":1377 94A cinit CODE
-"/tmp/cgt51A4kW":1378 94C cinit CODE
-"/tmp/cgt51A4kW":1379 94E cinit CODE
-"/tmp/cgt51A4kW":1380 950 cinit CODE
-"/tmp/cgt51A4kW":1381 952 cinit CODE
-"/tmp/cgt51A4kW":1386 954 cinit CODE
-"/tmp/cgt51A4kW":1387 956 cinit CODE
-"/tmp/cgt51A4kW":1388 958 cinit CODE
-"/tmp/cgt51A4kW":1389 95A cinit CODE
-"/tmp/cgt51A4kW":1390 95C cinit CODE
-"/tmp/cgt51A4kW":1391 95E cinit CODE
-"/tmp/cgt51A4kW":1392 960 cinit CODE
-"/tmp/cgt51A4kW":1393 964 cinit CODE
-"/tmp/cgt51A4kW":1394 968 cinit CODE
-"/tmp/cgt51A4kW":1395 968 cinit CODE
-"/tmp/cgt51A4kW":1396 96A cinit CODE
-"/tmp/cgt51A4kW":1397 96E cinit CODE
-"/tmp/cgt51A4kW":1398 970 cinit CODE
-"/tmp/cgt51A4kW":1399 972 cinit CODE
-"/tmp/cgt51A4kW":1405 974 cinit CODE
-"/tmp/cgt51A4kW":1407 974 cinit CODE
-"/tmp/cgt51A4kW":1408 976 cinit CODE
-"/tmp/cgt51A4kW":1409 978 cinit CODE
-"/tmp/cgt51A4kW":1410 97A cinit CODE
-"/tmp/cgt51A4kW":1411 97C cinit CODE
-"/tmp/cgt51A4kW":1412 97E cinit CODE
+"/tmp/cgtRw7kjQ":1336 948 cinit CODE
+"/tmp/cgtRw7kjQ":1338 948 cinit CODE
+"/tmp/cgtRw7kjQ":1341 948 cinit CODE
+"/tmp/cgtRw7kjQ":1376 948 cinit CODE
+"/tmp/cgtRw7kjQ":1377 94A cinit CODE
+"/tmp/cgtRw7kjQ":1378 94C cinit CODE
+"/tmp/cgtRw7kjQ":1379 94E cinit CODE
+"/tmp/cgtRw7kjQ":1380 950 cinit CODE
+"/tmp/cgtRw7kjQ":1381 952 cinit CODE
+"/tmp/cgtRw7kjQ":1386 954 cinit CODE
+"/tmp/cgtRw7kjQ":1387 956 cinit CODE
+"/tmp/cgtRw7kjQ":1388 958 cinit CODE
+"/tmp/cgtRw7kjQ":1389 95A cinit CODE
+"/tmp/cgtRw7kjQ":1390 95C cinit CODE
+"/tmp/cgtRw7kjQ":1391 95E cinit CODE
+"/tmp/cgtRw7kjQ":1392 960 cinit CODE
+"/tmp/cgtRw7kjQ":1393 964 cinit CODE
+"/tmp/cgtRw7kjQ":1394 968 cinit CODE
+"/tmp/cgtRw7kjQ":1395 968 cinit CODE
+"/tmp/cgtRw7kjQ":1396 96A cinit CODE
+"/tmp/cgtRw7kjQ":1397 96E cinit CODE
+"/tmp/cgtRw7kjQ":1398 970 cinit CODE
+"/tmp/cgtRw7kjQ":1399 972 cinit CODE
+"/tmp/cgtRw7kjQ":1405 974 cinit CODE
+"/tmp/cgtRw7kjQ":1407 974 cinit CODE
+"/tmp/cgtRw7kjQ":1408 976 cinit CODE
+"/tmp/cgtRw7kjQ":1409 978 cinit CODE
+"/tmp/cgtRw7kjQ":1410 97A cinit CODE
+"/tmp/cgtRw7kjQ":1411 97C cinit CODE
+"/tmp/cgtRw7kjQ":1412 97E cinit CODE
 "/Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c":18 982 text2 CODE
 "/Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c":22 984 text2 CODE
 "/Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c":23 988 text2 CODE
@@ -274,8 +274,8 @@ __Hintentry 0 0 ABS 0 intentry dist/default/production/PracticeProject.X.product
 __Lintentry 0 0 ABS 0 intentry dist/default/production/PracticeProject.X.production.obj
 __size_of_low_isr 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 _main 754 0 CODE 0 text0 dist/default/production/PracticeProject.X.production.obj
-___sp 0 0 STACK 2 stack /tmp/cgtUwSFwU.obj
-start 146 0 CODE 0 init /tmp/cgtUwSFwU.obj
+___sp 0 0 STACK 2 stack /tmp/cgtNEpvUO.obj
+start 146 0 CODE 0 init /tmp/cgtNEpvUO.obj
 _LATB4 7C54 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 _Delay100TCYx A2E 0 CODE 0 text7 dist/default/production/PracticeProject.X.production.obj
 _TRISA F92 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
@@ -355,13 +355,13 @@ _ReadEncoder 622 0 CODE 0 text9 dist/default/production/PracticeProject.X.produc
 __Hdata 0 0 ABS 0 data dist/default/production/PracticeProject.X.production.obj
 __Ldata 0 0 ABS 0 data dist/default/production/PracticeProject.X.production.obj
 __CFG_EBTR3$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
-stackhi 5FF 0 ABS 0 - /tmp/cgtUwSFwU.obj
+stackhi 5FF 0 ABS 0 - /tmp/cgtNEpvUO.obj
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production/PracticeProject.X.production.obj
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production/PracticeProject.X.production.obj
 __pcstackBANK0 80 0 BANK0 1 cstackBANK0 dist/default/production/PracticeProject.X.production.obj
 __Htemp 0 0 COMRAM 1 temp dist/default/production/PracticeProject.X.production.obj
 __Ltemp 0 0 COMRAM 1 temp dist/default/production/PracticeProject.X.production.obj
-stacklo AA 0 ABS 0 - /tmp/cgtUwSFwU.obj
+stacklo AA 0 ABS 0 - /tmp/cgtNEpvUO.obj
 __Hrbit 0 0 COMRAM 1 rbit dist/default/production/PracticeProject.X.production.obj
 __Lrbit 0 0 COMRAM 1 rbit dist/default/production/PracticeProject.X.production.obj
 __CFG_BOR$ON 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
@@ -481,8 +481,8 @@ __Lcinit 0 0 ABS 0 cinit dist/default/production/PracticeProject.X.production.ob
 __pcinit 948 0 CODE 0 cinit dist/default/production/PracticeProject.X.production.obj
 __CFG_EBTRB$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 ReadEncoder@Bnew 9 0 COMRAM 1 cstackCOMRAM dist/default/production/PracticeProject.X.production.obj
-__ramtop 600 0 RAM 0 ramtop /tmp/cgtUwSFwU.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/cgtUwSFwU.obj
+__ramtop 600 0 RAM 0 ramtop /tmp/cgtNEpvUO.obj
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst /tmp/cgtNEpvUO.obj
 _low_isr 18 0 CODE 0 intcodelo dist/default/production/PracticeProject.X.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 __Hconst 0 0 CODE 0 const dist/default/production/PracticeProject.X.production.obj
@@ -503,17 +503,17 @@ __end_of_Delay10TCYx A0A 0 CODE 0 text6 dist/default/production/PracticeProject.
 __CFG_WRT3$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 __end_of_Delay100TCYx A40 0 CODE 0 text7 dist/default/production/PracticeProject.X.production.obj
 _TimerStopped B0 0 CODE 0 intcodelo dist/default/production/PracticeProject.X.production.obj
-___inthi_sp 0 0 STACK 2 stack /tmp/cgtUwSFwU.obj
+___inthi_sp 0 0 STACK 2 stack /tmp/cgtNEpvUO.obj
 __size_of_WaitHalfSec 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 __end_of_QEM 621 0 SMALLCONST 0 smallconst dist/default/production/PracticeProject.X.production.obj
 DisplayLCD@currentChar 84 0 BANK0 1 cstackBANK0 dist/default/production/PracticeProject.X.production.obj
 __end_of_ReadEncoder 754 0 CODE 0 text9 dist/default/production/PracticeProject.X.production.obj
-___intlo_sp 0 0 STACK 2 stack /tmp/cgtUwSFwU.obj
+___intlo_sp 0 0 STACK 2 stack /tmp/cgtNEpvUO.obj
 _INTCONbits FF2 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 __Hend_init 14A 0 CODE 0 end_init dist/default/production/PracticeProject.X.production.obj
 __Lend_init 146 0 CODE 0 end_init dist/default/production/PracticeProject.X.production.obj
 __CFG_CP0$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
-__smallconst 600 0 SMALLCONST 0 smallconst /tmp/cgtUwSFwU.obj
+__smallconst 600 0 SMALLCONST 0 smallconst /tmp/cgtNEpvUO.obj
 __CFG_CP1$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 __Hreset_vec 6 0 CODE 0 reset_vec dist/default/production/PracticeProject.X.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production/PracticeProject.X.production.obj
@@ -521,19 +521,18 @@ __CFG_CP2$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.o
 main@Msg1 8D 0 BANK0 1 cstackBANK0 dist/default/production/PracticeProject.X.production.obj
 __CFG_CP3$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 main@Msg2 93 0 BANK0 1 cstackBANK0 dist/default/production/PracticeProject.X.production.obj
-__accesstop 80 0 ABS 0 - /tmp/cgtUwSFwU.obj
+__accesstop 80 0 ABS 0 - /tmp/cgtNEpvUO.obj
 __size_of_InitInterrupts 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production/PracticeProject.X.production.obj
 __Lintcode_body 0 0 ABS 0 intcode_body dist/default/production/PracticeProject.X.production.obj
 __pintcode_body 8DA 0 CODE 0 intcode_body dist/default/production/PracticeProject.X.production.obj
 __end_of_DisplayLCD 8DA 0 CODE 0 text4 dist/default/production/PracticeProject.X.production.obj
-intlevel0 A50 0 CODE 0 text /tmp/cgtUwSFwU.obj
+intlevel0 A50 0 CODE 0 text /tmp/cgtNEpvUO.obj
 __size_of_InitApp 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
-intlevel1 A50 0 CODE 0 text /tmp/cgtUwSFwU.obj
+intlevel1 A50 0 CODE 0 text /tmp/cgtNEpvUO.obj
 __CFG_WRTB$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
-intlevel2 A50 0 CODE 0 text /tmp/cgtUwSFwU.obj
-__cntErrataNOP_/tmp/cgtUwSFwU.obj 1 0 ABS 0 - /tmp/cgtUwSFwU.obj
-intlevel3 A50 0 CODE 0 text /tmp/cgtUwSFwU.obj
+intlevel2 A50 0 CODE 0 text /tmp/cgtNEpvUO.obj
+intlevel3 A50 0 CODE 0 text /tmp/cgtNEpvUO.obj
 __CFG_WRTC$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 __CFG_WRTD$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 __cntErrataNOP_dist/default/production/PracticeProject.X.production.obj 1B 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
@@ -541,6 +540,7 @@ __CFG_CPB$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.o
 __CFG_CPD$OFF 0 0 ABS 0 - dist/default/production/PracticeProject.X.production.obj
 start_initialization 948 0 CODE 0 cinit dist/default/production/PracticeProject.X.production.obj
 DisplayLCD@init 82 0 BANK0 1 cstackBANK0 dist/default/production/PracticeProject.X.production.obj
+__cntErrataNOP_/tmp/cgtNEpvUO.obj 1 0 ABS 0 - /tmp/cgtNEpvUO.obj
 __end_of_low_isr B0 0 CODE 0 intcodelo dist/default/production/PracticeProject.X.production.obj
 __initialization 948 0 CODE 0 cinit dist/default/production/PracticeProject.X.production.obj
 Delay10TCYx@unit 3D 0 COMRAM 1 cstackCOMRAM dist/default/production/PracticeProject.X.production.obj

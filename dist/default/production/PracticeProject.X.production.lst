@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.33 build 59893 
-                                                                                               Thu Sep 18 00:57:56 2014
+                                                                                               Thu Sep 18 13:45:24 2014
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 59893
      1                           	processor	18F452
@@ -1415,7 +1415,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1409 ;;  New             2    4[COMRAM] int 
   1410 ;;  Old             2    2[COMRAM] int 
   1411 ;; Return value:  Size  Location     Type
-  1412 ;;                  2   14[COMRAM] int 
+  1412 ;;		None               void
   1413 ;; Registers used:
   1414 ;;		wreg, status,2, status,0, tblptrl, tblptrh, tblptru
   1415 ;; Tracked objects:
@@ -1651,213 +1651,210 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1645                           ;user.c: 201: OLD_ROT = NEW_ROT;
   1646  000748  C00B  F042         	movff	ReadEncoder@NEW_ROT,_OLD_ROT
   1647  00074C  C00C  F043         	movff	ReadEncoder@NEW_ROT+1,_OLD_ROT+1
-  1648                           
-  1649                           ;user.c: 202: return 0;
-  1650                           ;	Return value of _ReadEncoder is never used
-  1651  000750  0012               	return	
-  1652  000752  FFFF               	dw	65535	; errata NOP
-  1653  000754                     __end_of_ReadEncoder:
-  1654                           	opt stack 0
-  1655                           pclatu	equ	0xFFB
-  1656                           pclath	equ	0xFFA
-  1657                           tblptru	equ	0xFF8
-  1658                           tblptrh	equ	0xFF7
-  1659                           tblptrl	equ	0xFF6
-  1660                           tablat	equ	0xFF5
-  1661                           prodh	equ	0xFF4
-  1662                           prodl	equ	0xFF3
-  1663                           intcon	equ	0xFF2
-  1664                           intcon2	equ	0xFF1
-  1665                           postinc0	equ	0xFEE
-  1666                           fsr0h	equ	0xFEA
-  1667                           fsr0l	equ	0xFE9
-  1668                           wreg	equ	0xFE8
-  1669                           postinc1	equ	0xFE6
-  1670                           postdec1	equ	0xFE5
-  1671                           fsr1h	equ	0xFE2
-  1672                           fsr1l	equ	0xFE1
-  1673                           bsr	equ	0xFE0
-  1674                           indf2	equ	0xFDF
-  1675                           postinc2	equ	0xFDE
-  1676                           fsr2h	equ	0xFDA
-  1677                           fsr2l	equ	0xFD9
-  1678                           status	equ	0xFD8
-  1679                           
-  1680 ;; *************** function _high_isr *****************
-  1681 ;; Defined at:
-  1682 ;;		line 57 in file "main.c"
-  1683 ;; Parameters:    Size  Location     Type
-  1684 ;;		None
-  1685 ;; Auto vars:     Size  Location     Type
-  1686 ;;		None
-  1687 ;; Return value:  Size  Location     Type
-  1688 ;;		None               void
-  1689 ;; Registers used:
-  1690 ;;		None
-  1691 ;; Tracked objects:
-  1692 ;;		On entry : 0/0
-  1693 ;;		On exit  : 0/0
-  1694 ;;		Unchanged: 0/0
-  1695 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
-  1696 ;;      Params:         0       0       0       0       0       0       0
-  1697 ;;      Locals:         0       0       0       0       0       0       0
-  1698 ;;      Temps:         14       0       0       0       0       0       0
-  1699 ;;      Totals:        14       0       0       0       0       0       0
-  1700 ;;Total ram usage:       14 bytes
-  1701 ;; Hardware stack levels used:    1
-  1702 ;; This function calls:
-  1703 ;;		Nothing
-  1704 ;; This function is called by:
-  1705 ;;		Interrupt level 2
-  1706 ;; This function uses a non-reentrant model
-  1707 ;;
-  1708                           
-  1709                           	psect	intcode
-  1710  000008                     __pintcode:
-  1711                           	opt stack 0
-  1712  000008                     _high_isr:
-  1713                           	opt stack 25
-  1714                           
-  1715                           ;incstack = 0
-  1716  000008  FFFF               	dw	65535	; errata NOP
-  1717  00000A  CFFA F02F          	movff	pclath,??_high_isr
-  1718  00000E  CFFB F030          	movff	pclatu,??_high_isr+1
-  1719  000012  EF6D  F004         	goto	int_func
-  1720                           pclatu	equ	0xFFB
-  1721                           pclath	equ	0xFFA
-  1722                           tblptru	equ	0xFF8
-  1723                           tblptrh	equ	0xFF7
-  1724                           tblptrl	equ	0xFF6
-  1725                           tablat	equ	0xFF5
-  1726                           prodh	equ	0xFF4
-  1727                           prodl	equ	0xFF3
-  1728                           intcon	equ	0xFF2
-  1729                           intcon2	equ	0xFF1
-  1730                           postinc0	equ	0xFEE
-  1731                           fsr0h	equ	0xFEA
-  1732                           fsr0l	equ	0xFE9
-  1733                           wreg	equ	0xFE8
-  1734                           postinc1	equ	0xFE6
-  1735                           postdec1	equ	0xFE5
-  1736                           fsr1h	equ	0xFE2
-  1737                           fsr1l	equ	0xFE1
-  1738                           bsr	equ	0xFE0
-  1739                           indf2	equ	0xFDF
-  1740                           postinc2	equ	0xFDE
-  1741                           fsr2h	equ	0xFDA
-  1742                           fsr2l	equ	0xFD9
-  1743                           status	equ	0xFD8
-  1744                           
-  1745                           	psect	intcode_body
-  1746  0008DA                     __pintcode_body:
-  1747                           	opt stack 25
-  1748  0008DA                     int_func:
-  1749                           	opt stack 25
-  1750  0008DA  FFFF               	dw	65535	; errata NOP
-  1751  0008DC  CFE9 F031          	movff	fsr0l,??_high_isr+2
-  1752  0008E0  CFEA F032          	movff	fsr0h,??_high_isr+3
-  1753  0008E4  CFE1 F033          	movff	fsr1l,??_high_isr+4
-  1754  0008E8  CFE2 F034          	movff	fsr1h,??_high_isr+5
-  1755  0008EC  CFD9 F035          	movff	fsr2l,??_high_isr+6
-  1756  0008F0  CFDA F036          	movff	fsr2h,??_high_isr+7
-  1757  0008F4  CFF3 F037          	movff	prodl,??_high_isr+8
-  1758  0008F8  CFF4 F038          	movff	prodh,??_high_isr+9
-  1759  0008FC  CFF6 F039          	movff	tblptrl,??_high_isr+10
-  1760  000900  CFF7 F03A          	movff	tblptrh,??_high_isr+11
-  1761  000904  CFF8 F03B          	movff	tblptru,??_high_isr+12
-  1762  000908  CFF5 F03C          	movff	tablat,??_high_isr+13
-  1763  00090C  C03C  FFF5         	movff	??_high_isr+13,tablat
-  1764  000910  C03B  FFF8         	movff	??_high_isr+12,tblptru
-  1765  000914  C03A  FFF7         	movff	??_high_isr+11,tblptrh
-  1766  000918  C039  FFF6         	movff	??_high_isr+10,tblptrl
-  1767  00091C  C038  FFF4         	movff	??_high_isr+9,prodh
-  1768  000920  C037  FFF3         	movff	??_high_isr+8,prodl
-  1769  000924  C036  FFDA         	movff	??_high_isr+7,fsr2h
-  1770  000928  C035  FFD9         	movff	??_high_isr+6,fsr2l
-  1771  00092C  C034  FFE2         	movff	??_high_isr+5,fsr1h
-  1772  000930  C033  FFE1         	movff	??_high_isr+4,fsr1l
-  1773  000934  C032  FFEA         	movff	??_high_isr+3,fsr0h
-  1774  000938  C031  FFE9         	movff	??_high_isr+2,fsr0l
-  1775  00093C  C030  FFFB         	movff	??_high_isr+1,pclatu
-  1776  000940  C02F  FFFA         	movff	??_high_isr,pclath
-  1777  000944  0011               	retfie		f
-  1778  000946  FFFF               	dw	65535	; errata NOP
-  1779  000948                     __end_of_high_isr:
-  1780                           	opt stack 0
-  1781                           pclatu	equ	0xFFB
-  1782                           pclath	equ	0xFFA
-  1783                           tblptru	equ	0xFF8
-  1784                           tblptrh	equ	0xFF7
-  1785                           tblptrl	equ	0xFF6
-  1786                           tablat	equ	0xFF5
-  1787                           prodh	equ	0xFF4
-  1788                           prodl	equ	0xFF3
-  1789                           intcon	equ	0xFF2
-  1790                           intcon2	equ	0xFF1
-  1791                           postinc0	equ	0xFEE
-  1792                           fsr0h	equ	0xFEA
-  1793                           fsr0l	equ	0xFE9
-  1794                           wreg	equ	0xFE8
-  1795                           postinc1	equ	0xFE6
-  1796                           postdec1	equ	0xFE5
-  1797                           fsr1h	equ	0xFE2
-  1798                           fsr1l	equ	0xFE1
-  1799                           bsr	equ	0xFE0
-  1800                           indf2	equ	0xFDF
-  1801                           postinc2	equ	0xFDE
-  1802                           fsr2h	equ	0xFDA
-  1803                           fsr2l	equ	0xFD9
-  1804                           status	equ	0xFD8
-  1805                           pclatu	equ	0xFFB
-  1806                           pclath	equ	0xFFA
-  1807                           tblptru	equ	0xFF8
-  1808                           tblptrh	equ	0xFF7
-  1809                           tblptrl	equ	0xFF6
-  1810                           tablat	equ	0xFF5
-  1811                           prodh	equ	0xFF4
-  1812                           prodl	equ	0xFF3
-  1813                           intcon	equ	0xFF2
-  1814                           intcon2	equ	0xFF1
-  1815                           postinc0	equ	0xFEE
-  1816                           fsr0h	equ	0xFEA
-  1817                           fsr0l	equ	0xFE9
-  1818                           wreg	equ	0xFE8
-  1819                           postinc1	equ	0xFE6
-  1820                           postdec1	equ	0xFE5
-  1821                           fsr1h	equ	0xFE2
-  1822                           fsr1l	equ	0xFE1
-  1823                           bsr	equ	0xFE0
-  1824                           indf2	equ	0xFDF
-  1825                           postinc2	equ	0xFDE
-  1826                           fsr2h	equ	0xFDA
-  1827                           fsr2l	equ	0xFD9
-  1828                           status	equ	0xFD8
-  1829                           
-  1830                           	psect	rparam
-  1831  0000                     pclatu	equ	0xFFB
-  1832                           pclath	equ	0xFFA
-  1833                           tblptru	equ	0xFF8
-  1834                           tblptrh	equ	0xFF7
-  1835                           tblptrl	equ	0xFF6
-  1836                           tablat	equ	0xFF5
-  1837                           prodh	equ	0xFF4
-  1838                           prodl	equ	0xFF3
-  1839                           intcon	equ	0xFF2
-  1840                           intcon2	equ	0xFF1
-  1841                           postinc0	equ	0xFEE
-  1842                           fsr0h	equ	0xFEA
-  1843                           fsr0l	equ	0xFE9
-  1844                           wreg	equ	0xFE8
-  1845                           postinc1	equ	0xFE6
-  1846                           postdec1	equ	0xFE5
-  1847                           fsr1h	equ	0xFE2
-  1848                           fsr1l	equ	0xFE1
-  1849                           bsr	equ	0xFE0
-  1850                           indf2	equ	0xFDF
-  1851                           postinc2	equ	0xFDE
-  1852                           fsr2h	equ	0xFDA
-  1853                           fsr2l	equ	0xFD9
-  1854                           status	equ	0xFD8
+  1648  000750  0012               	return	
+  1649  000752  FFFF               	dw	65535	; errata NOP
+  1650  000754                     __end_of_ReadEncoder:
+  1651                           	opt stack 0
+  1652                           pclatu	equ	0xFFB
+  1653                           pclath	equ	0xFFA
+  1654                           tblptru	equ	0xFF8
+  1655                           tblptrh	equ	0xFF7
+  1656                           tblptrl	equ	0xFF6
+  1657                           tablat	equ	0xFF5
+  1658                           prodh	equ	0xFF4
+  1659                           prodl	equ	0xFF3
+  1660                           intcon	equ	0xFF2
+  1661                           intcon2	equ	0xFF1
+  1662                           postinc0	equ	0xFEE
+  1663                           fsr0h	equ	0xFEA
+  1664                           fsr0l	equ	0xFE9
+  1665                           wreg	equ	0xFE8
+  1666                           postinc1	equ	0xFE6
+  1667                           postdec1	equ	0xFE5
+  1668                           fsr1h	equ	0xFE2
+  1669                           fsr1l	equ	0xFE1
+  1670                           bsr	equ	0xFE0
+  1671                           indf2	equ	0xFDF
+  1672                           postinc2	equ	0xFDE
+  1673                           fsr2h	equ	0xFDA
+  1674                           fsr2l	equ	0xFD9
+  1675                           status	equ	0xFD8
+  1676                           
+  1677 ;; *************** function _high_isr *****************
+  1678 ;; Defined at:
+  1679 ;;		line 57 in file "main.c"
+  1680 ;; Parameters:    Size  Location     Type
+  1681 ;;		None
+  1682 ;; Auto vars:     Size  Location     Type
+  1683 ;;		None
+  1684 ;; Return value:  Size  Location     Type
+  1685 ;;		None               void
+  1686 ;; Registers used:
+  1687 ;;		None
+  1688 ;; Tracked objects:
+  1689 ;;		On entry : 0/0
+  1690 ;;		On exit  : 0/0
+  1691 ;;		Unchanged: 0/0
+  1692 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1693 ;;      Params:         0       0       0       0       0       0       0
+  1694 ;;      Locals:         0       0       0       0       0       0       0
+  1695 ;;      Temps:         14       0       0       0       0       0       0
+  1696 ;;      Totals:        14       0       0       0       0       0       0
+  1697 ;;Total ram usage:       14 bytes
+  1698 ;; Hardware stack levels used:    1
+  1699 ;; This function calls:
+  1700 ;;		Nothing
+  1701 ;; This function is called by:
+  1702 ;;		Interrupt level 2
+  1703 ;; This function uses a non-reentrant model
+  1704 ;;
+  1705                           
+  1706                           	psect	intcode
+  1707  000008                     __pintcode:
+  1708                           	opt stack 0
+  1709  000008                     _high_isr:
+  1710                           	opt stack 25
+  1711                           
+  1712                           ;incstack = 0
+  1713  000008  FFFF               	dw	65535	; errata NOP
+  1714  00000A  CFFA F02F          	movff	pclath,??_high_isr
+  1715  00000E  CFFB F030          	movff	pclatu,??_high_isr+1
+  1716  000012  EF6D  F004         	goto	int_func
+  1717                           pclatu	equ	0xFFB
+  1718                           pclath	equ	0xFFA
+  1719                           tblptru	equ	0xFF8
+  1720                           tblptrh	equ	0xFF7
+  1721                           tblptrl	equ	0xFF6
+  1722                           tablat	equ	0xFF5
+  1723                           prodh	equ	0xFF4
+  1724                           prodl	equ	0xFF3
+  1725                           intcon	equ	0xFF2
+  1726                           intcon2	equ	0xFF1
+  1727                           postinc0	equ	0xFEE
+  1728                           fsr0h	equ	0xFEA
+  1729                           fsr0l	equ	0xFE9
+  1730                           wreg	equ	0xFE8
+  1731                           postinc1	equ	0xFE6
+  1732                           postdec1	equ	0xFE5
+  1733                           fsr1h	equ	0xFE2
+  1734                           fsr1l	equ	0xFE1
+  1735                           bsr	equ	0xFE0
+  1736                           indf2	equ	0xFDF
+  1737                           postinc2	equ	0xFDE
+  1738                           fsr2h	equ	0xFDA
+  1739                           fsr2l	equ	0xFD9
+  1740                           status	equ	0xFD8
+  1741                           
+  1742                           	psect	intcode_body
+  1743  0008DA                     __pintcode_body:
+  1744                           	opt stack 25
+  1745  0008DA                     int_func:
+  1746                           	opt stack 25
+  1747  0008DA  FFFF               	dw	65535	; errata NOP
+  1748  0008DC  CFE9 F031          	movff	fsr0l,??_high_isr+2
+  1749  0008E0  CFEA F032          	movff	fsr0h,??_high_isr+3
+  1750  0008E4  CFE1 F033          	movff	fsr1l,??_high_isr+4
+  1751  0008E8  CFE2 F034          	movff	fsr1h,??_high_isr+5
+  1752  0008EC  CFD9 F035          	movff	fsr2l,??_high_isr+6
+  1753  0008F0  CFDA F036          	movff	fsr2h,??_high_isr+7
+  1754  0008F4  CFF3 F037          	movff	prodl,??_high_isr+8
+  1755  0008F8  CFF4 F038          	movff	prodh,??_high_isr+9
+  1756  0008FC  CFF6 F039          	movff	tblptrl,??_high_isr+10
+  1757  000900  CFF7 F03A          	movff	tblptrh,??_high_isr+11
+  1758  000904  CFF8 F03B          	movff	tblptru,??_high_isr+12
+  1759  000908  CFF5 F03C          	movff	tablat,??_high_isr+13
+  1760  00090C  C03C  FFF5         	movff	??_high_isr+13,tablat
+  1761  000910  C03B  FFF8         	movff	??_high_isr+12,tblptru
+  1762  000914  C03A  FFF7         	movff	??_high_isr+11,tblptrh
+  1763  000918  C039  FFF6         	movff	??_high_isr+10,tblptrl
+  1764  00091C  C038  FFF4         	movff	??_high_isr+9,prodh
+  1765  000920  C037  FFF3         	movff	??_high_isr+8,prodl
+  1766  000924  C036  FFDA         	movff	??_high_isr+7,fsr2h
+  1767  000928  C035  FFD9         	movff	??_high_isr+6,fsr2l
+  1768  00092C  C034  FFE2         	movff	??_high_isr+5,fsr1h
+  1769  000930  C033  FFE1         	movff	??_high_isr+4,fsr1l
+  1770  000934  C032  FFEA         	movff	??_high_isr+3,fsr0h
+  1771  000938  C031  FFE9         	movff	??_high_isr+2,fsr0l
+  1772  00093C  C030  FFFB         	movff	??_high_isr+1,pclatu
+  1773  000940  C02F  FFFA         	movff	??_high_isr,pclath
+  1774  000944  0011               	retfie		f
+  1775  000946  FFFF               	dw	65535	; errata NOP
+  1776  000948                     __end_of_high_isr:
+  1777                           	opt stack 0
+  1778                           pclatu	equ	0xFFB
+  1779                           pclath	equ	0xFFA
+  1780                           tblptru	equ	0xFF8
+  1781                           tblptrh	equ	0xFF7
+  1782                           tblptrl	equ	0xFF6
+  1783                           tablat	equ	0xFF5
+  1784                           prodh	equ	0xFF4
+  1785                           prodl	equ	0xFF3
+  1786                           intcon	equ	0xFF2
+  1787                           intcon2	equ	0xFF1
+  1788                           postinc0	equ	0xFEE
+  1789                           fsr0h	equ	0xFEA
+  1790                           fsr0l	equ	0xFE9
+  1791                           wreg	equ	0xFE8
+  1792                           postinc1	equ	0xFE6
+  1793                           postdec1	equ	0xFE5
+  1794                           fsr1h	equ	0xFE2
+  1795                           fsr1l	equ	0xFE1
+  1796                           bsr	equ	0xFE0
+  1797                           indf2	equ	0xFDF
+  1798                           postinc2	equ	0xFDE
+  1799                           fsr2h	equ	0xFDA
+  1800                           fsr2l	equ	0xFD9
+  1801                           status	equ	0xFD8
+  1802                           pclatu	equ	0xFFB
+  1803                           pclath	equ	0xFFA
+  1804                           tblptru	equ	0xFF8
+  1805                           tblptrh	equ	0xFF7
+  1806                           tblptrl	equ	0xFF6
+  1807                           tablat	equ	0xFF5
+  1808                           prodh	equ	0xFF4
+  1809                           prodl	equ	0xFF3
+  1810                           intcon	equ	0xFF2
+  1811                           intcon2	equ	0xFF1
+  1812                           postinc0	equ	0xFEE
+  1813                           fsr0h	equ	0xFEA
+  1814                           fsr0l	equ	0xFE9
+  1815                           wreg	equ	0xFE8
+  1816                           postinc1	equ	0xFE6
+  1817                           postdec1	equ	0xFE5
+  1818                           fsr1h	equ	0xFE2
+  1819                           fsr1l	equ	0xFE1
+  1820                           bsr	equ	0xFE0
+  1821                           indf2	equ	0xFDF
+  1822                           postinc2	equ	0xFDE
+  1823                           fsr2h	equ	0xFDA
+  1824                           fsr2l	equ	0xFD9
+  1825                           status	equ	0xFD8
+  1826                           
+  1827                           	psect	rparam
+  1828  0000                     pclatu	equ	0xFFB
+  1829                           pclath	equ	0xFFA
+  1830                           tblptru	equ	0xFF8
+  1831                           tblptrh	equ	0xFF7
+  1832                           tblptrl	equ	0xFF6
+  1833                           tablat	equ	0xFF5
+  1834                           prodh	equ	0xFF4
+  1835                           prodl	equ	0xFF3
+  1836                           intcon	equ	0xFF2
+  1837                           intcon2	equ	0xFF1
+  1838                           postinc0	equ	0xFEE
+  1839                           fsr0h	equ	0xFEA
+  1840                           fsr0l	equ	0xFE9
+  1841                           wreg	equ	0xFE8
+  1842                           postinc1	equ	0xFE6
+  1843                           postdec1	equ	0xFE5
+  1844                           fsr1h	equ	0xFE2
+  1845                           fsr1l	equ	0xFE1
+  1846                           bsr	equ	0xFE0
+  1847                           indf2	equ	0xFDF
+  1848                           postinc2	equ	0xFDE
+  1849                           fsr2h	equ	0xFDA
+  1850                           fsr2l	equ	0xFD9
+  1851                           status	equ	0xFD8
 
 
 Data Sizes:
@@ -2113,7 +2110,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                   Thu Sep 18 00:57:56 2014
+Symbol Table                                                                                   Thu Sep 18 13:45:24 2014
 
                                                                     l96 0890  
                                                            __CFG_BOR$ON 000000  
