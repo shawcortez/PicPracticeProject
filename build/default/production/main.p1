@@ -3490,7 +3490,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;globals.h: 11: extern int CHA;
 [; ;globals.h: 12: extern int CHB;
 [; ;globals.h: 13: extern int OLD_ROT;
-"14 globals.h
+[; ;globals.h: 14: extern int CCWTurn;
+[; ;globals.h: 15: extern int CWTurn;
+[; ;globals.h: 16: extern const int EncoderPoll;
+"17 globals.h
 [v _QEM `Ci ~T0 @X0 -> 0 `x e ]
 [i _QEM
 :U ..
@@ -3512,7 +3515,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `i
 ..
 ]
-[; ;globals.h: 14: extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
+[; ;globals.h: 17: extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
 "17 config.h
 [p x OSC=HS ]
 "18
@@ -3578,16 +3581,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 "27
 [v _OLD_ROT `i ~T0 @X0 1 e ]
 [; ;main.c: 27: int OLD_ROT;
+"28
+[v _CCWTurn `i ~T0 @X0 1 e ]
+[; ;main.c: 28: int CCWTurn;
 "29
+[v _CWTurn `i ~T0 @X0 1 e ]
+[; ;main.c: 29: int CWTurn;
+"30
+[v _EncoderPoll `Ci ~T0 @X0 1 e ]
+[i _EncoderPoll
+-> 128 `i
+]
+[; ;main.c: 30: const int EncoderPoll = 128;
+"32
 [v _main `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 29: int main(void) {
+[; ;main.c: 32: int main(void) {
 [e :U _main ]
 [f ]
-[v F3911 `uc ~T0 @X0 -> 0 `x s ]
-[i F3911
+[v F3914 `uc ~T0 @X0 -> 0 `x s ]
+[i F3914
 :U ..
-"33
+"36
 -> -> 51 `i `uc
 -> -> 50 `i `uc
 -> -> 40 `i `uc
@@ -3598,12 +3613,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [v _LCDinit `uc ~T0 @X0 7  a ]
-[; ;main.c: 33: char LCDinit[] = {0x33,0x32,0x28,0x01,0x0c,0x06,0x00};
-[e = _LCDinit F3911 ]
-[v F3913 `uc ~T0 @X0 -> 0 `x s ]
-[i F3913
+[; ;main.c: 36: char LCDinit[] = {0x33,0x32,0x28,0x01,0x0c,0x06,0x00};
+[e = _LCDinit F3914 ]
+[v F3916 `uc ~T0 @X0 -> 0 `x s ]
+[i F3916
 :U ..
-"34
+"37
 -> -> 132 `i `uc
 -> -> 67 `ui `uc
 -> -> 85 `ui `uc
@@ -3613,12 +3628,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [v _Msg1 `uc ~T0 @X0 6  a ]
-[; ;main.c: 34: char Msg1[] = {0x84,'C','U','N','T','\0'};
-[e = _Msg1 F3913 ]
-[v F3915 `uc ~T0 @X0 -> 0 `x s ]
-[i F3915
+[; ;main.c: 37: char Msg1[] = {0x84,'C','U','N','T','\0'};
+[e = _Msg1 F3916 ]
+[v F3918 `uc ~T0 @X0 -> 0 `x s ]
+[i F3918
 :U ..
-"35
+"38
 -> -> 197 `i `uc
 -> -> 82 `ui `uc
 -> -> 80 `ui `uc
@@ -3627,105 +3642,111 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [v _Msg2 `uc ~T0 @X0 5  a ]
-[; ;main.c: 35: char Msg2[] = {0xC5,'R','P','M','\0'};
-[e = _Msg2 F3915 ]
-[; ;main.c: 36: InitApp();
-"36
-[e ( _InitApp ..  ]
-[; ;main.c: 37: DisplayLCD(LCDinit,1);
-"37
-[e ( _DisplayLCD (2 , &U _LCDinit -> 1 `i ]
-[; ;main.c: 38: DisplayLCD(Msg1,0);
-"38
-[e ( _DisplayLCD (2 , &U _Msg1 -> 0 `i ]
-[; ;main.c: 39: DisplayLCD(Msg2,0);
+[; ;main.c: 38: char Msg2[] = {0xC5,'R','P','M','\0'};
+[e = _Msg2 F3918 ]
+[; ;main.c: 39: InitApp();
 "39
-[e ( _DisplayLCD (2 , &U _Msg2 -> 0 `i ]
-[; ;main.c: 40: CHA = PORTBbits.RB5;
+[e ( _InitApp ..  ]
+[; ;main.c: 40: DisplayLCD(LCDinit,1);
 "40
-[e = _CHA -> . . _PORTBbits 0 5 `i ]
-[; ;main.c: 41: CHB = PORTBbits.RB4;
+[e ( _DisplayLCD (2 , &U _LCDinit -> 1 `i ]
+[; ;main.c: 41: DisplayLCD(Msg1,0);
 "41
-[e = _CHB -> . . _PORTBbits 0 4 `i ]
-[; ;main.c: 42: OLD_ROT = 0;
+[e ( _DisplayLCD (2 , &U _Msg1 -> 0 `i ]
+[; ;main.c: 42: DisplayLCD(Msg2,0);
 "42
-[e = _OLD_ROT -> 0 `i ]
-[; ;main.c: 43: InitInterrupts();
+[e ( _DisplayLCD (2 , &U _Msg2 -> 0 `i ]
+[; ;main.c: 43: CHA = PORTBbits.RB5;
 "43
-[e ( _InitInterrupts ..  ]
-[; ;main.c: 48: while(1)
+[e = _CHA -> . . _PORTBbits 0 5 `i ]
+[; ;main.c: 44: CHB = PORTBbits.RB4;
+"44
+[e = _CHB -> . . _PORTBbits 0 4 `i ]
+[; ;main.c: 45: OLD_ROT = 0;
+"45
+[e = _OLD_ROT -> 0 `i ]
+[; ;main.c: 46: CCWTurn = 0;
+"46
+[e = _CCWTurn -> 0 `i ]
+[; ;main.c: 47: CWTurn = 0;
+"47
+[e = _CWTurn -> 0 `i ]
+[; ;main.c: 48: InitInterrupts();
 "48
+[e ( _InitInterrupts ..  ]
+[; ;main.c: 53: while(1)
+"53
 [e :U 365 ]
-[; ;main.c: 49: {
-"49
+[; ;main.c: 54: {
+"54
 {
-[; ;main.c: 50: WaitHalfSec();
-"50
+[; ;main.c: 55: WaitHalfSec();
+"55
 [e ( _WaitHalfSec ..  ]
-"51
+"56
 }
 [e :U 364 ]
-"48
+"53
 [e $U 365  ]
 [e :U 366 ]
-[; ;main.c: 51: }
-[; ;main.c: 54: return (0);
-"54
+[; ;main.c: 56: }
+[; ;main.c: 59: return (0);
+"59
 [e ) -> 0 `i ]
 [e $UE 363  ]
-[; ;main.c: 55: }
-"55
+[; ;main.c: 60: }
+"60
 [e :UE 363 ]
 }
-[v F3918 `(v ~T0 @X0 1 tf ]
-"57
-[v _high_isr `IHF3918 ~T0 @X0 1 e ]
-"58
+[v F3921 `(v ~T0 @X0 1 tf ]
+"62
+[v _high_isr `IHF3921 ~T0 @X0 1 e ]
+"63
 {
-[; ;main.c: 57: void high_priority interrupt high_isr(void)
-[; ;main.c: 58: {
+[; ;main.c: 62: void high_priority interrupt high_isr(void)
+[; ;main.c: 63: {
 [e :U _high_isr ]
 [f ]
-[; ;main.c: 66: }
-"66
+[; ;main.c: 71: }
+"71
 [e :UE 367 ]
 }
-[v F3921 `(v ~T0 @X0 1 tf ]
-"69
-[v _low_isr `ILF3921 ~T0 @X0 1 e ]
-"70
+[v F3924 `(v ~T0 @X0 1 tf ]
+"74
+[v _low_isr `ILF3924 ~T0 @X0 1 e ]
+"75
 {
-[; ;main.c: 69: void low_priority interrupt low_isr(void)
-[; ;main.c: 70: {
+[; ;main.c: 74: void low_priority interrupt low_isr(void)
+[; ;main.c: 75: {
 [e :U _low_isr ]
 [f ]
-[; ;main.c: 71: if(INTCONbits.RBIF == 1)
-"71
-[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 369  ]
-[; ;main.c: 72: {
-"72
-{
-[; ;main.c: 73: ReadEncoder();
-"73
-[e ( _ReadEncoder ..  ]
-[; ;main.c: 75: INTCONbits.RBIF = 0;
-"75
-[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 76: if(INTCONbits.RBIF == 1)
 "76
-}
-[; ;main.c: 76: }
-[e $U 370  ]
-"78
-[e :U 369 ]
-[; ;main.c: 78: else
-[; ;main.c: 79: {
-"79
+[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 369  ]
+[; ;main.c: 77: {
+"77
 {
+[; ;main.c: 78: ReadEncoder();
+"78
+[e ( _ReadEncoder ..  ]
+[; ;main.c: 80: INTCONbits.RBIF = 0;
+"80
+[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
 "81
 }
-[e :U 370 ]
 [; ;main.c: 81: }
-[; ;main.c: 83: }
+[e $U 370  ]
 "83
+[e :U 369 ]
+[; ;main.c: 83: else
+[; ;main.c: 84: {
+"84
+{
+"86
+}
+[e :U 370 ]
+[; ;main.c: 86: }
+[; ;main.c: 88: }
+"88
 [e :UE 368 ]
 }

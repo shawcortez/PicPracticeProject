@@ -133,11 +133,11 @@
 [v _Delay1KTCYx Delay1KTCYx `(v  1 e 0 0 ]
 "15 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/interrupts.c
 [v _TimerStopped TimerStopped `IIL(v  1 e 0 0 ]
-"29 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
+"32 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
 [v _main main `(i  1 e 2 0 ]
-"57
+"62
 [v _high_isr high_isr `IIH(v  1 e 0 0 ]
-"69
+"74
 [v _low_isr low_isr `IIL(v  1 e 0 0 ]
 "18 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c
 [v _InitApp InitApp `(i  1 e 2 0 ]
@@ -151,7 +151,7 @@
 [v _ReadEncoder ReadEncoder `(v  1 e 0 0 ]
 "47 /Applications/microchip/xc8/v1.33/include/pic18f452.h
 [v _PORTA PORTA `VEuc  1 e 1 @3968 ]
-[s S297 . 1 `uc 1 RA0 1 0 :1:0 
+[s S300 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -160,7 +160,7 @@
 `uc 1 RA6 1 0 :1:6 
 ]
 "95
-[s S305 . 1 `uc 1 AN0 1 0 :1:0 
+[s S308 . 1 `uc 1 AN0 1 0 :1:0 
 `uc 1 AN1 1 0 :1:1 
 `uc 1 AN2 1 0 :1:2 
 `uc 1 AN3 1 0 :1:3 
@@ -168,26 +168,26 @@
 `uc 1 AN4 1 0 :1:5 
 `uc 1 OSC2 1 0 :1:6 
 ]
-[s S313 . 1 `uc 1 . 1 0 :2:0 
+[s S316 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 VREFM 1 0 :1:2 
 `uc 1 VREFP 1 0 :1:3 
 `uc 1 T0CKI 1 0 :1:4 
 `uc 1 SS 1 0 :1:5 
 `uc 1 CLKO 1 0 :1:6 
 ]
-[s S320 . 1 `uc 1 . 1 0 :5:0 
+[s S323 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 LVDIN 1 0 :1:5 
 ]
-[s S323 . 1 `uc 1 . 1 0 :7:0 
+[s S326 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 RA7 1 0 :1:7 
 ]
-[s S326 . 1 `uc 1 . 1 0 :7:0 
+[s S329 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 RJPU 1 0 :1:7 
 ]
-[s S329 . 1 `uc 1 ULPWUIN 1 0 :1:0 
+[s S332 . 1 `uc 1 ULPWUIN 1 0 :1:0 
 ]
-[u S331 . 1 `S297 1 . 1 0 `S305 1 . 1 0 `S313 1 . 1 0 `S320 1 . 1 0 `S323 1 . 1 0 `S326 1 . 1 0 `S329 1 . 1 0 ]
-[v _PORTAbits PORTAbits `VES331  1 e 1 @3968 ]
+[u S334 . 1 `S300 1 . 1 0 `S308 1 . 1 0 `S316 1 . 1 0 `S323 1 . 1 0 `S326 1 . 1 0 `S329 1 . 1 0 `S332 1 . 1 0 ]
+[v _PORTAbits PORTAbits `VES334  1 e 1 @3968 ]
 [s S31 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
@@ -217,85 +217,85 @@
 [v _PORTBbits PORTBbits `VES55  1 e 1 @3969 ]
 "502
 [v _PORTD PORTD `VEuc  1 e 1 @3971 ]
-[s S380 . 1 `uc 1 RE0 1 0 :1:0 
+[s S383 . 1 `uc 1 RE0 1 0 :1:0 
 `uc 1 RE1 1 0 :1:1 
 `uc 1 RE2 1 0 :1:2 
 ]
 "726
-[s S384 . 1 `uc 1 AN5 1 0 :1:0 
+[s S387 . 1 `uc 1 AN5 1 0 :1:0 
 `uc 1 AN6 1 0 :1:1 
 `uc 1 AN7 1 0 :1:2 
 ]
-[s S388 . 1 `uc 1 RD 1 0 :1:0 
+[s S391 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 CS 1 0 :1:2 
 ]
-[s S392 . 1 `uc 1 . 1 0 :2:0 
+[s S395 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 CCP10 1 0 :1:2 
 ]
-[s S395 . 1 `uc 1 . 1 0 :7:0 
+[s S398 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 CCP2E 1 0 :1:7 
 ]
-[s S398 . 1 `uc 1 . 1 0 :6:0 
+[s S401 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 CCP6E 1 0 :1:6 
 ]
-[s S401 . 1 `uc 1 . 1 0 :5:0 
+[s S404 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 CCP7E 1 0 :1:5 
 ]
-[s S404 . 1 `uc 1 . 1 0 :4:0 
+[s S407 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 CCP8E 1 0 :1:4 
 ]
-[s S407 . 1 `uc 1 . 1 0 :3:0 
+[s S410 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 CCP9E 1 0 :1:3 
 ]
-[s S410 . 1 `uc 1 . 1 0 :7:0 
+[s S413 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 PA2E 1 0 :1:7 
 ]
-[s S413 . 1 `uc 1 . 1 0 :6:0 
+[s S416 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 PB1E 1 0 :1:6 
 ]
-[s S416 . 1 `uc 1 . 1 0 :2:0 
+[s S419 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 PB2 1 0 :1:2 
 ]
-[s S419 . 1 `uc 1 . 1 0 :4:0 
+[s S422 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 PB3E 1 0 :1:4 
 ]
-[s S422 . 1 `uc 1 . 1 0 :5:0 
+[s S425 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 PC1E 1 0 :1:5 
 ]
-[s S425 . 1 `uc 1 . 1 0 :1:0 
+[s S428 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PC2 1 0 :1:1 
 ]
-[s S428 . 1 `uc 1 . 1 0 :3:0 
+[s S431 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 PC3E 1 0 :1:3 
 ]
-[s S431 . 1 `uc 1 PD2 1 0 :1:0 
+[s S434 . 1 `uc 1 PD2 1 0 :1:0 
 ]
-[s S433 . 1 `uc 1 RDE 1 0 :1:0 
+[s S436 . 1 `uc 1 RDE 1 0 :1:0 
 ]
-[s S435 . 1 `uc 1 . 1 0 :3:0 
+[s S438 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 RE3 1 0 :1:3 
 ]
-[s S438 . 1 `uc 1 . 1 0 :4:0 
+[s S441 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 RE4 1 0 :1:4 
 ]
-[s S441 . 1 `uc 1 . 1 0 :5:0 
+[s S444 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 RE5 1 0 :1:5 
 ]
-[s S444 . 1 `uc 1 . 1 0 :6:0 
+[s S447 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RE6 1 0 :1:6 
 ]
-[s S447 . 1 `uc 1 . 1 0 :7:0 
+[s S450 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 RE7 1 0 :1:7 
 ]
-[s S450 . 1 `uc 1 . 1 0 :1:0 
+[s S453 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 WRE 1 0 :1:1 
 ]
-[u S453 . 1 `S380 1 . 1 0 `S384 1 . 1 0 `S388 1 . 1 0 `S392 1 . 1 0 `S395 1 . 1 0 `S398 1 . 1 0 `S401 1 . 1 0 `S404 1 . 1 0 `S407 1 . 1 0 `S410 1 . 1 0 `S413 1 . 1 0 `S416 1 . 1 0 `S419 1 . 1 0 `S422 1 . 1 0 `S425 1 . 1 0 `S428 1 . 1 0 `S431 1 . 1 0 `S433 1 . 1 0 `S435 1 . 1 0 `S438 1 . 1 0 `S441 1 . 1 0 `S444 1 . 1 0 `S447 1 . 1 0 `S450 1 . 1 0 ]
-[v _PORTEbits PORTEbits `VES453  1 e 1 @3972 ]
+[u S456 . 1 `S383 1 . 1 0 `S387 1 . 1 0 `S391 1 . 1 0 `S395 1 . 1 0 `S398 1 . 1 0 `S401 1 . 1 0 `S404 1 . 1 0 `S407 1 . 1 0 `S410 1 . 1 0 `S413 1 . 1 0 `S416 1 . 1 0 `S419 1 . 1 0 `S422 1 . 1 0 `S425 1 . 1 0 `S428 1 . 1 0 `S431 1 . 1 0 `S434 1 . 1 0 `S436 1 . 1 0 `S438 1 . 1 0 `S441 1 . 1 0 `S444 1 . 1 0 `S447 1 . 1 0 `S450 1 . 1 0 `S453 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES456  1 e 1 @3972 ]
 "1513
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
-[s S216 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S219 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -305,33 +305,33 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1746
-[s S234 . 1 `uc 1 . 1 0 :3:0 
+[s S237 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 CCP2 1 0 :1:3 
 ]
-[u S237 . 1 `S216 1 . 1 0 `S31 1 . 1 0 `S234 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES237  1 e 1 @3987 ]
+[u S240 . 1 `S219 1 . 1 0 `S31 1 . 1 0 `S237 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES240  1 e 1 @3987 ]
 "2188
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
 "2409
 [v _TRISE TRISE `VEuc  1 e 1 @3990 ]
 "3907
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
-[s S563 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+[s S566 . 1 `uc 1 NOT_BOR 1 0 :1:0 
 ]
 "4912
-[s S565 . 1 `uc 1 . 1 0 :1:0 
+[s S568 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_POR 1 0 :1:1 
 ]
-[s S568 . 1 `uc 1 . 1 0 :2:0 
+[s S571 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_PD 1 0 :1:2 
 ]
-[s S571 . 1 `uc 1 . 1 0 :3:0 
+[s S574 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_TO 1 0 :1:3 
 ]
-[s S574 . 1 `uc 1 . 1 0 :4:0 
+[s S577 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 NOT_RI 1 0 :1:4 
 ]
-[s S577 . 1 `uc 1 nBOR 1 0 :1:0 
+[s S580 . 1 `uc 1 nBOR 1 0 :1:0 
 `uc 1 nPOR 1 0 :1:1 
 `uc 1 nPD 1 0 :1:2 
 `uc 1 nTO 1 0 :1:3 
@@ -339,10 +339,10 @@
 `uc 1 . 1 0 :2:5 
 `uc 1 IPEN 1 0 :1:7 
 ]
-[s S585 . 1 `uc 1 . 1 0 :7:0 
+[s S588 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 NOT_IPEN 1 0 :1:7 
 ]
-[s S588 . 1 `uc 1 BOR 1 0 :1:0 
+[s S591 . 1 `uc 1 BOR 1 0 :1:0 
 `uc 1 POR 1 0 :1:1 
 `uc 1 PD 1 0 :1:2 
 `uc 1 TO 1 0 :1:3 
@@ -350,8 +350,8 @@
 `uc 1 . 1 0 :2:5 
 `uc 1 nIPEN 1 0 :1:7 
 ]
-[u S596 . 1 `S563 1 . 1 0 `S565 1 . 1 0 `S568 1 . 1 0 `S571 1 . 1 0 `S574 1 . 1 0 `S577 1 . 1 0 `S585 1 . 1 0 `S588 1 . 1 0 ]
-[v _RCONbits RCONbits `VES596  1 e 1 @4048 ]
+[u S599 . 1 `S566 1 . 1 0 `S568 1 . 1 0 `S571 1 . 1 0 `S574 1 . 1 0 `S577 1 . 1 0 `S580 1 . 1 0 `S588 1 . 1 0 `S591 1 . 1 0 ]
+[v _RCONbits RCONbits `VES599  1 e 1 @4048 ]
 "5526
 [v _INTCON2 INTCON2 `VEuc  1 e 1 @4081 ]
 "5602
@@ -401,7 +401,7 @@
 [v _INTCONbits INTCONbits `VES133  1 e 1 @4082 ]
 "6393
 [v _LATB4 LATB4 `VEb  1 e 0 @31828 ]
-"14 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/globals.h
+"17 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/globals.h
 [v _QEM QEM `C[16]i  1 e 32 0 ]
 "25 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
 [v _CHA CHA `i  1 e 2 0 ]
@@ -409,22 +409,28 @@
 [v _CHB CHB `i  1 e 2 0 ]
 "27
 [v _OLD_ROT OLD_ROT `i  1 e 2 0 ]
+"28
+[v _CCWTurn CCWTurn `i  1 e 2 0 ]
 "29
+[v _CWTurn CWTurn `i  1 e 2 0 ]
+"30
+[v _EncoderPoll EncoderPoll `Ci  1 e 2 0 ]
+"32
 [v _main main `(i  1 e 2 0 ]
 {
-"33
-[v main@LCDinit LCDinit `[7]uc  1 a 7 6 ]
-"34
-[v main@Msg1 Msg1 `[6]uc  1 a 6 13 ]
-"35
-[v main@Msg2 Msg2 `[5]uc  1 a 5 19 ]
-"29
-[v main@F3911 F3911 `[7]uc  1 s 7 F3911 ]
-"33
-[v main@F3913 F3913 `[6]uc  1 s 6 F3913 ]
-"34
-[v main@F3915 F3915 `[5]uc  1 s 5 F3915 ]
-"55
+"36
+[v main@LCDinit LCDinit `[7]uc  1 a 7 7 ]
+"37
+[v main@Msg1 Msg1 `[6]uc  1 a 6 14 ]
+"38
+[v main@Msg2 Msg2 `[5]uc  1 a 5 20 ]
+"32
+[v main@F3914 F3914 `[7]uc  1 s 7 F3914 ]
+"36
+[v main@F3916 F3916 `[6]uc  1 s 6 F3916 ]
+"37
+[v main@F3918 F3918 `[5]uc  1 s 5 F3918 ]
+"60
 } 0
 "125 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c
 [v _InitInterrupts InitInterrupts `(i  1 e 2 0 ]
@@ -440,17 +446,17 @@
 [v _WaitHalfSec WaitHalfSec `(i  1 e 2 0 ]
 {
 "52
-[v WaitHalfSec@Halfcount Halfcount `i  1 a 2 0 ]
+[v WaitHalfSec@Halfcount Halfcount `i  1 a 2 1 ]
 "59
 } 0
 "71
 [v _DisplayLCD DisplayLCD `(i  1 e 2 0 ]
 {
 "73
-[v DisplayLCD@currentChar currentChar `uc  1 a 1 4 ]
+[v DisplayLCD@currentChar currentChar `uc  1 a 1 5 ]
 "71
-[v DisplayLCD@tempPtr tempPtr `*.39uc  1 p 2 0 ]
-[v DisplayLCD@init init `i  1 p 2 2 ]
+[v DisplayLCD@tempPtr tempPtr `*.39uc  1 p 2 1 ]
+[v DisplayLCD@init init `i  1 p 2 3 ]
 "116
 } 0
 "8 /Applications/microchip/xc8/v1.33/sources/pic18/d1ktcyx.c
@@ -458,7 +464,7 @@
 {
 [v Delay1KTCYx@unit unit `uc  1 a 1 wreg ]
 [v Delay1KTCYx@unit unit `uc  1 a 1 wreg ]
-[v Delay1KTCYx@unit unit `uc  1 a 1 60 ]
+[v Delay1KTCYx@unit unit `uc  1 a 1 0 ]
 "13
 } 0
 "8 /Applications/microchip/xc8/v1.33/sources/pic18/d10tcyx.c
@@ -466,7 +472,7 @@
 {
 [v Delay10TCYx@unit unit `uc  1 a 1 wreg ]
 [v Delay10TCYx@unit unit `uc  1 a 1 wreg ]
-[v Delay10TCYx@unit unit `uc  1 a 1 60 ]
+[v Delay10TCYx@unit unit `uc  1 a 1 0 ]
 "13
 } 0
 "8 /Applications/microchip/xc8/v1.33/sources/pic18/d100tcyx.c
@@ -474,27 +480,27 @@
 {
 [v Delay100TCYx@unit unit `uc  1 a 1 wreg ]
 [v Delay100TCYx@unit unit `uc  1 a 1 wreg ]
-[v Delay100TCYx@unit unit `uc  1 a 1 60 ]
+[v Delay100TCYx@unit unit `uc  1 a 1 0 ]
 "13
 } 0
-"69 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
+"74 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
 [v _low_isr low_isr `IIL(v  1 e 0 0 ]
 {
-"83
+"88
 } 0
 "146 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/user.c
 [v _ReadEncoder ReadEncoder `(v  1 e 0 0 ]
 {
 "154
-[v ReadEncoder@NEW_ROT NEW_ROT `i  1 a 2 10 ]
+[v ReadEncoder@NEW_ROT NEW_ROT `i  1 a 2 12 ]
 "150
-[v ReadEncoder@Bnew Bnew `i  1 a 2 8 ]
+[v ReadEncoder@Bnew Bnew `i  1 a 2 10 ]
 "149
-[v ReadEncoder@Anew Anew `i  1 a 2 6 ]
+[v ReadEncoder@Anew Anew `i  1 a 2 8 ]
 "153
-[v ReadEncoder@New New `i  1 a 2 4 ]
+[v ReadEncoder@New New `i  1 a 2 6 ]
 "152
-[v ReadEncoder@Old Old `i  1 a 2 2 ]
+[v ReadEncoder@Old Old `i  1 a 2 4 ]
 "203
 } 0
 "15 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/interrupts.c
@@ -502,8 +508,8 @@
 {
 "24
 } 0
-"57 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
+"62 /Users/wenceslaoshaw-cortezshaw-cortez/MPLABXProjects/PracticeProject.X/main.c
 [v _high_isr high_isr `IIH(v  1 e 0 0 ]
 {
-"66
+"71
 } 0

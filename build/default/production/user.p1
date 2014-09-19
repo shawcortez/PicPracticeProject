@@ -192,6 +192,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _CHB `i ~T0 @X0 0 e ]
 "13
 [v _OLD_ROT `i ~T0 @X0 0 e ]
+"15
+[v _CWTurn `i ~T0 @X0 0 e ]
+"14
+[v _CCWTurn `i ~T0 @X0 0 e ]
+"16
+[v _EncoderPoll `Ci ~T0 @X0 0 e ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic18f452.h: 47: extern volatile unsigned char PORTA @ 0xF80;
@@ -3578,7 +3584,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;globals.h: 11: extern int CHA;
 [; ;globals.h: 12: extern int CHB;
 [; ;globals.h: 13: extern int OLD_ROT;
-"14 globals.h
+[; ;globals.h: 14: extern int CCWTurn;
+[; ;globals.h: 15: extern int CWTurn;
+[; ;globals.h: 16: extern const int EncoderPoll;
+"17 globals.h
 [v _QEM `Ci ~T0 @X0 -> 0 `x e ]
 [i _QEM
 :U ..
@@ -3600,7 +3609,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `i
 ..
 ]
-[; ;globals.h: 14: extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
+[; ;globals.h: 17: extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
 [; ;user.h: 15: int InitApp(void);
 [; ;user.h: 17: int WaitHalfSec(void);
 [; ;user.h: 19: int DisplayLCD(char * tempPtr, int init);
@@ -3924,135 +3933,129 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user.c: 158: NEW_ROT = OLD_ROT;
 "158
 [e = _NEW_ROT _OLD_ROT ]
-[; ;user.c: 159: Anew = CHA;
 "159
-[e = _Anew _CHA ]
-[; ;user.c: 160: Bnew = CHB;
-"160
-[e = _Bnew _CHB ]
-[; ;user.c: 161: if (NEW_ROT == 1)
-"161
-[e $ ! == _NEW_ROT -> 1 `i 375  ]
-[; ;user.c: 162: {
-"162
-{
-[; ;user.c: 163: CHB = Anew;
-"163
-[e = _CHB _Anew ]
-[; ;user.c: 164: CHA = Bnew^1;
-"164
-[e = _CHA ^ _Bnew -> 1 `i ]
-"165
 }
-[; ;user.c: 165: }
-[e $U 376  ]
-"166
+[; ;user.c: 159: }
+[e $U 375  ]
+"160
+[e :U 374 ]
+[; ;user.c: 160: else
+[; ;user.c: 161: {
+"161
+{
+[; ;user.c: 162: CHA = Anew;
+"162
+[e = _CHA _Anew ]
+[; ;user.c: 163: CHB = Bnew;
+"163
+[e = _CHB _Bnew ]
+"164
+}
 [e :U 375 ]
-[; ;user.c: 166: else if (NEW_ROT == -1)
-[e $ ! == _NEW_ROT -U -> 1 `i 377  ]
+[; ;user.c: 164: }
+[; ;user.c: 166: if (NEW_ROT == 1)
+"166
+[e $ ! == _NEW_ROT -> 1 `i 376  ]
 [; ;user.c: 167: {
 "167
 {
-[; ;user.c: 168: CHB = Anew^1;
+[; ;user.c: 168: CWTurn += 1;
 "168
-[e = _CHB ^ _Anew -> 1 `i ]
-[; ;user.c: 169: CHA = Bnew;
+[e =+ _CWTurn -> 1 `i ]
 "169
-[e = _CHA _Bnew ]
-"170
 }
-[; ;user.c: 170: }
-[e $U 378  ]
+[; ;user.c: 169: }
+[e $U 377  ]
+"170
+[e :U 376 ]
+[; ;user.c: 170: else if (NEW_ROT == -1)
+[e $ ! == _NEW_ROT -U -> 1 `i 378  ]
+[; ;user.c: 171: {
 "171
-[e :U 377 ]
-[; ;user.c: 171: else
-[; ;user.c: 172: {
-"172
 {
-"174
+[; ;user.c: 172: CCWTurn += 1;
+"172
+[e =+ _CCWTurn -> 1 `i ]
+"173
 }
 [e :U 378 ]
-[e :U 376 ]
 "175
-}
-[; ;user.c: 174: }
-[; ;user.c: 175: }
-[e $U 379  ]
+[e :U 377 ]
+[; ;user.c: 173: }
+[; ;user.c: 175: if (CWTurn + CCWTurn == EncoderPoll)
+[e $ ! == + _CWTurn _CCWTurn _EncoderPoll 379  ]
+[; ;user.c: 176: {
 "176
-[e :U 374 ]
-[; ;user.c: 176: else
-[; ;user.c: 177: {
+{
+[; ;user.c: 177: if (CWTurn > CCWTurn)
 "177
-{
-[; ;user.c: 178: CHA = Anew;
+[e $ ! > _CWTurn _CCWTurn 380  ]
+[; ;user.c: 178: {
 "178
-[e = _CHA _Anew ]
-[; ;user.c: 179: CHB = Bnew;
+{
+[; ;user.c: 179: PORTAbits.RA3 = 1;
 "179
-[e = _CHB _Bnew ]
-"180
-}
-[e :U 379 ]
-[; ;user.c: 180: }
-[; ;user.c: 182: if (NEW_ROT == 1)
-"182
-[e $ ! == _NEW_ROT -> 1 `i 380  ]
-[; ;user.c: 183: {
-"183
-{
-[; ;user.c: 184: PORTAbits.RA3 = 1;
-"184
 [e = . . _PORTAbits 0 3 -> -> 1 `i `uc ]
-[; ;user.c: 185: PORTAbits.RA2 = 0;
-"185
+[; ;user.c: 180: PORTAbits.RA2 = 0;
+"180
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
-[; ;user.c: 186: PORTAbits.RA1 = 0;
-"186
+[; ;user.c: 181: PORTAbits.RA1 = 0;
+"181
 [e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
-"187
+"182
 }
-[; ;user.c: 187: }
+[; ;user.c: 182: }
 [e $U 381  ]
-"188
+"183
 [e :U 380 ]
-[; ;user.c: 188: else if (NEW_ROT == -1)
-[e $ ! == _NEW_ROT -U -> 1 `i 382  ]
-[; ;user.c: 189: {
-"189
+[; ;user.c: 183: else if (CWTurn < CCWTurn)
+[e $ ! < _CWTurn _CCWTurn 382  ]
+[; ;user.c: 184: {
+"184
 {
-[; ;user.c: 190: PORTAbits.RA3 = 0;
-"190
+[; ;user.c: 185: PORTAbits.RA3 = 0;
+"185
 [e = . . _PORTAbits 0 3 -> -> 0 `i `uc ]
-[; ;user.c: 191: PORTAbits.RA2 = 1;
-"191
+[; ;user.c: 186: PORTAbits.RA2 = 1;
+"186
 [e = . . _PORTAbits 0 2 -> -> 1 `i `uc ]
-[; ;user.c: 192: PORTAbits.RA1 = 0;
-"192
+[; ;user.c: 187: PORTAbits.RA1 = 0;
+"187
 [e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
-"193
+"188
 }
-[; ;user.c: 193: }
+[; ;user.c: 188: }
 [e $U 383  ]
-"194
+"189
 [e :U 382 ]
-[; ;user.c: 194: else
-[; ;user.c: 195: {
-"195
+[; ;user.c: 189: else
+[; ;user.c: 190: {
+"190
 {
-[; ;user.c: 196: PORTAbits.RA3 = 0;
-"196
+[; ;user.c: 191: PORTAbits.RA3 = 0;
+"191
 [e = . . _PORTAbits 0 3 -> -> 0 `i `uc ]
-[; ;user.c: 197: PORTAbits.RA2 = 0;
-"197
+[; ;user.c: 192: PORTAbits.RA2 = 0;
+"192
 [e = . . _PORTAbits 0 2 -> -> 0 `i `uc ]
-[; ;user.c: 198: PORTAbits.RA1 = 0;
-"198
+[; ;user.c: 193: PORTAbits.RA1 = 0;
+"193
 [e = . . _PORTAbits 0 1 -> -> 0 `i `uc ]
-"199
+"194
 }
 [e :U 383 ]
 [e :U 381 ]
-[; ;user.c: 199: }
+[; ;user.c: 194: }
+[; ;user.c: 196: CWTurn = 0;
+"196
+[e = _CWTurn -> 0 `i ]
+[; ;user.c: 197: CCWTurn = 0;
+"197
+[e = _CCWTurn -> 0 `i ]
+"198
+}
+[e :U 379 ]
+[; ;user.c: 198: }
 [; ;user.c: 201: OLD_ROT = NEW_ROT;
 "201
 [e = _OLD_ROT _NEW_ROT ]

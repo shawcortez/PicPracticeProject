@@ -4593,6 +4593,9 @@ void ReadEncoder(void);
 extern int CHA;
 extern int CHB;
 extern int OLD_ROT;
+extern int CCWTurn;
+extern int CWTurn;
+extern const int EncoderPoll;
 extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
 
 
@@ -4650,6 +4653,9 @@ extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
 int CHA;
 int CHB;
 int OLD_ROT;
+int CCWTurn;
+int CWTurn;
+const int EncoderPoll = 128;
 
 int main(void) {
 
@@ -4665,6 +4671,8 @@ DisplayLCD(Msg2,0);
 CHA = PORTBbits.RB5;
 CHB = PORTBbits.RB4;
 OLD_ROT = 0;
+CCWTurn = 0;
+CWTurn = 0;
 InitInterrupts();
 
 
@@ -4682,7 +4690,7 @@ return (0);
 void high_priority interrupt high_isr(void)
 {
 
-# 66
+# 71
 }
 
 

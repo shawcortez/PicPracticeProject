@@ -24,7 +24,10 @@
 
 int CHA;                    // Preserve state of Channel A from encoder
 int CHB;                    // Preserve state of Channel B from encoder
-int OLD_ROT;
+int OLD_ROT;                // Preserve state of current rotation in case encoder bounces
+int CCWTurn;                // Counts how many CCW turns have occured on the encoder
+int CWTurn;                 // Counts how many CW turns have occured on the encoder
+const int EncoderPoll = 128; // Total number of counts until direction of encoder rotation is determined
 
 int main(void) {
 
@@ -40,6 +43,8 @@ int main(void) {
     CHA = PORTBbits.RB5;    // Initialize channel A
     CHB = PORTBbits.RB4;    // Initialize channel B
     OLD_ROT = 0;            // Initialize state of rotation
+    CCWTurn = 0;            // Initialize CCW count
+    CWTurn = 0;             // Initialize CW count
     InitInterrupts();       // Initialize timer interrupts for Port B encoder
    // WriteTimer0(Encoder_TS);// Load Timer0
 

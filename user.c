@@ -155,48 +155,48 @@ void ReadEncoder(void)
 
     if (NEW_ROT == 2)                   // Shits fucked so don't trust it
     {
-        NEW_ROT = OLD_ROT;              // Use previous rotation either 1:CW, -1:CCW, 0
-        Anew = CHA;                     // Here use Anew as old CHA
-        Bnew = CHB;                     // Here use Bnew as old CHB
-        if (NEW_ROT == 1)               // Simulate CW rotation
-        {
-            CHB = Anew;
-            CHA = Bnew^1;
-        }
-        else if (NEW_ROT == -1)         // Simulate CCW rotation
-        {
-            CHB = Anew^1;
-            CHA = Bnew;
-        }
-        else                            // No rotation so don't change anything
-        {
-
-        }
+        NEW_ROT = OLD_ROT;              // Use previous rotation either +1:CW, -1:CCW, 0
     }
     else
     {
-        CHA = Anew;                         // Update state of channel A
-        CHB = Bnew;                         // Update state of channel B
+        CHA = Anew;                     // Update state of channel A
+        CHB = Bnew;                     // Update state of channel B
     }
 
     if (NEW_ROT == 1)
     {
-        PORTAbits.RA3 = 1;
-        PORTAbits.RA2 = 0;
-        PORTAbits.RA1 = 0;
+        CWTurn += 1;
     }
     else if (NEW_ROT == -1)
     {
-        PORTAbits.RA3 = 0;
-        PORTAbits.RA2 = 1;
-        PORTAbits.RA1 = 0;
+        CCWTurn += 1;
     }
-    else
+
+    if (CWTurn + CCWTurn == EncoderPoll)// Once total count is reached determine majority rotation direction
     {
-        PORTAbits.RA3 = 0;
-        PORTAbits.RA2 = 0;
-        PORTAbits.RA1 = 0;
+        if (CWTurn > CCWTurn)           // If majority is CWturning
+        {
+            PORTAbits.RA3 = 1;
+            PORTAbits.RA2 = 0;
+            PORTAbits.RA1 = 0;
+        }
+        else if (CWTurn < CCWTurn)      // If majority is CCW turning
+        {
+            PORTAbits.RA3 = 0;
+            PORTAbits.RA2 = 1;
+            PORTAbits.RA1 = 0;
+        }
+        else
+        {
+            PORTAbits.RA3 = 0;
+            PORTAbits.RA2 = 0;
+            PORTAbits.RA1 = 0;
+        }
+
+        CWTurn = 0;                     // Reset counters
+        CCWTurn = 0;                    // Reset counters
     }
+    
 
     OLD_ROT = NEW_ROT;
     
