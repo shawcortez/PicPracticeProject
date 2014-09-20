@@ -4578,16 +4578,46 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
+# 3 "/Applications/microchip/xc8/v1.33/include/math.h"
+extern double fabs(double);
+extern double floor(double);
+extern double ceil(double);
+extern double modf(double, double *);
+extern double sqrt(double);
+extern double atof(const char *);
+extern double sin(double);
+extern double cos(double);
+extern double tan(double);
+extern double asin(double);
+extern double acos(double);
+extern double atan(double);
+extern double atan2(double, double);
+extern double log(double);
+extern double log10(double);
+extern double pow(double, double);
+extern double exp(double);
+extern double sinh(double);
+extern double cosh(double);
+extern double tanh(double);
+extern double eval_poly(double, const double *, int);
+extern double frexp(double, int *);
+extern double ldexp(double, int);
+extern double fmod(double, double);
+extern double trunc(double);
+extern double round(double);
+
 # 15 "user.h"
-int InitApp(void);
+void InitApp(void);
 
-int WaitHalfSec(void);
+void WaitHalfSec(void);
 
-int DisplayLCD(char * tempPtr, int init);
+void DisplayLCD(char * tempPtr, int init);
 
-int InitInterrupts(void);
+void InitInterrupts(void);
 
 void ReadEncoder(void);
+
+void WriteLCD(int LCDstart, int dispLength, double var);
 
 # 11 "globals.h"
 extern int CHA;
@@ -4595,8 +4625,12 @@ extern int CHB;
 extern int OLD_ROT;
 extern int CCWTurn;
 extern int CWTurn;
+extern const int CountPerRev;
 extern const int EncoderPoll;
+extern double PartialRot;
+extern double RPS;
 extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
+extern char Msg3[] = {0,0,0,0,0,0,0,0};
 
 
 # 17 "config.h"
@@ -4649,13 +4683,16 @@ extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
 
 #pragma config EBTRB = OFF
 
-# 25 "main.c"
+# 27 "main.c"
 int CHA;
 int CHB;
 int OLD_ROT;
 int CCWTurn;
 int CWTurn;
-const int EncoderPoll = 128;
+const int CountPerRev = 1024;
+const int EncoderPoll = 50;
+double PartialRot;
+double RPS;
 
 int main(void) {
 
@@ -4663,7 +4700,7 @@ int main(void) {
 
 char LCDinit[] = {0x33,0x32,0x28,0x01,0x0c,0x06,0x00};
 char Msg1[] = {0x84,'C','U','N','T','\0'};
-char Msg2[] = {0xC5,'R','P','M','\0'};
+char Msg2[] = {0xC5,'R','P','S','\0'};
 InitApp();
 DisplayLCD(LCDinit,1);
 DisplayLCD(Msg1,0);
@@ -4673,24 +4710,26 @@ CHB = PORTBbits.RB4;
 OLD_ROT = 0;
 CCWTurn = 0;
 CWTurn = 0;
+RPS = 0.0;
 InitInterrupts();
-
+WriteTimer0(0x0000);
 
 
 
 while(1)
 {
-WaitHalfSec();
+Delay1KTCYx(25);
+WriteLCD(0xC0,5,RPS);
 }
 
-
+CloseTimer0();
 return (0);
 }
 
 void high_priority interrupt high_isr(void)
 {
 
-# 71
+# 78
 }
 
 
@@ -4699,13 +4738,15 @@ void low_priority interrupt low_isr(void)
 if(INTCONbits.RBIF == 1)
 {
 ReadEncoder();
-
 INTCONbits.RBIF = 0;
 }
 
-else
+else if (INTCONbits.TMR0IF == 1)
 {
-
+RPS = (fabs(PartialRot))/0.026;
+PartialRot = 0;
+WriteTimer0(0x0000);
+INTCONbits.TMR0IF = 0;
 }
 
 }

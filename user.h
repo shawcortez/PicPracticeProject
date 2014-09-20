@@ -12,16 +12,17 @@
 /*Function Prototypes*/
 /*----------------------------------------------------------------------------*/
 
-int InitApp(void);
+void InitApp(void);
 
-int WaitHalfSec(void);
+void WaitHalfSec(void);
 
-int DisplayLCD(char * tempPtr, int init);
+void DisplayLCD(char * tempPtr, int init);
 
-int InitInterrupts(void);
+void InitInterrupts(void);
 
 void ReadEncoder(void);
 
+void WriteLCD(int LCDstart, int dispLength, double var);
 
 
 

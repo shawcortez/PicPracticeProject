@@ -4546,22 +4546,28 @@ extern int CHB;
 extern int OLD_ROT;
 extern int CCWTurn;
 extern int CWTurn;
+extern const int CountPerRev;
 extern const int EncoderPoll;
+extern double PartialRot;
+extern double RPS;
 extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
+extern char Msg3[] = {0,0,0,0,0,0,0,0};
 
 # 15 "user.h"
-int InitApp(void);
+void InitApp(void);
 
-int WaitHalfSec(void);
+void WaitHalfSec(void);
 
-int DisplayLCD(char * tempPtr, int init);
+void DisplayLCD(char * tempPtr, int init);
 
-int InitInterrupts(void);
+void InitInterrupts(void);
 
 void ReadEncoder(void);
 
-# 18 "user.c"
-int InitApp(void)
+void WriteLCD(int LCDstart, int dispLength, double var);
+
+# 21 "user.c"
+void InitApp(void)
 {
 
 
@@ -4587,11 +4593,10 @@ PORTAbits.RA1 = 1;
 WaitHalfSec();
 PORTAbits.RA1 = 0;
 
-return 0;
 }
 
-# 50
-int WaitHalfSec(void)
+# 52
+void WaitHalfSec(void)
 {
 int Halfcount = 50;
 while (Halfcount != 0)
@@ -4599,11 +4604,10 @@ while (Halfcount != 0)
 Delay1KTCYx(25);
 Halfcount = Halfcount-1;
 }
-return 0;
 }
 
-# 71
-int DisplayLCD(char * tempPtr, int init)
+# 73
+void DisplayLCD(char * tempPtr, int init)
 {
 char currentChar;
 
@@ -4647,21 +4651,34 @@ tempPtr++;
 }
 
 }
-return 0;
 }
 
-# 125
-int InitInterrupts(void)
+# 127
+void InitInterrupts(void)
 {
 RCONbits.IPEN = 1;
-INTCON2 = 0b00000000;
-INTCON = 0b11001000;
 
-# 142
-return 0;
+
+INTCONbits.GIEH = 1;
+INTCONbits.GIEL = 1;
+
+INTCON2bits.NOT_RBPU = 0;
+INTCON2bits.RBIP = 0;
+INTCONbits.RBIF = 0;
+INTCONbits.RBIE = 1;
+
+T0CONbits.T08BIT = 0;
+T0CONbits.T0CS = 0;
+T0CONbits.PSA = 1;
+T0CONbits.TMR0ON = 1;
+
+INTCONbits.TMR0IF = 0;
+INTCON2bits.TMR0IP = 0;
+INTCONbits.TMR0IE = 1;
+
 }
 
-
+# 170
 void ReadEncoder(void)
 {
 
@@ -4698,12 +4715,14 @@ if (CWTurn > CCWTurn)
 PORTAbits.RA3 = 1;
 PORTAbits.RA2 = 0;
 PORTAbits.RA1 = 0;
+PartialRot -= ((double)EncoderPoll)/CountPerRev;
 }
 else if (CWTurn < CCWTurn)
 {
 PORTAbits.RA3 = 0;
 PORTAbits.RA2 = 1;
 PORTAbits.RA1 = 0;
+PartialRot += ((double)EncoderPoll)/CountPerRev;
 }
 else
 {
@@ -4719,4 +4738,42 @@ CCWTurn = 0;
 
 OLD_ROT = NEW_ROT;
 
+}
+
+# 242
+void WriteLCD( int LCDstart, int dispLength, double var )
+{
+int ii = 1;
+int firstDec = 0;
+Msg3[0] = LCDstart;
+while (ii<dispLength)
+{
+if (var >= 10)
+{
+var = var/10.0;
+}
+else if ( (var < 10) && (var >= 1) )
+{
+Msg3[ii] = (int)var + 0x30;
+var = (var - (int)var)*10.0;
+ii++;
+}
+else if ( var < 1)
+{
+var = var*10.0;
+if (firstDec == 0)
+{
+Msg3[ii] = '.';
+firstDec = 1;
+ii++;
+}
+else
+{
+Msg3[ii] = '0';
+ii++;
+}
+}
+}
+Msg3[dispLength] = '\0';
+DisplayLCD(Msg3,0);
 }

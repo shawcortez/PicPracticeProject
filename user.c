@@ -14,8 +14,11 @@
 /* User Functions                                                             */
 /******************************************************************************/
 
-
-int InitApp(void)
+/**********************************
+* InitApp: Initialize ports as I/O for LEDS, LCD, encoder. Light up LEDS to show
+ * initialization on pic.
+***********************************/
+void InitApp(void)
 {
     //------------
     // Setup I/O on ports
@@ -41,13 +44,12 @@ int InitApp(void)
     WaitHalfSec();		// Wait 0.5 sec with D6 on
     PORTAbits.RA1 = 0;          // Turn off D6 LED
 
-    return 0;
 }
 
 /**********************************
-* WaitHalfSec: Time for 0.5 seconds
+* WaitHalfSec: Delay for 0.5 seconds
 ***********************************/
-int WaitHalfSec(void)
+void WaitHalfSec(void)
 {
     int Halfcount = 50;			// Load count for 0.5 sec using 10 ms delay
     while (Halfcount != 0)
@@ -55,20 +57,20 @@ int WaitHalfSec(void)
             Delay1KTCYx(25);		// Use delay function for 10 ms count
             Halfcount = Halfcount-1;	// Decrement 0.5 sec count
     }
-    return 0;
 }
 
 /*******************************
- * DisplayLCD(const char *)
- *
- * This subroutine is called with the passing in of an array of a constant
- * display string.  It sends the bytes of the string to the LCD.  The first
+ * DisplayLCD(char * tempPtr, int init):
+ * This subroutine is called with a string to be displayed on the LCD
+ * It sends the bytes of the string to the LCD.  The first
  * byte sets the cursor position.  The remaining bytes are displayed, beginning
  * at that position.
  * This subroutine expects a normal one-byte cursor-positioning code, 0xhh, or
- * an occasionally used two-byte cursor-positioning code of the form 0x00hh.
+ * an occasionally used two-byte cursor-positioning code of the form 0x00hh. The
+ * init variable defines if the LCD is being initialized (init = 1) or if just
+ * displaying a message on the LCD (init = 0)
  *******************************/
-int DisplayLCD(char * tempPtr, int init)
+void DisplayLCD(char * tempPtr, int init)
 {
         char currentChar;
         
@@ -112,46 +114,68 @@ int DisplayLCD(char * tempPtr, int init)
             }
 
         }
-        return 0;
 }
 
 /*******************************
  * InitInterrupts(void)
  *
- * This subroutine initializes interrupts. At the moment the only interrupt is
- * from Port B (encoder at B4, B5) and will be implement as a high priority to
- * determine wheel speed.
+ * This subroutine initializes interrupts. One interrupt is
+ * from Port B (encoder at B4, B5) and will be implement as a low priority to
+ * determine wheel speed. Timer0 overflow is also used as an interrupt to sample
+ * rev/s of the encoder as a low priority interrupt.
  *******************************/
-int InitInterrupts(void)
+void InitInterrupts(void)
 {
     RCONbits.IPEN = 1;                      // Enable priority levels
-    INTCON2 = 0b00000000;                   // Set port b as high priority
-    INTCON = 0b11001000;                    // Enable port b interrupt
-    /*T0CONbits.TMR0ON = 1;
-    T0CONbits.T08BIT = 0;
-    T0CONbits.T0CS = 0;
-    T0CONbits.PSA = 1;
+    //INTCON2 = 0b00000000;                   // Set port b as high priority
+    //INTCON = 0b11001000;                    // Enable port b interrupt
+    INTCONbits.GIEH = 1;                    // Enable high priority interrupts
+    INTCONbits.GIEL = 1;                    // Enable low priority interrupts
+    
+    INTCON2bits.NOT_RBPU = 0;               // All portB pullups enabled
+    INTCON2bits.RBIP = 0;                   // PortB interrupt as low priority
+    INTCONbits.RBIF = 0;                    // Clear portB interrupt flag
+    INTCONbits.RBIE = 1;                    // Enable portB interrupts
 
-    RCONbits.IPEN = 1;
-    INTCONbits.GIEH = 1;
-    INTCONbits.GIEL = 1;
-    INTCONbits.TMR0IF = 0;
-    INTCON2bits.TMR0IP = 0;
-    INTCONbits.TMR0IE = 1; */
-    //ei();
-    return 0;
+    T0CONbits.T08BIT = 0;                   // Timer0 as 16 bit timer
+    T0CONbits.T0CS = 0;                     // Timer0 clock source as internal
+    T0CONbits.PSA = 1;                      // No prescaler
+    T0CONbits.TMR0ON = 1;                   // Turn on Timer0
+    
+    INTCONbits.TMR0IF = 0;                  // Clear Timer0 interrupt flag
+    INTCON2bits.TMR0IP = 0;                 // Timer0 overflow as low priority
+    INTCONbits.TMR0IE = 1;                  // Enable Timer0 interrupt
+    
 }
 
-
+/*******************************
+ * ReadEncoder(void):
+ *
+ * This subroutine is called by the low priority ISR to sample the encoder. This
+ * subroutine checks the current quadrature output of the encoder on PortB RB5
+ * (channelA) and PortB RB4 (channelB) and compares with the previous states,
+ * CHA and CHB. Based on the quadrature table (stored as a vector in QEM), the
+ * new and old quadrature outputs are compared to determine CW,CCW, or encoder
+ * bouncing. When NEW_ROT = 1: CW turn, NEW_ROT = -1: CCW turn, NEW_ROT = 0, no
+ * turn, NEW_ROT = 2 encoder is bouncing and we don't trust the current output.
+ * When a bounce occurs the routine uses the previous rotation as the current
+ * rotation and does not adjust CHA,CHB. A bounce can also occur where it apears
+ * as though the encoder is rotating in the opposite direction. To deal with this,
+ * global variables CCWTurn and CWTurn are used to count how many CCW or CW turns
+ * occur over a defined number of counts (EncoderPoll). When EncoderPoll is reached
+ * the variable (CCWTurn or CWTurn) with the most counts dictates the rotation of
+ * the encoder. Finally if no bouncing occurs, the CHA, CHB, OLD_ROT variables are
+ * updated for the next reading.
+ *******************************/
 void ReadEncoder(void)
 {
     //int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
-    int Anew = PORTBbits.RB5;
-    int Bnew = PORTBbits.RB4;
+    int Anew = PORTBbits.RB5;           // Read new channel A
+    int Bnew = PORTBbits.RB4;           // Read new channel B
 
-    int Old = CHA*2 + CHB;
-    int New = Anew*2 + Bnew;
-    int NEW_ROT = QEM[Old*4+New];
+    int Old = CHA*2 + CHB;              // Convert previous CHA,CHB into integer value
+    int New = Anew*2 + Bnew;            // Convert new A,B into integer value
+    int NEW_ROT = QEM[Old*4+New];       // Determine rotation of encoder
 
     if (NEW_ROT == 2)                   // Shits fucked so don't trust it
     {
@@ -163,28 +187,30 @@ void ReadEncoder(void)
         CHB = Bnew;                     // Update state of channel B
     }
 
-    if (NEW_ROT == 1)
+    if (NEW_ROT == 1)                   // Update tally of CW turns if NEW_ROT = 1
     {
         CWTurn += 1;
     }
-    else if (NEW_ROT == -1)
+    else if (NEW_ROT == -1)             // Update tally of CCW turns if NEW_ROT = -1
     {
         CCWTurn += 1;
     }
 
-    if (CWTurn + CCWTurn == EncoderPoll)// Once total count is reached determine majority rotation direction
+    if (CWTurn + CCWTurn == EncoderPoll)// Once total count is reached determine rotation direction
     {
         if (CWTurn > CCWTurn)           // If majority is CWturning
         {
             PORTAbits.RA3 = 1;
             PORTAbits.RA2 = 0;
             PORTAbits.RA1 = 0;
+            PartialRot -= ((double)EncoderPoll)/CountPerRev; // Negative partial rotation
         }
         else if (CWTurn < CCWTurn)      // If majority is CCW turning
         {
             PORTAbits.RA3 = 0;
             PORTAbits.RA2 = 1;
             PORTAbits.RA1 = 0;
+            PartialRot += ((double)EncoderPoll)/CountPerRev; // Positive partial rotation
         }
         else
         {
@@ -193,11 +219,59 @@ void ReadEncoder(void)
             PORTAbits.RA1 = 0;
         }
 
-        CWTurn = 0;                     // Reset counters
-        CCWTurn = 0;                    // Reset counters
+        CWTurn = 0;                     // Reset CW counter
+        CCWTurn = 0;                    // Reset CCW counter
     }
     
 
     OLD_ROT = NEW_ROT;
     
+}
+
+
+/*******************************
+ * WriteLCD(int LCDstart, int dispLength, double var)
+ *
+ * This subroutine takes a numeric variable var, and outputs it to the LCD. Here
+ * LCDstart tells the LCD where to place the desired message (hex), and dispLength
+ * dictates how long the message is that will be displayed. In order to display
+ * the variable, this subroutine performs divisions by 10 to separate each tens place
+ * into the message string, Msg3. The subroutine also takes care of decimal places
+ * if needed. 
+ *******************************/
+void WriteLCD( int LCDstart, int dispLength, double var )
+{
+    int ii = 1;             // Used to store digits of var into Msg3
+    int firstDec = 0;       // Determines if decimal point has been placed
+    Msg3[0] = LCDstart;     // Set where message will be placed on LCD
+    while (ii<dispLength)   // Iterate over length of message for digits of var
+    {
+        if (var >= 10)      // If var > 10, divide by 10 to get to single digit
+        {
+            var = var/10.0;
+        }
+        else if ( (var < 10) && (var >= 1) ) // If var is between 1 and 10, take the
+        {                                   // integer value, this is the digit to
+            Msg3[ii] = (int)var + 0x30;     // be displayed. Subtract the var by this
+            var = (var - (int)var)*10.0;    // integer value and multiply by 10 to get
+            ii++;                           // the next digit. Move to next location in string
+        }
+        else if ( var < 1)  // If var is a decimal, multiply it by 10 until
+        {                   // single digit is reached.
+            var = var*10.0;
+            if (firstDec == 0)  // If its the first time the decimal is
+            {                   // encountered, place a decimal point
+                Msg3[ii] = '.';
+                firstDec = 1;
+                ii++;
+            }
+            else                // Add zero to hold decimal place and move
+            {                   // to next element in string
+                Msg3[ii] = '0';
+                ii++;
+            }
+        }
+    }
+    Msg3[dispLength] = '\0';    // Finally add termination to string message
+    DisplayLCD(Msg3,0);         // Display the message on the LCD
 }
