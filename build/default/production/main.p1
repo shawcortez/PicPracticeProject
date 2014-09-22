@@ -21,10 +21,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S9 . . . . . ]
 "244
 [v _PORTBbits `VS9 ~T0 @X0 0 e@3969 ]
-"21 user.h
-[v _InitInterrupts `(v ~T0 @X0 0 ef ]
+"4623
+[v _PR2 `Vuc ~T0 @X0 0 e@4043 ]
+"3817
+[s S207 :4 `uc 1 :2 `uc 1 ]
+[n S207 . CCP1M DC1B ]
+"3821
+[s S208 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S208 . CCP1M0 CCP1M1 CCP1M2 CCP1M3 DC1B0 DC1B1 ]
+"3829
+[s S209 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S209 . . CCP1Y CCP1X ]
+"3816
+[u S206 `S207 1 `S208 1 `S209 1 ]
+[n S206 . . . . ]
+"3835
+[v _CCP1CONbits `VS206 ~T0 @X0 0 e@4029 ]
+"3895
+[v _CCPR1L `Vuc ~T0 @X0 0 e@4030 ]
 "121 /Applications/microchip/xc8/v1.33/include/plib/timers.h
 [v _WriteTimer0 `(v ~T0 @X0 0 ef1`ui ]
+"21 user.h
+[v _InitInterrupts `(v ~T0 @X0 0 ef ]
 "31 /Applications/microchip/xc8/v1.33/include/plib/delays.h
 [v _Delay1KTCYx `(v ~T0 @X0 0 ef1`uc ]
 "25 user.h
@@ -3625,49 +3643,49 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p x EBTR3=OFF ]
 "64
 [p x EBTRB=OFF ]
-"27 main.c
+"28 main.c
 [v _CHA `i ~T0 @X0 1 e ]
-[; ;main.c: 27: int CHA;
-"28
-[v _CHB `i ~T0 @X0 1 e ]
-[; ;main.c: 28: int CHB;
+[; ;main.c: 28: int CHA;
 "29
-[v _OLD_ROT `i ~T0 @X0 1 e ]
-[; ;main.c: 29: int OLD_ROT;
+[v _CHB `i ~T0 @X0 1 e ]
+[; ;main.c: 29: int CHB;
 "30
-[v _CCWTurn `i ~T0 @X0 1 e ]
-[; ;main.c: 30: int CCWTurn;
+[v _OLD_ROT `i ~T0 @X0 1 e ]
+[; ;main.c: 30: int OLD_ROT;
 "31
-[v _CWTurn `i ~T0 @X0 1 e ]
-[; ;main.c: 31: int CWTurn;
+[v _CCWTurn `i ~T0 @X0 1 e ]
+[; ;main.c: 31: int CCWTurn;
 "32
+[v _CWTurn `i ~T0 @X0 1 e ]
+[; ;main.c: 32: int CWTurn;
+"33
 [v _CountPerRev `Ci ~T0 @X0 1 e ]
 [i _CountPerRev
 -> 1024 `i
 ]
-[; ;main.c: 32: const int CountPerRev = 1024;
-"33
+[; ;main.c: 33: const int CountPerRev = 1024;
+"34
 [v _EncoderPoll `Ci ~T0 @X0 1 e ]
 [i _EncoderPoll
 -> 50 `i
 ]
-[; ;main.c: 33: const int EncoderPoll = 50;
-"34
-[v _PartialRot `d ~T0 @X0 1 e ]
-[; ;main.c: 34: double PartialRot;
+[; ;main.c: 34: const int EncoderPoll = 50;
 "35
+[v _PartialRot `d ~T0 @X0 1 e ]
+[; ;main.c: 35: double PartialRot;
+"36
 [v _RPS `d ~T0 @X0 1 e ]
-[; ;main.c: 35: double RPS;
-"37
+[; ;main.c: 36: double RPS;
+"41
 [v _main `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 37: int main(void) {
+[; ;main.c: 41: int main(void) {
 [e :U _main ]
 [f ]
 [v F3981 `uc ~T0 @X0 -> 0 `x s ]
 [i F3981
 :U ..
-"41
+"45
 -> -> 51 `i `uc
 -> -> 50 `i `uc
 -> -> 40 `i `uc
@@ -3678,12 +3696,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [v _LCDinit `uc ~T0 @X0 7  a ]
-[; ;main.c: 41: char LCDinit[] = {0x33,0x32,0x28,0x01,0x0c,0x06,0x00};
+[; ;main.c: 45: char LCDinit[] = {0x33,0x32,0x28,0x01,0x0c,0x06,0x00};
 [e = _LCDinit F3981 ]
 [v F3983 `uc ~T0 @X0 -> 0 `x s ]
 [i F3983
 :U ..
-"42
+"46
 -> -> 132 `i `uc
 -> -> 67 `ui `uc
 -> -> 85 `ui `uc
@@ -3693,12 +3711,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [v _Msg1 `uc ~T0 @X0 6  a ]
-[; ;main.c: 42: char Msg1[] = {0x84,'C','U','N','T','\0'};
+[; ;main.c: 46: char Msg1[] = {0x84,'C','U','N','T','\0'};
 [e = _Msg1 F3983 ]
 [v F3985 `uc ~T0 @X0 -> 0 `x s ]
 [i F3985
 :U ..
-"43
+"47
 -> -> 197 `i `uc
 -> -> 82 `ui `uc
 -> -> 80 `ui `uc
@@ -3707,137 +3725,149 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [v _Msg2 `uc ~T0 @X0 5  a ]
-[; ;main.c: 43: char Msg2[] = {0xC5,'R','P','S','\0'};
+[; ;main.c: 47: char Msg2[] = {0xC5,'R','P','S','\0'};
 [e = _Msg2 F3985 ]
-[; ;main.c: 44: InitApp();
-"44
-[e ( _InitApp ..  ]
-[; ;main.c: 45: DisplayLCD(LCDinit,1);
-"45
-[e ( _DisplayLCD (2 , &U _LCDinit -> 1 `i ]
-[; ;main.c: 46: DisplayLCD(Msg1,0);
-"46
-[e ( _DisplayLCD (2 , &U _Msg1 -> 0 `i ]
-[; ;main.c: 47: DisplayLCD(Msg2,0);
-"47
-[e ( _DisplayLCD (2 , &U _Msg2 -> 0 `i ]
-[; ;main.c: 48: CHA = PORTBbits.RB5;
+[; ;main.c: 48: InitApp();
 "48
-[e = _CHA -> . . _PORTBbits 0 5 `i ]
-[; ;main.c: 49: CHB = PORTBbits.RB4;
+[e ( _InitApp ..  ]
+[; ;main.c: 49: DisplayLCD(LCDinit,1);
 "49
-[e = _CHB -> . . _PORTBbits 0 4 `i ]
-[; ;main.c: 50: OLD_ROT = 0;
+[e ( _DisplayLCD (2 , &U _LCDinit -> 1 `i ]
+[; ;main.c: 50: DisplayLCD(Msg1,0);
 "50
-[e = _OLD_ROT -> 0 `i ]
-[; ;main.c: 51: CCWTurn = 0;
+[e ( _DisplayLCD (2 , &U _Msg1 -> 0 `i ]
+[; ;main.c: 51: DisplayLCD(Msg2,0);
 "51
-[e = _CCWTurn -> 0 `i ]
-[; ;main.c: 52: CWTurn = 0;
+[e ( _DisplayLCD (2 , &U _Msg2 -> 0 `i ]
+[; ;main.c: 52: CHA = PORTBbits.RB5;
 "52
-[e = _CWTurn -> 0 `i ]
-[; ;main.c: 53: RPS = 0.0;
+[e = _CHA -> . . _PORTBbits 0 5 `i ]
+[; ;main.c: 53: CHB = PORTBbits.RB4;
 "53
-[e = _RPS .0.0 ]
-[; ;main.c: 54: InitInterrupts();
+[e = _CHB -> . . _PORTBbits 0 4 `i ]
+[; ;main.c: 54: OLD_ROT = 0;
 "54
-[e ( _InitInterrupts ..  ]
-[; ;main.c: 55: WriteTimer0(0x0000);
+[e = _OLD_ROT -> 0 `i ]
+[; ;main.c: 55: CCWTurn = 0;
 "55
-[e ( _WriteTimer0 (1 -> -> 0 `i `ui ]
-[; ;main.c: 59: while(1)
+[e = _CCWTurn -> 0 `i ]
+[; ;main.c: 56: CWTurn = 0;
+"56
+[e = _CWTurn -> 0 `i ]
+[; ;main.c: 57: RPS = 0.0;
+"57
+[e = _RPS .0.0 ]
+[; ;main.c: 59: PR2 = 0xF9;
 "59
-[e :U 365 ]
-[; ;main.c: 60: {
+[e = _PR2 -> -> 249 `i `uc ]
+[; ;main.c: 60: CCP1CONbits.DC1B1 = 1;
 "60
-{
-[; ;main.c: 61: Delay1KTCYx(25);
+[e = . . _CCP1CONbits 1 5 -> -> 1 `i `uc ]
+[; ;main.c: 61: CCP1CONbits.DC1B0 = 0;
 "61
-[e ( _Delay1KTCYx (1 -> -> 25 `i `uc ]
-[; ;main.c: 62: WriteLCD(0xC0,5,RPS);
+[e = . . _CCP1CONbits 1 4 -> -> 0 `i `uc ]
+[; ;main.c: 62: CCPR1L = 0b00000000;
 "62
+[e = _CCPR1L -> -> 0 `i `uc ]
+[; ;main.c: 64: WriteTimer0(0x0000);
+"64
+[e ( _WriteTimer0 (1 -> -> 0 `i `ui ]
+[; ;main.c: 66: InitInterrupts();
+"66
+[e ( _InitInterrupts ..  ]
+[; ;main.c: 71: while(1)
+"71
+[e :U 365 ]
+[; ;main.c: 72: {
+"72
+{
+[; ;main.c: 73: Delay1KTCYx(25);
+"73
+[e ( _Delay1KTCYx (1 -> -> 25 `i `uc ]
+[; ;main.c: 74: WriteLCD(0xC0,5,RPS);
+"74
 [e ( _WriteLCD (3 , , -> 192 `i -> 5 `i _RPS ]
-"63
+"75
 }
 [e :U 364 ]
-"59
+"71
 [e $U 365  ]
 [e :U 366 ]
-[; ;main.c: 63: }
-[; ;main.c: 65: CloseTimer0();
-"65
+[; ;main.c: 75: }
+[; ;main.c: 77: CloseTimer0();
+"77
 [e ( _CloseTimer0 ..  ]
-[; ;main.c: 66: return (0);
-"66
+[; ;main.c: 78: return (0);
+"78
 [e ) -> 0 `i ]
 [e $UE 363  ]
-[; ;main.c: 67: }
-"67
+[; ;main.c: 79: }
+"79
 [e :UE 363 ]
 }
 [v F3988 `(v ~T0 @X0 1 tf ]
-"69
+"81
 [v _high_isr `IHF3988 ~T0 @X0 1 e ]
-"70
+"82
 {
-[; ;main.c: 69: void high_priority interrupt high_isr(void)
-[; ;main.c: 70: {
+[; ;main.c: 81: void high_priority interrupt high_isr(void)
+[; ;main.c: 82: {
 [e :U _high_isr ]
 [f ]
-[; ;main.c: 78: }
-"78
+[; ;main.c: 90: }
+"90
 [e :UE 367 ]
 }
 [v F3991 `(v ~T0 @X0 1 tf ]
-"81
+"93
 [v _low_isr `ILF3991 ~T0 @X0 1 e ]
-"82
+"94
 {
-[; ;main.c: 81: void low_priority interrupt low_isr(void)
-[; ;main.c: 82: {
+[; ;main.c: 93: void low_priority interrupt low_isr(void)
+[; ;main.c: 94: {
 [e :U _low_isr ]
 [f ]
-[; ;main.c: 83: if(INTCONbits.RBIF == 1)
-"83
-[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 369  ]
-[; ;main.c: 84: {
-"84
-{
-[; ;main.c: 85: ReadEncoder();
-"85
-[e ( _ReadEncoder ..  ]
-[; ;main.c: 86: INTCONbits.RBIF = 0;
-"86
-[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
-"87
-}
-[; ;main.c: 87: }
-[e $U 370  ]
-"89
-[e :U 369 ]
-[; ;main.c: 89: else if (INTCONbits.TMR0IF == 1)
-[e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 371  ]
-[; ;main.c: 90: {
-"90
-{
-[; ;main.c: 91: RPS = (fabs(PartialRot))/0.026;
-"91
-[e = _RPS / ( _fabs (1 _PartialRot .0.026 ]
-[; ;main.c: 92: PartialRot = 0;
-"92
-[e = _PartialRot -> -> 0 `i `d ]
-[; ;main.c: 93: WriteTimer0(0x0000);
-"93
-[e ( _WriteTimer0 (1 -> -> 0 `i `ui ]
-[; ;main.c: 94: INTCONbits.TMR0IF = 0;
-"94
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+[; ;main.c: 95: if(INTCONbits.RBIF == 1)
 "95
+[e $ ! == -> . . _INTCONbits 0 0 `i -> 1 `i 369  ]
+[; ;main.c: 96: {
+"96
+{
+[; ;main.c: 97: ReadEncoder();
+"97
+[e ( _ReadEncoder ..  ]
+[; ;main.c: 98: INTCONbits.RBIF = 0;
+"98
+[e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
+"99
+}
+[; ;main.c: 99: }
+[e $U 370  ]
+"101
+[e :U 369 ]
+[; ;main.c: 101: else if (INTCONbits.TMR0IF == 1)
+[e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 371  ]
+[; ;main.c: 102: {
+"102
+{
+[; ;main.c: 103: RPS = (fabs(PartialRot))/0.026;
+"103
+[e = _RPS / ( _fabs (1 _PartialRot .0.026 ]
+[; ;main.c: 104: PartialRot = 0.0;
+"104
+[e = _PartialRot .0.0 ]
+[; ;main.c: 105: WriteTimer0(0x0000);
+"105
+[e ( _WriteTimer0 (1 -> -> 0 `i `ui ]
+[; ;main.c: 106: INTCONbits.TMR0IF = 0;
+"106
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"107
 }
 [e :U 371 ]
-"97
+"109
 [e :U 370 ]
-[; ;main.c: 95: }
-[; ;main.c: 97: }
+[; ;main.c: 107: }
+[; ;main.c: 109: }
 [e :UE 368 ]
 }

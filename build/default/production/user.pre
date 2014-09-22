@@ -4576,6 +4576,7 @@ TRISBbits.RB4 = 1;
 TRISBbits.RB5 = 1;
 TRISBbits.RB1 = 0;
 PORTBbits.RB1 = 1;
+TRISCbits.RC2 = 0;
 TRISD = 0b00001111;
 TRISE = 0b00000100;
 ADCON1 = 0b10000111;
@@ -4595,7 +4596,7 @@ PORTAbits.RA1 = 0;
 
 }
 
-# 52
+# 53
 void WaitHalfSec(void)
 {
 int Halfcount = 50;
@@ -4606,7 +4607,7 @@ Halfcount = Halfcount-1;
 }
 }
 
-# 73
+# 74
 void DisplayLCD(char * tempPtr, int init)
 {
 char currentChar;
@@ -4653,32 +4654,53 @@ tempPtr++;
 }
 }
 
-# 127
+# 128
 void InitInterrupts(void)
 {
+
+
 RCONbits.IPEN = 1;
-
-
 INTCONbits.GIEH = 1;
 INTCONbits.GIEL = 1;
+
+
 
 INTCON2bits.NOT_RBPU = 0;
 INTCON2bits.RBIP = 0;
 INTCONbits.RBIF = 0;
 INTCONbits.RBIE = 1;
 
-T0CONbits.T08BIT = 0;
-T0CONbits.T0CS = 0;
-T0CONbits.PSA = 1;
-T0CONbits.TMR0ON = 1;
+
+
+CCP1CONbits.CCP1M3 = 1;
+CCP1CONbits.CCP1M2 = 1;
+CCP1CONbits.CCP1M1 = 0;
+CCP1CONbits.CCP1M0 = 0;
+
+
+
 
 INTCONbits.TMR0IF = 0;
 INTCON2bits.TMR0IP = 0;
 INTCONbits.TMR0IE = 1;
 
+
+
+T0CONbits.T08BIT = 0;
+T0CONbits.T0CS = 0;
+T0CONbits.PSA = 1;
+T0CONbits.TMR0ON = 1;
+
+
+
+T2CONbits.T2CKPS1 = 0;
+T2CONbits.T2CKPS0 = 0;
+T2CONbits.TMR2ON = 1;
+
+# 174
 }
 
-# 170
+# 195
 void ReadEncoder(void)
 {
 
@@ -4740,7 +4762,7 @@ OLD_ROT = NEW_ROT;
 
 }
 
-# 242
+# 267
 void WriteLCD( int LCDstart, int dispLength, double var )
 {
 int ii = 1;

@@ -18,6 +18,7 @@
 #include "user.h"
 #include "globals.h"        // Holds global variables
 #include "timers.h"
+#include "pwm.h"
 #include "config.h"
 
 #define USE_OR_MASKS        // For using peripheral library
@@ -32,7 +33,10 @@ int CWTurn;                 // Counts how many CW turns have occured on the enco
 const int CountPerRev = 1024;// Total counts per revolution (based on encoder specs)
 const int EncoderPoll = 50; // Total number of counts until direction of encoder rotation is determined
 double PartialRot;          // Holds fraction of revolution that has occured
-double RPS;                 // Holds rev/s value 
+double RPS;                 // Holds rev/s value
+
+//double PWMperiod;           // Period for PWM cycle
+//double PWMduty;             // Duty cycle for PWM
 
 int main(void) {
 
@@ -51,8 +55,16 @@ int main(void) {
     CCWTurn = 0;            // Initialize CCW count
     CWTurn = 0;             // Initialize CW count
     RPS = 0.0;              // Initialize RPS value
-    InitInterrupts();       // Initialize timer interrupts for Port B encoder
+    
+    PR2 = 0xF9;             // Open pwm1 at period = 0.1 ms
+    CCP1CONbits.DC1B1 = 1;  // Set duty cycle of pwm1
+    CCP1CONbits.DC1B0 = 0;  // ...
+    CCPR1L = 0b00000000;          // ...
+    
     WriteTimer0(EncoderCount);// Load Timer0
+
+    InitInterrupts();       // Initialize timer interrupts for Port B encoder
+    
 
     //--------------
     // Loop phase: Display RPS on LCD
@@ -89,7 +101,7 @@ void low_priority interrupt low_isr(void)
     else if (INTCONbits.TMR0IF == 1)
       {
         RPS = (fabs(PartialRot))/EncoderTS;    // Compute rps by #rotations/sampletime = rev/sec
-        PartialRot = 0;         // Clear revolution value
+        PartialRot = 0.0;         // Clear revolution value
         WriteTimer0(EncoderCount);  // Reload timer0
         INTCONbits.TMR0IF = 0;  // Clear Interrupt Flag
       }

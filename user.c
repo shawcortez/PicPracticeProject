@@ -27,6 +27,7 @@ void InitApp(void)
     TRISBbits.RB5 = 1;		// Set bit 5 as input on PORTB	(to read from encoder)
     TRISBbits.RB1 = 0;		// Set bit 1 as output on PORTB	(to power encoder)
     PORTBbits.RB1 = 1;          // Output power to encoder
+    TRISCbits.RC2 = 0;          // Set C2 as output for PWM to motor
     TRISD = 0b00001111;		// Set I/O for PORTD (LCD, switch 3, RPG)
     TRISE = 0b00000100;		// Set I/O for PORTE (LCD)
     ADCON1 = 0b10000111;	// Configure for using LCD
@@ -126,25 +127,49 @@ void DisplayLCD(char * tempPtr, int init)
  *******************************/
 void InitInterrupts(void)
 {
+    //-------------------
+    // General Interrupt
     RCONbits.IPEN = 1;                      // Enable priority levels
-    //INTCON2 = 0b00000000;                   // Set port b as high priority
-    //INTCON = 0b11001000;                    // Enable port b interrupt
     INTCONbits.GIEH = 1;                    // Enable high priority interrupts
     INTCONbits.GIEL = 1;                    // Enable low priority interrupts
-    
+
+    //-------------------
+    // PortB interrupts
     INTCON2bits.NOT_RBPU = 0;               // All portB pullups enabled
     INTCON2bits.RBIP = 0;                   // PortB interrupt as low priority
     INTCONbits.RBIF = 0;                    // Clear portB interrupt flag
     INTCONbits.RBIE = 1;                    // Enable portB interrupts
 
+    //------------------
+    // PWM setup
+    CCP1CONbits.CCP1M3 = 1;                 // Enable CCP1 in PWM mode
+    CCP1CONbits.CCP1M2 = 1;                 // ...
+    CCP1CONbits.CCP1M1 = 0;
+    CCP1CONbits.CCP1M0 = 0;
+   // T3CONbits.T3CCP1 = 1;                   // Set Ti
+
+    //-------------------
+    // Timer0 interrupt setup
+    INTCONbits.TMR0IF = 0;                  // Clear Timer0 interrupt flag
+    INTCON2bits.TMR0IP = 0;                 // Timer0 overflow as low priority
+    INTCONbits.TMR0IE = 1;                  // Enable Timer0 interrupt
+
+    //-------------------
+    // Timer0 setup
     T0CONbits.T08BIT = 0;                   // Timer0 as 16 bit timer
     T0CONbits.T0CS = 0;                     // Timer0 clock source as internal
     T0CONbits.PSA = 1;                      // No prescaler
     T0CONbits.TMR0ON = 1;                   // Turn on Timer0
+
+    //------------------
+    // Timer2 setup
+    T2CONbits.T2CKPS1 = 0;                  // Timer2 with 1 prescaler
+    T2CONbits.T2CKPS0 = 0;                  // ...
+    T2CONbits.TMR2ON = 1;                   // Turn on Timer2
+
     
-    INTCONbits.TMR0IF = 0;                  // Clear Timer0 interrupt flag
-    INTCON2bits.TMR0IP = 0;                 // Timer0 overflow as low priority
-    INTCONbits.TMR0IE = 1;                  // Enable Timer0 interrupt
+
+    
     
 }
 

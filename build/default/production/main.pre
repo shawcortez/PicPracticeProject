@@ -4683,7 +4683,7 @@ extern char Msg3[] = {0,0,0,0,0,0,0,0};
 
 #pragma config EBTRB = OFF
 
-# 27 "main.c"
+# 28 "main.c"
 int CHA;
 int CHB;
 int OLD_ROT;
@@ -4693,6 +4693,9 @@ const int CountPerRev = 1024;
 const int EncoderPoll = 50;
 double PartialRot;
 double RPS;
+
+
+
 
 int main(void) {
 
@@ -4711,8 +4714,16 @@ OLD_ROT = 0;
 CCWTurn = 0;
 CWTurn = 0;
 RPS = 0.0;
-InitInterrupts();
+
+PR2 = 0xF9;
+CCP1CONbits.DC1B1 = 1;
+CCP1CONbits.DC1B0 = 0;
+CCPR1L = 0b00000000;
+
 WriteTimer0(0x0000);
+
+InitInterrupts();
+
 
 
 
@@ -4729,7 +4740,7 @@ return (0);
 void high_priority interrupt high_isr(void)
 {
 
-# 78
+# 90
 }
 
 
@@ -4744,7 +4755,7 @@ INTCONbits.RBIF = 0;
 else if (INTCONbits.TMR0IF == 1)
 {
 RPS = (fabs(PartialRot))/0.026;
-PartialRot = 0;
+PartialRot = 0.0;
 WriteTimer0(0x0000);
 INTCONbits.TMR0IF = 0;
 }
