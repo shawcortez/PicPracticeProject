@@ -7,6 +7,7 @@
 #include <stdbool.h>        /* For true/false definition */
 #include <string.h>
 #include <delays.h>
+#include <stdio.h>
 #include "globals.h"
 #include "user.h"
 
@@ -146,7 +147,6 @@ void InitInterrupts(void)
     CCP1CONbits.CCP1M2 = 1;                 // ...
     CCP1CONbits.CCP1M1 = 0;
     CCP1CONbits.CCP1M0 = 0;
-   // T3CONbits.T3CCP1 = 1;                   // Set Ti
 
     //-------------------
     // Timer0 interrupt setup
@@ -163,8 +163,8 @@ void InitInterrupts(void)
 
     //------------------
     // Timer2 setup
-    T2CONbits.T2CKPS1 = 0;                  // Timer2 with 1 prescaler
-    T2CONbits.T2CKPS0 = 0;                  // ...
+    T2CONbits.T2CKPS1 = 1;                  // Timer2 with 1 prescaler
+    T2CONbits.T2CKPS0 = 1;                  // ...
     T2CONbits.TMR2ON = 1;                   // Turn on Timer2
 
     
@@ -258,45 +258,24 @@ void ReadEncoder(void)
  * WriteLCD(int LCDstart, int dispLength, double var)
  *
  * This subroutine takes a numeric variable var, and outputs it to the LCD. Here
- * LCDstart tells the LCD where to place the desired message (hex), and dispLength
+ * LCDstart tells the LCD where to place the desired message (hex), and len
  * dictates how long the message is that will be displayed. In order to display
- * the variable, this subroutine performs divisions by 10 to separate each tens place
- * into the message string, Msg3. The subroutine also takes care of decimal places
- * if needed. 
+ * the variable, this subroutine uses sprintf to convert the variable into a
+ * string with the specified width and #sig figs. Warning: be careful if var
+ * has several decimal places of precision. May overwrite other data in memory
+ * passed the size of Msg. The if statement prevents displaying anything larger
+ * than len+1 to the LCD
  *******************************/
-void WriteLCD( int LCDstart, int dispLength, double var )
+void WriteLCD( int LCDstart, int len, double var, char Msg[] )
 {
-    int ii = 1;             // Used to store digits of var into Msg3
-    int firstDec = 0;       // Determines if decimal point has been placed
-    Msg3[0] = LCDstart;     // Set where message will be placed on LCD
-    while (ii<dispLength)   // Iterate over length of message for digits of var
-    {
-        if (var >= 10)      // If var > 10, divide by 10 to get to single digit
-        {
-            var = var/10.0;
-        }
-        else if ( (var < 10) && (var >= 1) ) // If var is between 1 and 10, take the
-        {                                   // integer value, this is the digit to
-            Msg3[ii] = (int)var + 0x30;     // be displayed. Subtract the var by this
-            var = (var - (int)var)*10.0;    // integer value and multiply by 10 to get
-            ii++;                           // the next digit. Move to next location in string
-        }
-        else if ( var < 1)  // If var is a decimal, multiply it by 10 until
-        {                   // single digit is reached.
-            var = var*10.0;
-            if (firstDec == 0)  // If its the first time the decimal is
-            {                   // encountered, place a decimal point
-                Msg3[ii] = '.';
-                firstDec = 1;
-                ii++;
-            }
-            else                // Add zero to hold decimal place and move
-            {                   // to next element in string
-                Msg3[ii] = '0';
-                ii++;
-            }
-        }
+    char *msgptr = Msg;     // Point to message string
+    int width = sprintf(msgptr+1,"%*.*g",len,len-1,var);    // Define minimum # characters as
+                            // len, #significant digits len-1
+    Msg[0] = LCDstart;      // Set LCD start at beginning of array
+    if (width > len)        // If string is larger than desired length, len
+    {                       // then output warning symbol '!' to LCD 
+        Msg[len] = '!';     // and terminate string at len+1
+        Msg[len+1] = '\0';
     }
-    Msg3[dispLength] = '\0';    // Finally add termination to string message
-    DisplayLCD(Msg3,0);         // Display the message on the LCD
+    DisplayLCD(Msg,0);      // Display the message on the LCD
 }

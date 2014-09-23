@@ -4540,25 +4540,96 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
+# 7 "/Applications/microchip/xc8/v1.33/include/stdarg.h"
+typedef void * va_list[1];
+
+#pragma intrinsic(__va_start)
+extern void * __va_start(void);
+
+#pragma intrinsic(__va_arg)
+extern void * __va_arg(void *, ...);
+
+# 23 "/Applications/microchip/xc8/v1.33/include/stdio.h"
+extern int errno;
+
+# 54
+struct __prbuf
+{
+char * ptr;
+void (* func)(char);
+};
+
+# 17 "/Applications/microchip/xc8/v1.33/include/conio.h"
+extern int errno;
+
+
+extern void init_uart(void);
+
+extern char getch(void);
+extern char getche(void);
+extern void putch(char);
+extern void ungetch(char);
+
+extern __bit kbhit(void);
+
+# 31
+extern char * cgets(char *);
+extern void cputs(const char *);
+
+# 99 "/Applications/microchip/xc8/v1.33/include/stdio.h"
+extern int cprintf(char *, ...);
+#pragma printf_check(cprintf)
+
+
+
+extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+
+
+# 191
+#pragma printf_check(vprintf) const
+#pragma printf_check(vsprintf) const
+
+extern char * gets(char *);
+extern int puts(const char *);
+extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+
+#pragma printf_check(printf) const
+#pragma printf_check(sprintf) const
+extern int sprintf(char *, const char *, ...);
+extern int printf(const char *, ...);
+
 # 11 "globals.h"
 extern int CHA;
 extern int CHB;
 extern int OLD_ROT;
-extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
+extern int CCWTurn;
+extern int CWTurn;
+extern const int CountPerRev;
+extern const int EncoderPoll;
+extern double PartialRot;
+extern double RPS;
+extern const int QEM[16];
 
 # 15 "user.h"
-int InitApp(void);
+void InitApp(void);
 
-int WaitHalfSec(void);
+void WaitHalfSec(void);
 
-int DisplayLCD(char * tempPtr, int init);
+void DisplayLCD(char * tempPtr, int init);
 
-int InitInterrupts(void);
+void InitInterrupts(void);
 
 void ReadEncoder(void);
 
-# 18 "user.c"
-int InitApp(void)
+void WriteLCD(int LCDstart, int len, double var, char Msg[]);
+
+# 22 "user.c"
+void InitApp(void)
 {
 
 
@@ -4567,6 +4638,7 @@ TRISBbits.RB4 = 1;
 TRISBbits.RB5 = 1;
 TRISBbits.RB1 = 0;
 PORTBbits.RB1 = 1;
+TRISCbits.RC2 = 0;
 TRISD = 0b00001111;
 TRISE = 0b00000100;
 ADCON1 = 0b10000111;
@@ -4584,11 +4656,10 @@ PORTAbits.RA1 = 1;
 WaitHalfSec();
 PORTAbits.RA1 = 0;
 
-return 0;
 }
 
-# 50
-int WaitHalfSec(void)
+# 54
+void WaitHalfSec(void)
 {
 int Halfcount = 50;
 while (Halfcount != 0)
@@ -4596,11 +4667,10 @@ while (Halfcount != 0)
 Delay1KTCYx(25);
 Halfcount = Halfcount-1;
 }
-return 0;
 }
 
-# 71
-int DisplayLCD(char * tempPtr, int init)
+# 75
+void DisplayLCD(char * tempPtr, int init)
 {
 char currentChar;
 
@@ -4644,21 +4714,54 @@ tempPtr++;
 }
 
 }
-return 0;
 }
 
-# 125
-int InitInterrupts(void)
+# 129
+void InitInterrupts(void)
 {
-RCONbits.IPEN = 1;
-INTCON2 = 0b00000000;
-INTCON = 0b11001000;
 
-# 142
-return 0;
+
+RCONbits.IPEN = 1;
+INTCONbits.GIEH = 1;
+INTCONbits.GIEL = 1;
+
+
+
+INTCON2bits.NOT_RBPU = 0;
+INTCON2bits.RBIP = 0;
+INTCONbits.RBIF = 0;
+INTCONbits.RBIE = 1;
+
+
+
+CCP1CONbits.CCP1M3 = 1;
+CCP1CONbits.CCP1M2 = 1;
+CCP1CONbits.CCP1M1 = 0;
+CCP1CONbits.CCP1M0 = 0;
+
+
+
+INTCONbits.TMR0IF = 0;
+INTCON2bits.TMR0IP = 0;
+INTCONbits.TMR0IE = 1;
+
+
+
+T0CONbits.T08BIT = 0;
+T0CONbits.T0CS = 0;
+T0CONbits.PSA = 1;
+T0CONbits.TMR0ON = 1;
+
+
+
+T2CONbits.T2CKPS1 = 1;
+T2CONbits.T2CKPS0 = 1;
+T2CONbits.TMR2ON = 1;
+
+# 174
 }
 
-
+# 195
 void ReadEncoder(void)
 {
 
@@ -4672,22 +4775,6 @@ int NEW_ROT = QEM[Old*4+New];
 if (NEW_ROT == 2)
 {
 NEW_ROT = OLD_ROT;
-Anew = CHA;
-Bnew = CHB;
-if (NEW_ROT == 1)
-{
-CHB = Anew;
-CHA = Bnew^1;
-}
-else if (NEW_ROT == -1)
-{
-CHB = Anew^1;
-CHA = Bnew;
-}
-else
-{
-
-}
 }
 else
 {
@@ -4697,15 +4784,28 @@ CHB = Bnew;
 
 if (NEW_ROT == 1)
 {
+CWTurn += 1;
+}
+else if (NEW_ROT == -1)
+{
+CCWTurn += 1;
+}
+
+if (CWTurn + CCWTurn == EncoderPoll)
+{
+if (CWTurn > CCWTurn)
+{
 PORTAbits.RA3 = 1;
 PORTAbits.RA2 = 0;
 PORTAbits.RA1 = 0;
+PartialRot -= ((double)EncoderPoll)/CountPerRev;
 }
-else if (NEW_ROT == -1)
+else if (CWTurn < CCWTurn)
 {
 PORTAbits.RA3 = 0;
 PORTAbits.RA2 = 1;
 PORTAbits.RA1 = 0;
+PartialRot += ((double)EncoderPoll)/CountPerRev;
 }
 else
 {
@@ -4714,6 +4814,26 @@ PORTAbits.RA2 = 0;
 PORTAbits.RA1 = 0;
 }
 
+CWTurn = 0;
+CCWTurn = 0;
+}
+
+
 OLD_ROT = NEW_ROT;
 
+}
+
+# 269
+void WriteLCD( int LCDstart, int len, double var, char Msg[] )
+{
+char *msgptr = Msg;
+int width = sprintf(msgptr+1,"%*.*g",len,len-1,var);
+
+Msg[0] = LCDstart;
+if (width > len)
+{
+Msg[len+1] = '!';
+Msg[len+2] = '\0';
+}
+DisplayLCD(Msg,0);
 }

@@ -17,11 +17,9 @@ extern const int CountPerRev;
 extern const int EncoderPoll;
 extern double PartialRot;
 extern double RPS;
-extern const int QEM[] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
-extern char Msg3[] = {0,0,0,0,0,0,0,0};
+extern const int QEM[16];
+//extern char Msg3[8];// = {0,0,0,0,0,0,0,0};
 
-//extern double PWMperiod;
-//extern double PWMduty;
 
 #endif	/* GLOBALS_H */
 

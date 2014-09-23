@@ -22,7 +22,7 @@ void InitInterrupts(void);
 
 void ReadEncoder(void);
 
-void WriteLCD(int LCDstart, int dispLength, double var);
+void WriteLCD(int LCDstart, int len, double var, char Msg[]);
 
 
 
