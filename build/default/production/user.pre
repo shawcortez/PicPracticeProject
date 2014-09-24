@@ -4614,6 +4614,9 @@ extern const int EncoderPoll;
 extern double PartialRot;
 extern double RPS;
 extern const int QEM[16];
+extern int CHAcount;
+
+extern int TMR0count;
 
 # 15 "user.h"
 void InitApp(void);
@@ -4832,8 +4835,8 @@ int width = sprintf(msgptr+1,"%*.*g",len,len-1,var);
 Msg[0] = LCDstart;
 if (width > len)
 {
-Msg[len+1] = '!';
-Msg[len+2] = '\0';
+Msg[len] = '!';
+Msg[len+1] = '\0';
 }
 DisplayLCD(Msg,0);
 }

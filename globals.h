@@ -18,7 +18,9 @@ extern const int EncoderPoll;
 extern double PartialRot;
 extern double RPS;
 extern const int QEM[16];
-//extern char Msg3[8];// = {0,0,0,0,0,0,0,0};
+extern int CHAcount;
+
+extern int TMR0count;
 
 
 #endif	/* GLOBALS_H */

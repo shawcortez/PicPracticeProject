@@ -3709,6 +3709,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;globals.h: 18: extern double PartialRot;
 [; ;globals.h: 19: extern double RPS;
 [; ;globals.h: 20: extern const int QEM[16];
+[; ;globals.h: 21: extern int CHAcount;
+[; ;globals.h: 23: extern int TMR0count;
 [; ;user.h: 15: void InitApp(void);
 [; ;user.h: 17: void WaitHalfSec(void);
 [; ;user.h: 19: void DisplayLCD(char * tempPtr, int init);
@@ -4241,12 +4243,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user.c: 276: {
 "276
 {
-[; ;user.c: 277: Msg[len+1] = '!';
+[; ;user.c: 277: Msg[len] = '!';
 "277
-[e = *U + _Msg * -> + _len -> 1 `i `x -> -> # *U _Msg `i `x -> -> 33 `ui `uc ]
-[; ;user.c: 278: Msg[len+2] = '\0';
+[e = *U + _Msg * -> _len `x -> -> # *U _Msg `i `x -> -> 33 `ui `uc ]
+[; ;user.c: 278: Msg[len+1] = '\0';
 "278
-[e = *U + _Msg * -> + _len -> 2 `i `x -> -> # *U _Msg `i `x -> -> 0 `ui `uc ]
+[e = *U + _Msg * -> + _len -> 1 `i `x -> -> # *U _Msg `i `x -> -> 0 `ui `uc ]
 "279
 }
 [e :U 386 ]

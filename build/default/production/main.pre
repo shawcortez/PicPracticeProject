@@ -4630,6 +4630,9 @@ extern const int EncoderPoll;
 extern double PartialRot;
 extern double RPS;
 extern const int QEM[16];
+extern int CHAcount;
+
+extern int TMR0count;
 
 
 # 17 "config.h"
@@ -4682,19 +4685,22 @@ extern const int QEM[16];
 
 #pragma config EBTRB = OFF
 
-# 32 "main.c"
+# 33 "main.c"
 int CHA;
 int CHB;
 int OLD_ROT;
 int CCWTurn;
 int CWTurn;
-const int CountPerRev = 1024;
+const int CountPerRev = 500;
 const int EncoderPoll = 128;
 double PartialRot;
 double RPS;
 const int QEM[16] = {0,-1,1,2,1,0,2,-1,-1,2,0,1,2,1,-1,0};
+int CHAcount;
 
-# 49
+int TMR0count;
+
+# 52
 int main(void) {
 
 
@@ -4705,22 +4711,33 @@ char Msg2[] = {0xC5,'R','P','S','\0'};
 char Msg3[10];
 InitApp();
 DisplayLCD(LCDinit,1);
+
+
+
 DisplayLCD(Msg1,0);
 DisplayLCD(Msg2,0);
+
+
+
 CHA = PORTBbits.RB5;
 CHB = PORTBbits.RB4;
 OLD_ROT = 0;
 CCWTurn = 0;
 CWTurn = 0;
 RPS = 0.0;
+CHAcount = 0;
+
+
 
 PR2 = 0x9B;
 CCP1CONbits.DC1B1 = 0;
 CCP1CONbits.DC1B0 = 0;
 CCPR1L = 0b00000100;
 
-WriteTimer0(0x0000);
 
+
+TMR0count = 0;
+WriteTimer0(0x0BDC);
 InitInterrupts();
 
 
@@ -4732,15 +4749,18 @@ WaitHalfSec();
 WriteLCD(0xC0,5,RPS,Msg3);
 }
 
+
+
+
 CloseTimer0();
 return (0);
 }
 
-# 96
+# 113
 void high_priority interrupt high_isr(void)
 {
 
-# 105
+# 122
 }
 
 
@@ -4749,15 +4769,34 @@ void low_priority interrupt low_isr(void)
 {
 if(INTCONbits.RBIF == 1)
 {
-ReadEncoder();
+
+if (CHA == PORTBbits.RB5)
+{
+
+}
+else
+{
+CHAcount++;
+}
 INTCONbits.RBIF = 0;
 }
 
 else if (INTCONbits.TMR0IF == 1)
 {
-RPS = (fabs(PartialRot))/0.026;
-PartialRot = 0.0;
-WriteTimer0(0x0000);
+if (TMR0count == 20)
+{
+
+
+RPS = ((double)CHAcount)/CountPerRev;
+CHAcount = 0;
+
+TMR0count = 0;
+}
+else
+{
+TMR0count++;
+}
+WriteTimer0(0x0BDC);
 INTCONbits.TMR0IF = 0;
 }
 
